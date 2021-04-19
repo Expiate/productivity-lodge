@@ -1,6 +1,9 @@
-# AngularElectron
+# Productivity Lodge
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+
+But this project uses a lot more dependencies like Electron, which is used to run the entire app.
+You must run `npm install` before running anything else.
 
 ## Development server
 
