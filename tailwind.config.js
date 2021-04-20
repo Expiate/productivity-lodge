@@ -12,7 +12,29 @@ module.exports = {
     },
     darkMode: 'class', // or 'media' or 'class'
     theme: {
-      extend: {},
+      extend: {        
+        colors: {
+        background: '#212529',
+
+        primary: '#393E46',
+        primaryAccent: '#3E4246',
+
+        secondary: '#232931',
+        secondaryAccent: '#FF5853',
+
+        tertiary: '#FEBC2C',
+        tertiaryAccent: '#FFD986',
+
+        textPrimary: '#F7F7FE',
+        textSecondary: '#aeaebc',
+        textTertiary: '#818294',
+        textQuaternary:'#64657A',
+
+      },
+      fontFamily: {
+        fontx: ['Cooper', 'cooper-black-std'],
+        exo: ['Exo', 'Exo-regular']
+      }},
     },
     variants: {
       extend: {},
