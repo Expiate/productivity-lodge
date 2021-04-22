@@ -19,13 +19,11 @@ export class AuthService {
 
   private authUrl = `${environment.server_url}/users`;
   private loginUrl = '/login';
-  private registerUrl = '/register';
+  private registerUrl = '/signup';
 
   constructor(
-    private storage: Storage,
     private http: HttpClient,
     private router: Router) {
-    this.storage.create();
     // this.loadStoredToken();
   }
 
@@ -47,8 +45,8 @@ export class AuthService {
     );
   }
   */
-
-  login(credentials: { name: string; password: string }) {
+  /*
+  login(credentials: { email: string; password: string }) {
     console.log(`${this.authUrl}${this.loginUrl}`);
     return this.http.post(`${this.authUrl}${this.loginUrl}`, credentials).pipe(
       map(res =>
@@ -64,10 +62,17 @@ export class AuthService {
       })
     );
   }
+  */
 
-  register(credentials: { username: string; password: string; email: string }) {
+  register(credentials: { signName: string; signEmail: string; signPass: string }) {
     console.log(`${this.authUrl}${this.registerUrl}`);
-    return this.http.post(`${this.authUrl}${this.registerUrl}`, credentials).pipe(
+    let JSON = {
+      'username': credentials.signName,
+      'email': credentials.signEmail,
+      'password': credentials.signPass
+    }
+    console.log(JSON)
+    return this.http.post(`${this.authUrl}${this.registerUrl}`, JSON).pipe(
       map(res =>
         console.log(res)
       ),
@@ -78,11 +83,13 @@ export class AuthService {
     return this.userData.getValue();
   }
 
+  /*
   logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.router.navigateByUrl('/');
       this.userData.next(null);
     });
   }
+  */
 
 }
