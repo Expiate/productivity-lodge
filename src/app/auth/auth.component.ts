@@ -65,19 +65,12 @@ export class AuthComponent implements OnInit {
   }
 
   showRegisterSuccess() {
-    this.toastr.success('New Account Registered', '', {
-      positionClass: 'toast-bottom-center',
-      progressBar: false,
-      progressAnimation: 'decreasing',
-      timeOut: 1500
-    });
-
-    this.toastr.info('Check your Email to confirm your Account', '', {
+    this.toastr.success('Check your Email to confirm your Account', 'New Account Registered', {
       positionClass: 'toast-bottom-center',
       progressBar: true,
       progressAnimation: 'decreasing',
-      timeOut: 3000
-    })
+      timeOut: 5000
+    });
   }
 
   showRegisterInvalid() {
