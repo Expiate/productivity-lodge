@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MainModule } from './main/main.module';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,10 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'angular-electron';
-  electron: any;
+  title = 'productivity-lodge';
 
   constructor() {
     
   }
-  popup() {
 
-  }
 }
