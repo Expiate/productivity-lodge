@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
   isActive = true;
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -19,5 +22,14 @@ export class AuthComponent implements OnInit {
       return this.isActive = false
     }
     this.isActive = true
+  }
+
+  showSuccess() {
+    this.toastr.success('Success', '', {
+      positionClass: 'toast-bottom-center',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 1500
+    });
   }
 }
