@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 /*
 .card {
     @apply rounded-lg p-8 shadow-md
@@ -9,8 +10,14 @@
 	box-sizing: border-box;
 }
 
+.backgr {
+	background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+	// background-image: linear-gradient(to right, #596164 100%, #868f96 0%);
+	//background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
+}
+
 body {
-	background: #393E46;
+	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -42,7 +49,7 @@ span {
 }
 
 a {
-	color: #333;
+	color: adjust-color($color: #F7F7FE, $alpha: 0.3);
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
@@ -75,7 +82,7 @@ button.ghost {
 }
 
 form {
-	background-color: #232931;
+	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -91,10 +98,11 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	@apply rounded-lg
 }
 
 .container {
-	background-color: #232931;
+	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
@@ -164,9 +172,9 @@ input {
 }
 
 .overlay {
-	background: #736BF3;
-	background: -webkit-linear-gradient(to right, #7F00FF, #736BF3);
-	background: linear-gradient(to right, #7F00FF, #736BF3);
+	background: #7028e4;
+	background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+	background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

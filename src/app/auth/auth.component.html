@@ -1,14 +1,16 @@
-<div class="bg-primary w-screen h-screen flex flex-wrap content-center">
+<div class="backgr w-screen h-screen flex flex-wrap content-center">
     <div [className]="isActive ? 'container w-10/12 m-auto ' : 'container right-panel-active w-10/12 m-auto'" id="container">
         <div class="form-container sign-up-container">
             <form action="#">
-                <h1>Create Account</h1>
+                <h1 class="text-textPrimary text-lg">Create Account</h1>
                 <div class="social-container">
+                    <!--
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    -->
                 </div>
-                <span>or use your email for registration</span>
+                <span class="text-textPrimary">Use your Email for Registration</span>
                 <input type="text" placeholder="Name" />
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
@@ -17,13 +19,17 @@
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
-                <h1>Sign in</h1>
+                <h1 class="text-textPrimary text-lg">Sign in</h1>
+                
                 <div class="social-container">
+                    <!--
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    -->
                 </div>
-                <span>or use your account</span>
+                
+                <span class="text-textPrimary">Use your Account Credentials</span>
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
