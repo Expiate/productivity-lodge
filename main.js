@@ -31,7 +31,9 @@ function createMainWindow () {
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/assets/logo.png`,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false,
+      allowRunningInsecureContent: true
     }
 
   })
