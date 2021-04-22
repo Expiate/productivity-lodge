@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './common/services/auth.service';
 @Component({
@@ -12,6 +12,9 @@ export class AuthComponent implements OnInit {
   isActive = true;
   signForm: FormGroup;
   logForm: FormGroup;
+
+  email;
+  password;
 
   constructor(
     private toastr: ToastrService,
@@ -30,6 +33,9 @@ export class AuthComponent implements OnInit {
       logEmail: ['', Validators.compose([Validators.email, Validators.required])],
       logPass: ['', Validators.compose([Validators.minLength(7), Validators.required])]
     });
+
+    this.email = this.logForm.get('logEmail')
+    this.password = this.logForm.get('logPass')
   }
 
 
@@ -42,6 +48,8 @@ export class AuthComponent implements OnInit {
         if (resp['status'] == 201) {
           this.changeState()
           this.showRegisterSuccess()
+          this.email.setValue(credentials.signEmail)
+          this.password.setValue(credentials.signPass)
         }
       })
     } else {
