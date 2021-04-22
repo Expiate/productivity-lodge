@@ -8,7 +8,6 @@ import { environment } from '../../../../environments/environment';
 
 const helper = new JwtHelperService();
 const TOKEN_KEY = 'jwt-token';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -72,11 +71,7 @@ export class AuthService {
       'password': credentials.signPass
     }
     console.log(JSON)
-    return this.http.post(`${this.authUrl}${this.registerUrl}`, JSON).pipe(
-      map(res =>
-        console.log(res)
-      ),
-    );
+    return this.http.post<any>(`${this.authUrl}${this.registerUrl}`, JSON, { observe: 'response' })
   }
 
   getUser() {
