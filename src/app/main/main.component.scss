@@ -19,4 +19,12 @@
     height: 100%;
 }
 
+.primaryGradientBack {
+    background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+}
+
+.secondaryGradientBack {
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+
 // Nav Menu Hover Animation

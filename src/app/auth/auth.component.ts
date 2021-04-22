@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,12 +10,20 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AuthComponent implements OnInit {
   isActive = true;
+  signForm: FormGroup;
+  logForm: FormGroup;
 
   constructor(
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.signForm = this.formBuilder.group({
+      name: ['', Validators.compose([Validators.minLength(3), Validators.required])],
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(7), Validators.required])]
+    });
   }
 
   changeState() {

@@ -8,7 +8,7 @@
 <body>
     <div class="flex flex-row h-full">
         <!-- Sidebar -->
-        <div id="nav" class="bg-secondary w-1/6 flex flex-col navShadow z-10">
+        <div id="nav" class=" w-1/6 flex flex-col navShadow z-10 secondaryGradientBack">
             <div id="logoDiv" class="h-1/5">
             </div>
             <div class="font-exo antialiased mt-10 mb-10">
@@ -78,11 +78,13 @@
         </div>
 
         <div class="flex-col h-screen w-5/6 z-0">
-            <div class="px-16 py-4 bg-secondary text-gray-700 shadow">
+            <div class="px-16 py-4 secondaryGradientBack text-gray-700 shadow">
                 <!-- Content -->
 
             </div>
-            <router-outlet></router-outlet>>
+            <div class="primaryGradientBack">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </body>
