@@ -5,12 +5,14 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
+import { RegLogComponent } from './reg-log/reg-log.component';
 
 
 @NgModule({
   declarations: [
     AuthComponent,
-    AccountConfirmationComponent
+    AccountConfirmationComponent,
+    RegLogComponent
   ],
   imports: [
     CommonModule,
