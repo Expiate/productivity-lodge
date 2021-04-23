@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../common/services/auth.service';
 
@@ -15,7 +16,8 @@ export class AccountConfirmationComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class AccountConfirmationComponent implements OnInit {
       progressAnimation: 'decreasing',
       timeOut: 3000
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/auth/reg-log'])
   }
 }
