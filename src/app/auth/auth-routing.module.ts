@@ -7,17 +7,25 @@ import { RegLogComponent } from './reg-log/reg-log.component';
 const routes: Routes = [
   {
     path:'',
-    pathMatch: 'full',
-    redirectTo: 'reg-log'
+    component: AuthComponent,
+    children: [
+      {
+        path:'reg-log',
+        component: RegLogComponent,
+        data: { animationState: 'One' }
+      },
+      {
+        path:'confirmation',
+        component: AccountConfirmationComponent,
+        data: { animationState: 'Two' }
+      },
+      {
+        path:'**',
+        redirectTo: 'reg-log'
+      }
+    ]
   },
-  {
-    path:'reg-log',
-    component: RegLogComponent
-  },
-  {
-    path:'confirmation',
-    component: AccountConfirmationComponent
-  },
+
 ];
 
 @NgModule({
