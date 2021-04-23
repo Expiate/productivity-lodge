@@ -1,8 +1,9 @@
 import { animate, animateChild, group, query, style, transition, trigger } from '@angular/animations';
 
+const optional = { optional: true };
+
 export const routeTransitionAnimations = trigger('triggerName', [
     transition('One => Two', [
-        style({ position: 'relative' }),
         query(':enter, :leave', [
             style({
                 position: 'absolute',
@@ -10,17 +11,20 @@ export const routeTransitionAnimations = trigger('triggerName', [
                 right: 0,
                 width: '100%'
             })
+        ], optional),
+        query(':enter', [
+            style({ right: '-100%'})
         ]),
-        query(':enter', [style({ right: '-100%', opacity: 0 })]),
-        query(':leave', animateChild()),
         group([
-            query(':leave', [animate('1s ease-out', style({ right: '100%', opacity: 0 }))]),
-            query(':enter', [animate('1s ease-out', style({ right: '0%', opacity: 1 }))])
-        ]),
-        query(':enter', animateChild())
+            query(':leave', [
+                animate('700ms ease', style({ right: '100%'}))
+            ], optional),
+            query(':enter', [
+                animate('700ms ease', style({ right: '0%'}))
+            ]),
+        ])
     ]),
     transition('Two => One', [
-        style({ position: 'relative' }),
         query(':enter, :leave', [
             style({
                 position: 'absolute',
@@ -28,13 +32,17 @@ export const routeTransitionAnimations = trigger('triggerName', [
                 left: 0,
                 width: '100%'
             })
+        ], optional),
+        query(':enter', [
+            style({ left: '-100%'})
         ]),
-        query(':enter', [style({ left: '-100%', opacity: 0 })]),
-        query(':leave', animateChild()),
         group([
-            query(':leave', [animate('1s ease-out', style({ left: '100%', opacity: 0 }))]),
-            query(':enter', [animate('1s ease-out', style({ left: '0%', opacity: 1 }))])
-        ]),
-        query(':enter', animateChild())
-    ])
+            query(':leave', [
+                animate('700ms ease', style({ left: '100%'}))
+            ], optional),
+            query(':enter', [
+                animate('700ms ease', style({ left: '0%'}))
+            ]),
+        ])
+    ]),
 ]);
