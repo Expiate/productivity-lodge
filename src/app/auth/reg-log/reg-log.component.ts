@@ -40,25 +40,47 @@ export class RegLogComponent implements OnInit {
     this.password = this.logForm.get('logPass')
   }
 
-
+  /**
+   * This Function takes the JSON formed by the input controls in the HTML and then
+   * uses them to make an API CALL using the AuthService, then subscribes to it to
+   * filter the Response Codes 
+   * 
+   * @param credentials JSON that contains a Name, an Email and a Password
+   */
   onSignUp(credentials: { signName: string; signEmail: string; signPass: string }) {
     if (this.signForm.status == 'VALID') {
       this.authService.register(credentials).subscribe(resp => {
         console.log(resp['status'])
         console.log(resp['body']['message'])
-  
+        
+        // Check if register was successful
         if (resp['status'] == 201) {
           this.changeState()
           this.showRegisterSuccess()
           this.email.setValue(credentials.signEmail)
           this.password.setValue(credentials.signPass)
         }
+      }, error => {
+        console.log(error['status'])
+
+        // Check if email is being used
+        if (error['status'] == 400) {
+          this.showRegisterInvalid("There is already an Account using that email")
+        }
+
       })
     } else {
-      this.showRegisterInvalid()
+      this.showRegisterInvalid("Register Fields have invalid format")
     }
   }
 
+  /**
+   * This Function takes the JSON formed by the input controls in the HTML and then
+   * uses them to make an API CALL using the AuthService, then subscribes to it to
+   * filter the Response Codes 
+   * 
+   * @param credentials JSON that contains an Email and a Password
+   */
   onLogIn(credentials: { logEmail: string; logPass: string }) {
     if (this.logForm.status == 'VALID') {
       try {
@@ -67,22 +89,16 @@ export class RegLogComponent implements OnInit {
           
           if (resp['status'] == 200) {
             // Log In
-          } else if (resp['status'] == 400) {
-            // Wrong Log Credentials
-            this.showLoginInvalid()
-          } else if (resp['status'] == 403) {
-            // Go to Confirm
-            this.showPendingAccount()
-            this.router.navigate(['auth/confirmation'])
           }
         }, error => {
           console.log(error['status'])
 
+          // Check if the credentials are wrong
           if (error['status'] == 400) {
-            // Wrong Log Credentials
             this.showLoginInvalid()
+          // Check if the Account is not validated
           } else if (error['status'] == 403) {
-            // Go to Confirm
+
             this.showPendingAccount()
             this.router.navigate(['auth/confirmation'])
           }
@@ -94,6 +110,7 @@ export class RegLogComponent implements OnInit {
     }
   }
 
+  // Change the state of the HTML template to SignUp or LogIn Mode
   changeState() {
     if(this.isActive) {
       return this.isActive = false
@@ -110,8 +127,8 @@ export class RegLogComponent implements OnInit {
     });
   }
 
-  showRegisterInvalid() {
-    this.toastr.error('', 'Register Fields are Invalid', {
+  showRegisterInvalid(message: string) {
+    this.toastr.error('', message, {
       positionClass: 'toast-bottom-center',
       progressBar: false,
       progressAnimation: 'decreasing',

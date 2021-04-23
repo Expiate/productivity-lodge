@@ -26,6 +26,13 @@ export class AccountConfirmationComponent implements OnInit {
     });
   }
 
+  /**
+   * This Function takes the JSON formed by the input controls in the HTML and then
+   * uses them to make an API CALL using the AuthService, then subscribes to it to
+   * filter the Response Codes 
+   * 
+   * @param credentials JSON that contains a String
+   */
   onConfirm(token : { confCode: string }) {
     if (this.confirmationForm.status == 'VALID') {
       this.authService.confirm(token).subscribe(resp => {
