@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccountConfirmationComponent } from '../account-confirmation/account-confirmation.component';
+import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 
 
 @NgModule({

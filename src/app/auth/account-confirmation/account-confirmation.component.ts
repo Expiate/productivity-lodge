@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../auth/common/services/auth.service';
+import { AuthService } from '../common/services/auth.service';
 
 @Component({
   selector: 'app-account-confirmation',

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountConfirmationComponent } from '../account-confirmation/account-confirmation.component';
+import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
