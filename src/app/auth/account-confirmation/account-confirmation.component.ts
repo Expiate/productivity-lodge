@@ -26,11 +26,24 @@ export class AccountConfirmationComponent implements OnInit {
     });
   }
 
-  onConfirm(data : { confCode: string }) {
+  onConfirm(token : { confCode: string }) {
     if (this.confirmationForm.status == 'VALID') {
-      // Auth Service Http Call
+      this.authService.confirm(token).subscribe(resp => {
+        console.log(resp['status'])
+        
+        if (resp['status'] == 200) {
+          this.showSuccess()
+          this.goBack()
+        }
+      }, error => {
+        console.log(error['status'])
+
+        if (error['status'] == 404) {
+          this.showError()
+        }
+      })
     } else {
-      this.showInvalid()
+      this.showNoCode()
     }
   }
 
@@ -43,11 +56,17 @@ export class AccountConfirmationComponent implements OnInit {
     });
   }
 
-  showError() {
 
+  showError() {
+    this.toastr.error('', 'Invalid Code', {
+      positionClass: 'toast-bottom-center',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 3000
+    });
   }
 
-  showInvalid() {
+  showNoCode() {
     this.toastr.error('', 'You must provide a Code', {
       positionClass: 'toast-bottom-center',
       progressBar: false,

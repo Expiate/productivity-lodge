@@ -56,7 +56,41 @@ export class RegLogComponent implements OnInit {
       })
     } else {
       this.showRegisterInvalid()
-      this.router.navigate(['auth/confirmation'])
+    }
+  }
+
+  onLogIn(credentials: { logEmail: string; logPass: string }) {
+    if (this.logForm.status == 'VALID') {
+      try {
+        this.authService.login(credentials).subscribe(resp => {
+          console.log(resp['status'])
+          
+          if (resp['status'] == 200) {
+            // Log In
+          } else if (resp['status'] == 400) {
+            // Wrong Log Credentials
+            this.showLoginInvalid()
+          } else if (resp['status'] == 403) {
+            // Go to Confirm
+            this.showPendingAccount()
+            this.router.navigate(['auth/confirmation'])
+          }
+        }, error => {
+          console.log(error['status'])
+
+          if (error['status'] == 400) {
+            // Wrong Log Credentials
+            this.showLoginInvalid()
+          } else if (error['status'] == 403) {
+            // Go to Confirm
+            this.showPendingAccount()
+            this.router.navigate(['auth/confirmation'])
+          }
+        })
+      } catch (err) {
+        console.log(err)
+      }
+
     }
   }
 
@@ -78,6 +112,24 @@ export class RegLogComponent implements OnInit {
 
   showRegisterInvalid() {
     this.toastr.error('', 'Register Fields are Invalid', {
+      positionClass: 'toast-bottom-center',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 5000
+    });
+  }
+  
+  showLoginInvalid() {
+    this.toastr.error('', 'Wrong Email or Password', {
+      positionClass: 'toast-bottom-center',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 5000
+    });
+  }
+
+  showPendingAccount() {
+    this.toastr.info('Check your Email to get the code', 'You Account is still Pending', {
       positionClass: 'toast-bottom-center',
       progressBar: false,
       progressAnimation: 'decreasing',
