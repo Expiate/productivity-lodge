@@ -67,7 +67,7 @@ export class AuthService {
     console.log(`${this.authUrl}${this.registerUrl}`);
     let JSON = {
       'username': credentials.signName,
-      'email': credentials.signEmail,
+      'email': credentials.signEmail.toLowerCase,
       'password': credentials.signPass
     }
     console.log(JSON)
