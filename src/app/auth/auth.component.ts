@@ -26,12 +26,12 @@ export class AuthComponent implements OnInit {
     this.signForm = this.formBuilder.group({
       signName: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       signEmail: ['', Validators.compose([Validators.email, Validators.required])],
-      signPass: ['', Validators.compose([Validators.minLength(7), Validators.required])]
+      signPass: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
     this.logForm = this.formBuilder.group({
       logEmail: ['', Validators.compose([Validators.email, Validators.required])],
-      logPass: ['', Validators.compose([Validators.minLength(7), Validators.required])]
+      logPass: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
     this.email = this.logForm.get('logEmail')
@@ -74,11 +74,11 @@ export class AuthComponent implements OnInit {
   }
 
   showRegisterInvalid() {
-    this.toastr.error('Register Form Invalid', '', {
+    this.toastr.error('', 'Register Fields are Invalid', {
       positionClass: 'toast-bottom-center',
       progressBar: false,
       progressAnimation: 'decreasing',
-      timeOut: 1500
+      timeOut: 5000
     });
   }
 }
