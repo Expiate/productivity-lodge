@@ -89,6 +89,7 @@ export class RegLogComponent implements OnInit {
           
           if (resp['status'] == 200) {
             // Log In
+            console.log(resp['body'])
           }
         }, error => {
           console.log(error['status'])

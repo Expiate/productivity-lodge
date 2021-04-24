@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-
-const helper = new JwtHelperService();
-const TOKEN_KEY = 'jwt-token';
-const USER_KEY = 'user-data';
 @Injectable({
   providedIn: 'root'
 })
