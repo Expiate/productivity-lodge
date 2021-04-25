@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 
 /*
 .card {
@@ -7,6 +7,13 @@
 */
 * {
 	box-sizing: border-box;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
 }
 
 .backgr {
