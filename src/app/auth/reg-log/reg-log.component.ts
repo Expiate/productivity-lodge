@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../common/services/auth.service';
+import { StorageService } from '../../common/services/storage.service'
 
 @Component({
   selector: 'app-reg-log',
@@ -21,6 +22,7 @@ export class RegLogComponent implements OnInit {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private storageService: StorageService,
     private router: Router
   ) { }
 
@@ -90,6 +92,7 @@ export class RegLogComponent implements OnInit {
           if (resp['status'] == 200) {
             // Log In
             console.log(resp['body'])
+            this.storageService.saveToken(resp['body']['accessToken'])
           }
         }, error => {
           console.log(error['status'])

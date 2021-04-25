@@ -13,6 +13,7 @@ export class StorageService {
 
   saveToken(token) {
     localStorage.setItem(TOKEN_KEY, token)
+    console.log('Token Saved')
   }
 
   getToken() {
@@ -22,6 +23,7 @@ export class StorageService {
   saveUser(user) {
     const jsonString = JSON.stringify(user)
     localStorage.setItem(USER_KEY, jsonString)
+    console.log('User Saved')
   }
 
   getUser() {
@@ -45,5 +47,6 @@ export class StorageService {
 
   clearStorage() {
     localStorage.clear()
+    console.log('Storage Cleared')
   }
 }
