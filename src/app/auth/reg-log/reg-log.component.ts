@@ -40,6 +40,10 @@ export class RegLogComponent implements OnInit {
 
     this.email = this.logForm.get('logEmail')
     this.password = this.logForm.get('logPass')
+
+    if (this.storageService.isTokenStored()) {
+      this.router.navigate(['main/'])
+    }
   }
 
   /**
@@ -93,6 +97,7 @@ export class RegLogComponent implements OnInit {
             // Log In
             console.log(resp['body'])
             this.storageService.saveToken(resp['body']['accessToken'])
+            this.router.navigate(['main/'])
           }
         }, error => {
           console.log(error['status'])
@@ -104,6 +109,16 @@ export class RegLogComponent implements OnInit {
           } else if (error['status'] == 403) {
 
             this.showPendingAccount()
+            
+            if(this.storageService.isTempStored()) {
+              this.storageService.clearTemp()
+            }
+
+            let temp = {
+              'email' : credentials.logEmail
+            }
+
+            this.storageService.saveTemp(temp)
             this.router.navigate(['auth/confirmation'])
           }
         })

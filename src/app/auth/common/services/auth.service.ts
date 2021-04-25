@@ -11,6 +11,7 @@ export class AuthService {
   private loginUrl = '/login';
   private registerUrl = '/signup';
   private confirmUrl = '/signup/confirm';
+  private resendEmailUrl = '/signup/confirm/resend';
 
   constructor(
     private http: HttpClient,
@@ -38,7 +39,7 @@ export class AuthService {
    * through an HTTP POST REQUEST and returns an Observable of the Response (REGISTER)
    * 
    * @param credentials JSON that contains a Name, an Email and a Password
-   * @returns 
+   * @returns Observable
    */
   register(credentials: { signName: string; signEmail: string; signPass: string }) {
     console.log(`${this.authUrl}${this.registerUrl}`);
@@ -56,7 +57,7 @@ export class AuthService {
    * the Backend through an HTTP POST REQUEST and returns an Observable of the Response (VALIDATE USER)
    * 
    * @param token String
-   * @returns 
+   * @returns Observable
    */
   confirm(token : { confCode: string }) {
     console.log(`${this.authUrl}${this.confirmUrl}`);
@@ -65,6 +66,18 @@ export class AuthService {
     }
     console.log(JSON)
     return this.http.post<any>(`${this.authUrl}${this.confirmUrl}`, JSON, { observe: 'response' })
+  }
+
+  /**
+   * This Function takes an email in JSON and sends it to the Backend to send a confirmation email
+   * 
+   * @param email 
+   * @returns Observable
+   */
+  resendConfirmationEmail(email) {
+    console.log(`${this.authUrl}${this.resendEmailUrl}`)
+    console.log(email)
+    return this.http.post<any>(`${this.authUrl}${this.resendEmailUrl}`, email, { observe: 'response' })
   }
 
 }

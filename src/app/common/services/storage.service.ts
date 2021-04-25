@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'jwt-token';
 const USER_KEY = 'user-data';
+const TEMP_KEY = 'temp-data';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,28 @@ export class StorageService {
   clearStorage() {
     localStorage.clear()
     console.log('Storage Cleared')
+  }
+
+  saveTemp(temp) {
+    const jsonString = JSON.stringify(temp)
+    localStorage.setItem(TEMP_KEY, jsonString)
+    console.log('Temp Data Saved')
+  }
+
+  getTemp() {
+    const tempData = localStorage.getItem(TEMP_KEY)
+    return JSON.parse(tempData)
+  }
+
+  isTempStored() {
+    if (localStorage.getItem(TEMP_KEY) == null) {
+      return false
+    }
+    return true
+  }
+
+  clearTemp() {
+    localStorage.removeItem(TEMP_KEY)
+    console.log('Temp Data Cleared')
   }
 }

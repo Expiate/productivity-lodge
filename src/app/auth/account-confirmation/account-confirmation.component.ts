@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { StorageService } from 'src/app/common/services/storage.service';
 import { AuthService } from '../common/services/auth.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class AccountConfirmationComponent implements OnInit {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private storageService: StorageService,
     private router: Router
   ) { }
 
@@ -52,6 +54,13 @@ export class AccountConfirmationComponent implements OnInit {
     } else {
       this.showNoCode()
     }
+  }
+
+  resendEmail() {
+    let email = this.storageService.getTemp()
+    this.authService.resendConfirmationEmail(email).subscribe(resp => {
+      console.log(resp['status'])
+    })
   }
 
   showSuccess() {
