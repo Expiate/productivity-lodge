@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <div class="flex flex-row h-full">
+    <div class="flex flex-row h-screen">
         <!-- Sidebar -->
-        <div id="nav" class=" w-1/6 flex flex-col navShadow z-10 secondaryGradientBack">
+        <div id="nav" class=" w-1/6 flex flex-col navShadow z-20 secondaryGradientBack">
             <div id="logoDiv" class="h-1/5">
                 <img src="./assets/logo.png"/>
             </div>
@@ -29,7 +29,7 @@
                             <div class="flex justify-center">
                                 <p class="text-2xl text-white text-center relative w-max one">
                                     <a href="#">
-                                        <span>Tasks</span>
+                                        <span>Time Management</span>
                                     </a>
                                     <span class="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-indigo-700"></span>
                                 </p>
@@ -39,17 +39,7 @@
                             <div class="flex justify-center">
                                 <p class="text-2xl text-white text-center relative w-max one">
                                     <a href="#">
-                                        <span>Habits</span>
-                                    </a>
-                                    <span class="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-indigo-700"></span>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex justify-center">
-                                <p class="text-2xl text-white text-center relative w-max one">
-                                    <a href="#">
-                                        <span>Agenda</span>
+                                        <span>Mood Tracker</span>
                                     </a>
                                     <span class="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-indigo-700"></span>
                                 </p>
@@ -78,12 +68,11 @@
 
         </div>
 
-        <div class="flex-col h-screen w-5/6 z-0">
-            <div class="px-16 py-4 secondaryGradientBack text-gray-700 shadow">
-                <!-- Content -->
-
+        <div class="flex flex-col h-screen w-5/6">
+            <div id="historyNav"class="h-10 w-full flex items-center secondaryGradientBack text-textPrimary font-exo z-10 shadow">
+                <p class="ml-2">Home</p>
             </div>
-            <div class="primaryGradientBack">
+            <div class="h-full w-full z-0 max-h-full">
                 <router-outlet></router-outlet>
             </div>
         </div>
