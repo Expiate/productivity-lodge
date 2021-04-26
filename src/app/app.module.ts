@@ -6,10 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DevInfoComponent } from './dev-info/dev-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DevInfoComponent,
   ],
   imports: [
     BrowserModule,
