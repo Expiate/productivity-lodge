@@ -30,6 +30,10 @@ function createMainWindow () {
     height: 920,
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/assets/logo.png`,
+    resizable: false,
+    movable: false,
+    minimizable: false,
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
@@ -40,6 +44,7 @@ function createMainWindow () {
 
   win.menuBarVisible = false;
   win.loadURL(`file://${__dirname}/dist/index.html`)
+  win.maximize()
 
   //// uncomment below to open the DevTools.
   win.webContents.openDevTools()
