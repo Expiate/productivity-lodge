@@ -25,7 +25,7 @@ module.exports = {
         tertiary: '#FEBC2C',
         tertiaryAccent: '#FFD986',
 
-        textPrimary: '#F7F7FE',
+        textPrimary: '#EEEEEE',
         textSecondary: '#aeaebc',
         textTertiary: '#818294',
         textQuaternary:'#64657A',
