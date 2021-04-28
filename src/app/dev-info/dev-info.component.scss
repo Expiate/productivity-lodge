@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 // COLORS
-$softorange: #03BFCB;
+$softorange: #ea4c89;
 $tomatored: #F25C66;
 $mediumblu: #1E272D;
 
@@ -10,7 +10,7 @@ $mediumblu: #1E272D;
 }
 
 body {
-	background-color: #28223F;
+	background-color: #1D1D1D;
 	font-family: 'Montserrat', sans-serif;
 	
 	display: flex;
@@ -46,7 +46,7 @@ p {
 }
 
 .card-container {
-	background-color: #231E39;
+	background-color: #292929;
 	border-radius: 5px;
 	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 	color: #B3B8CD;
@@ -70,7 +70,7 @@ p {
 }
 
 .card-container .round {
-	border: 1px solid #03BFCB;
+	border: 1px solid #ea4c89;
 	border-radius: 50%;
 	padding: 7px;
     margin-left: auto;
@@ -78,8 +78,8 @@ p {
 }
 
 button.primary {
-	background-color: #03BFCB;
-	border: 1px solid #03BFCB;
+	background-color: #ea4c89;
+	border: 1px solid #ea4c89;
 	border-radius: 3px;
 	color: #231E39;
 	font-family: 'Montserrat', sans-serif;
@@ -89,11 +89,11 @@ button.primary {
 
 button.primary.ghost {
 	background-color: transparent;
-	color: #02899C;
+	color: #ea4c89;
 }
 
 .skills {
-	background-color: #1F1A36;
+	background-color: #212121;
 	text-align: left;
 	padding: 20px;
 	margin-top: 30px;
