@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToDev() {
-    this.router.navigate(['/dev-info'])
+    this.router.navigate(['main/dev-info'])
   }
 
   navigateMood() {
