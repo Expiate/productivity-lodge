@@ -14,16 +14,10 @@ module.exports = {
     theme: {
       extend: {        
         colors: {
-        background: '#212529',
 
-        primary: '#393E46',
-        primaryAccent: '#736BF3',
-
-        secondary: '#232931',
-        secondaryAccent: '#FF5853',
-
+        primary: '#1D1D1D',
+        secondary: '#292929',
         tertiary: '#FEBC2C',
-        tertiaryAccent: '#FFD986',
 
         textPrimary: '#EEEEEE',
         textSecondary: '#aeaebc',
