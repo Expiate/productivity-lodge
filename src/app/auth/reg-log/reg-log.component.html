@@ -1,4 +1,4 @@
-<div class="backgr w-screen h-screen flex flex-wrap content-center">
+<div class="bg-primary w-screen h-screen flex flex-wrap content-center">
     <div [className]="isActive ? 'container w-10/12 m-auto ' : 'container right-panel-active w-10/12 m-auto'" id="container">
         <div class="form-container sign-up-container">
             <form [formGroup]="signForm" (ngSubmit)="onSignUp(signForm.value)">
