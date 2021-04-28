@@ -12,4 +12,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  closeApp() {
+    window.close()
+  }
+
+  goToSettings() {
+
+  }
+
+  logout() {
+
+  }
 }
