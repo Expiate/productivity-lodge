@@ -12,4 +12,17 @@ export class MoodComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  may = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ]
+
 }
