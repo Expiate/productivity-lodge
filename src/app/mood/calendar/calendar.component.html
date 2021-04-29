@@ -8,7 +8,7 @@
     <div class="table flex-nowrap">
         <div class="flex items-center flex-col space-y-10 px-5 overflow-y-scroll" id="style-1">
             <div class="flex flex-col" *ngFor="let month of yearDays; let i = index">
-                <h2 class="text-2xl text-textPrimary font-exo text-center">{{month[15].month}}</h2>
+                <h2 class="text-2xl text-textPrimary font-exo text-center my-4">{{month[15].month}}</h2>
                 <div class="grid grid-cols-7 grid-flow-row list-none gap-0.5">
                     <li *ngFor="let day of month; let i = index">
                         <!--
@@ -22,7 +22,9 @@
         
                         <ng-template #dayTemplate>
                             <div class="day" (click)="showDay(day)">
-                                {{day.number}}
+                                <div class="flex justify-center items-center text-textPrimary right-0 bottom-0 rounded-full absolute w-5 h-5" id="round">
+                                    <p class="text-xs text-center">{{day.number}}</p>
+                                </div>
                             </div>
                         </ng-template>
                     </li>
