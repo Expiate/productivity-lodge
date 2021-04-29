@@ -57,4 +57,8 @@ export class CalendarComponent implements OnInit {
     this.monthNumber = this.monthDays[0].monthIndex;
     this.year = this.monthDays[0].year;
   }
+
+  showDay(day: Day) {
+    console.log(day.number + " " + day.monthIndex + " " + day.year)
+  }
 }
