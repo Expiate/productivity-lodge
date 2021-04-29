@@ -7,8 +7,8 @@
 <body>
     <div class="table">
         <div class="grid grid-cols-7 list-none gap-0.5">
-            <li *ngFor="let day of monthDays">
-                <div class="day">
+            <li *ngFor="let day of monthDays; let i = index">
+                <div [ngClass]="day.number == null ? 'emptyDay': 'day'">
                     {{day.number}}
                 </div>
             </li>
