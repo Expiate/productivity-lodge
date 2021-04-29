@@ -28,6 +28,6 @@ export class HomeComponent implements OnInit {
   }
 
   navigateMood() {
-    this.router.navigate(['main/mood'])
+    this.router.navigate(['mood'])
   }
 }

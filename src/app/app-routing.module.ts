@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
+    path: 'mood',
+    loadChildren: () => import('./mood/mood.module').then(m => m.MoodModule)
+  },
+  {
     path: 'app',
     component: AppComponent
   },

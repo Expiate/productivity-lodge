@@ -14,16 +14,4 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  navigateHome() {
-    this.router.navigate(['main/home'])
-  }
-
-  navigateTime() {
-    this.router.navigate(['main/home'])
-  }
-
-  navigateMood() {
-    this.router.navigate(['main/mood'])
-  }
 }
