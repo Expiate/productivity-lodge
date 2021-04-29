@@ -9,53 +9,57 @@ import { CalendarCreatorService } from '../common/services/calendar-creator.serv
 })
 
 export class CalendarComponent implements OnInit {
+  public JanDays: Day[];
+  public FebDays: Day[];
+  public MarDays: Day[];
+  public AprDays: Day[];
+  public MayDays: Day[];
+  public JunDays: Day[];
+  public JulDays: Day[];
+  public AugDays: Day[];
+  public SepDays: Day[];
+  public OctDays: Day[];
+  public NovDays: Day[];
+  public DecDays: Day[];
+  public yearDays = [];
   public monthDays: Day[];
 
-  public monthNumber: number;
   public year: number;
 
-  public weekDaysName = [];
+
 
   constructor(public calendarCreator: CalendarCreatorService) {}
 
   ngOnInit(): void {
-    this.setMonthDays(this.calendarCreator.getCurrentMonth());
+    this.year = new Date().getFullYear();
 
-    this.weekDaysName.push("Mo");
-    this.weekDaysName.push("Tu");
-    this.weekDaysName.push("We");
-    this.weekDaysName.push("Th");
-    this.weekDaysName.push("Fr");
-    this.weekDaysName.push("Sa");
-    this.weekDaysName.push("Su");
+    this.setYearDays(this.year);
+    
   }
 
-  onNextMonth(): void {
-    this.monthNumber++;
+  requestDays() {
 
-    if (this.monthNumber == 13) {
-      this.monthNumber = 1;
-      this.year++;
+  }
+
+  chargeDataIntoYearDays() {
+    this.yearDays.push(this.JanDays)
+    this.yearDays.push(this.FebDays)
+    this.yearDays.push(this.MarDays)
+    this.yearDays.push(this.AprDays)
+    this.yearDays.push(this.MayDays)
+    this.yearDays.push(this.JunDays)
+    this.yearDays.push(this.JulDays)
+    this.yearDays.push(this.AugDays)
+    this.yearDays.push(this.SepDays)
+    this.yearDays.push(this.OctDays)
+    this.yearDays.push(this.NovDays)
+    this.yearDays.push(this.DecDays)
+  }
+
+  private setYearDays(year: number) {
+    for(let i = 0; i <= 11; i++) {
+      this.yearDays.push(this.calendarCreator.getMonth(i, year))
     }
-
-    this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
-  }
-
-  onPreviousMonth() : void{
-    this.monthNumber--;
-
-    if (this.monthNumber < 1) {
-      this.monthNumber = 12;
-      this.year--;
-    }
-
-    this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
-  }
-
-  private setMonthDays(days: Day[]): void {
-    this.monthDays = days;
-    this.monthNumber = this.monthDays[0].monthIndex;
-    this.year = this.monthDays[0].year;
   }
 
   showDay(day: Day) {

@@ -8,4 +8,6 @@ export class Day {
 
     public weekDayName: string;
     public weekDayNumber: number;
+
+    public moodColor: string;
 }

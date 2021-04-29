@@ -6,23 +6,26 @@
 
 <body>
     <div class="table">
-        <div class="grid grid-cols-7 list-none gap-0.5">
-            <li *ngFor="let day of monthDays; let i = index">
-                <!--
-                <div [ngClass]="day.number == null ? 'emptyDay': 'day'">
-                    {{day.number}}
-                </div>
-                -->
-                <div *ngIf="day.number == null; else dayTemplate" class="emptyDay">
-
-                </div>
-
-                <ng-template #dayTemplate>
-                    <div class="day" (click)="showDay(day)">
+        <div class="flex flex-col" *ngFor="let month of yearDays; let i = index">
+            <h2>{{month[15].month}}</h2>
+            <div class="grid grid-cols-7 grid-flow-row list-none gap-0.5">
+                <li *ngFor="let day of month; let i = index">
+                    <!--
+                    <div [ngClass]="day.number == null ? 'emptyDay': 'day'">
                         {{day.number}}
                     </div>
-                </ng-template>
-            </li>
+                    -->
+                    <div *ngIf="day.number == null; else dayTemplate" class="emptyDay">
+    
+                    </div>
+    
+                    <ng-template #dayTemplate>
+                        <div class="day" (click)="showDay(day)">
+                            {{day.number}}
+                        </div>
+                    </ng-template>
+                </li>
+            </div>
         </div>
     </div>
 </body>

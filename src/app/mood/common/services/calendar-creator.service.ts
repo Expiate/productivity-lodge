@@ -24,6 +24,15 @@ export class CalendarCreatorService {
     let firstday = this.createDay(1, monthIndex, year);
 
     //create empty days
+    if(firstday.weekDayNumber == 0) {
+      for(let i = 1; i <= 6; i++) {
+        days.push({
+          weekDayNumber: i,
+          monthIndex: monthIndex,
+          year: year,
+        } as Day);
+      }
+    }
     for (let i = 1; i < firstday.weekDayNumber; i++) {
       days.push({
         weekDayNumber: i,
