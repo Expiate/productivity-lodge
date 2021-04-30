@@ -96,9 +96,7 @@ export class RegLogComponent implements OnInit {
           if (resp['status'] == 200) {
             // Log In
             console.log(resp['body'])
-            this.storageService.clearStorage()
             this.storageService.saveToken(resp['body']['accessToken'])
-            this.storageService.saveUser(credentials.logEmail)
             this.router.navigate(['main/'])
           }
         }, error => {
