@@ -41,7 +41,7 @@ export class RegLogComponent implements OnInit {
     this.email = this.logForm.get('logEmail')
     this.password = this.logForm.get('logPass')
 
-    if (this.storageService.isTokenStored()) {
+    if (this.storageService.isTokenStored() && this.storageService.isUserStored()) {
       this.router.navigate(['main/'])
     }
   }
