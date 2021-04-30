@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Day } from '../common/models/day.model';
 import { CalendarCreatorService } from '../common/services/calendar-creator.service';
 
@@ -14,7 +15,9 @@ export class CalendarComponent implements OnInit {
 
 
 
-  constructor(public calendarCreator: CalendarCreatorService) {}
+  constructor(
+    public calendarCreator: CalendarCreatorService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.year = new Date().getFullYear();
@@ -31,5 +34,9 @@ export class CalendarComponent implements OnInit {
 
   showDay(day: Day) {
     console.log(day.number + " " + day.monthIndex + " " + day.year)
+  }
+
+  navigateHome() {
+    this.router.navigate(['main/'])
   }
 }
