@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class DevInfoComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -17,5 +17,12 @@ export class DevInfoComponent implements OnInit {
 
   navigateHome() {
     this.router.navigate(['/main'])
+  }
+
+  openLinkedin() {
+    window.open('https://www.linkedin.com/in/josé-maría-sánchez-bonilla-4a896a210/')
+  }
+
+  copyGmailToClipboard() {
   }
 }
