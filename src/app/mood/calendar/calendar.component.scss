@@ -3,6 +3,7 @@
 //colors
 $primary: #1D1D1D;
 $secondary: #292929;
+$accent: #ea4c89;
 
 body {
     width: 100%;
@@ -116,12 +117,13 @@ body {
     opacity: 0.9;
     bottom: 0;
     right: 0;
-    transition: all 0.4s ease
+    transition: all 0.4s ease;
+
+    &:hover {
+        background-color: $accent;
+    }
 }
 
-.icon:hover {
-    background-color: #ea4c89;
-}
 
 .yearChangeButton {
     width: 20px;
@@ -146,7 +148,7 @@ body {
     transition: all 0.4s ease;
 
     &:hover {
-        background-color: #ea4c89;
+        background-color: $accent;
     }
 }
 
@@ -161,6 +163,6 @@ body {
     transition: all 0.4s ease;
 
     &:hover {
-        background-color: #ea4c89;
+        background-color: $accent;
     }
 }
