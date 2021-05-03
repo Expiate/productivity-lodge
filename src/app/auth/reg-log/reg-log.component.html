@@ -1,8 +1,13 @@
+<div *ngIf="lastUserExists" class="table top-3 cursor-pointer" (click)="navigateHome()">
+    <h1 class="text-lg text-textPrimary">Continue as</h1>
+    <h1 class="text-xl text-textPrimary">{{lastUser}}</h1>
+</div>
 <div class="bg-primary w-screen h-screen flex flex-wrap content-center">
     <div [className]="isActive ? 'container w-10/12 m-auto ' : 'container right-panel-active w-10/12 m-auto'" id="container">
         <div class="form-container sign-up-container">
             <form [formGroup]="signForm" (ngSubmit)="onSignUp(signForm.value)">
                 <h1 class="text-textPrimary text-3xl">Create Account</h1>
+
                 <div class="social-container">
                     <!--
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -10,6 +15,7 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     -->
                 </div>
+
                 <span class="text-textPrimary">Use your Email for Registration</span>
                 <input formControlName="signName" type="text" placeholder="Name" />
                 <input formControlName="signEmail" type="email" placeholder="Email" />

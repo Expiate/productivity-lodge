@@ -19,15 +19,7 @@
                 <h2 class="text-2xl text-textPrimary text-center my-4">{{month[15].month}}</h2>
                 <div class="grid grid-cols-7 grid-flow-row list-none gap-0.5">
                     <li *ngFor="let day of month; let i = index">
-                        <!--
-                        <div [ngClass]="day.number == null ? 'emptyDay': 'day'">
-                            {{day.number}}
-                        </div>
-                        -->
-                        <div *ngIf="day.number == null; else dayTemplate" class="emptyDay">
-        
-                        </div>
-        
+                        <div *ngIf="day.number == null; else dayTemplate" class="emptyDay"></div>
                         <ng-template #dayTemplate>
                             <div class="day" (click)="showDay(day)">
                                 <div class="flex justify-center items-center text-textPrimary right-0 bottom-0 rounded-full absolute w-5 h-5" id="round">

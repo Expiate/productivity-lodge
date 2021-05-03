@@ -11,12 +11,18 @@ import { StorageService } from '../../common/services/storage.service'
   styleUrls: ['./reg-log.component.scss']
 })
 export class RegLogComponent implements OnInit {
+  // Template Variables
   isActive = true;
+  lastUserExists = false;
+
+  // Forms
   signForm: FormGroup;
   logForm: FormGroup;
 
-  email;
-  password;
+  // User Data
+  email: any;
+  password: any;
+  lastUser: string;
 
   constructor(
     private toastr: ToastrService,
@@ -27,22 +33,27 @@ export class RegLogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Sign Form Config
     this.signForm = this.formBuilder.group({
       signName: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       signEmail: ['', Validators.compose([Validators.email, Validators.required])],
       signPass: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
+    // Log Form Config
     this.logForm = this.formBuilder.group({
       logEmail: ['', Validators.compose([Validators.email, Validators.required])],
       logPass: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
+    // User Log Form Controls
     this.email = this.logForm.get('logEmail')
     this.password = this.logForm.get('logPass')
 
+    // Checks if there is login info in local storage to auto log in as that user
     if (this.storageService.isTokenStored() && this.storageService.isUserStored()) {
-      this.router.navigate(['main/'])
+      this.lastUserExists = true;
+      this.lastUser = this.storageService.getUser().username
     }
   }
 
@@ -56,7 +67,7 @@ export class RegLogComponent implements OnInit {
   onSignUp(credentials: { signName: string; signEmail: string; signPass: string }) {
     if (this.signForm.status == 'VALID') {
       this.authService.register(credentials).subscribe(resp => {
-        console.log(resp['status'])
+        console.log("Success: " + resp['status'])
         console.log(resp['body']['message'])
         
         // Check if register was successful
@@ -67,7 +78,7 @@ export class RegLogComponent implements OnInit {
           this.password.setValue(credentials.signPass)
         }
       }, error => {
-        console.log(error['status'])
+        console.log("Error: " + error['status'])
 
         // Check if email is being used
         if (error['status'] == 400) {
@@ -91,18 +102,18 @@ export class RegLogComponent implements OnInit {
     if (this.logForm.status == 'VALID') {
       try {
         this.authService.login(credentials).subscribe(resp => {
-          console.log(resp['status'])
+          console.log("Success: " + resp['status'])
           
           if (resp['status'] == 200) {
             // Log In
             console.log(resp['body'])
             this.storageService.clearStorage()
-            this.storageService.saveUser(credentials.logEmail)
+            this.storageService.saveUser({ email: credentials.logEmail, username: resp['body']['user']})
             this.storageService.saveToken(resp['body']['accessToken'])
             this.router.navigate(['main/'])
           }
         }, error => {
-          console.log(error['status'])
+          console.log("Error: " + error['status'])
 
           // Check if the credentials are wrong
           if (error['status'] == 400) {
@@ -173,5 +184,9 @@ export class RegLogComponent implements OnInit {
       progressAnimation: 'decreasing',
       timeOut: 5000
     });
+  }
+
+  navigateHome() {
+    this.router.navigate(['main/'])
   }
 }

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-/*
-.card {
-    @apply rounded-lg p-8 shadow-md
-}
-*/
+// Colors
+$primary: #1D1D1D;
+$secondary: #292929;
+$accent: #ea4c89;
+
 * {
 	box-sizing: border-box;
 }
@@ -18,6 +18,23 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+}
+
+.table {
+    height: 10%;
+    width: 20%;
+    background-color: $secondary;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+    border: 2px solid rgba(7, 7, 7, 0.12);
+    font-size: 16px;   
+    position: absolute;
+	margin-right: 40%;
+	margin-left: 40%;
+    display: flex;
+    align-items: center;
+	justify-content: center;
+    flex-direction: column;
 }
 
 h1 {
@@ -91,7 +108,7 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
-	@apply rounded-lg
+	@apply rounded-lg;
 }
 
 .container {
