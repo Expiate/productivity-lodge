@@ -1,21 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Day } from '../models/day.model'
-
+import { Day } from '../models/day.model';
+import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarCreatorService {
+  private url = `${environment.server_url}/days/getDays`;
+  private apiDays;
   private currentYear: number;
-  private currentMonthIndex: number;
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     let date = new Date();
     this.currentYear = date.getFullYear();
-    this.currentMonthIndex = date.getMonth(); 
-  }
-
-  public getCurrentMonth(): Day[] {
-    return this.getMonth(this.currentMonthIndex, this.currentYear);
+    this.getApiDays();
   }
 
   public getMonth(monthIndex: number, year: number): Day[] {
@@ -118,5 +118,15 @@ export class CalendarCreatorService {
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
 
     return day;
+  }
+
+  private getApiDays() {
+    this.http.get<any>(`${this.url}/${this.currentYear}`, { observe: 'response' }).subscribe(resp => {
+      // On Success
+      console.log('Days Retrieved: ' + resp['body'].length)
+    }, error => {
+      // On Error
+    })
+
   }
 }
