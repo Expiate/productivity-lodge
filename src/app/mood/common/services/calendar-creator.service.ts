@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Day } from '../models/day.model';
 import { environment } from '../../../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class CalendarCreatorService {
   private url = `${environment.server_url}/days/getDays`;
   private apiDays;

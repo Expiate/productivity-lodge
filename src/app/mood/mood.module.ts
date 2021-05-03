@@ -5,7 +5,6 @@ import { MoodRoutingModule } from './mood-routing.module';
 import { MoodComponent } from './mood.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
-
 @NgModule({
   declarations: [
     MoodComponent,
@@ -14,6 +13,6 @@ import { CalendarComponent } from './calendar/calendar.component';
   imports: [
     CommonModule,
     MoodRoutingModule
-  ]
+  ],
 })
 export class MoodModule { }
