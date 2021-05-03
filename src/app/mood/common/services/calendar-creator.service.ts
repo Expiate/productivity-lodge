@@ -20,6 +20,11 @@ export class CalendarCreatorService {
     this.getApiDays();
   }
 
+  public changeYear(year: number) {
+    this.currentYear = year
+    this.getApiDays();
+  }
+
   public getMonth(monthIndex: number, year: number): Day[] {
     let days = [];
 

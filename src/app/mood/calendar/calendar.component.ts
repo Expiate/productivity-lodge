@@ -25,12 +25,14 @@ export class CalendarComponent implements OnInit {
 
   onNextYear() {
     this.year++;
+    this.calendarCreator.changeYear(this.year);
     this.yearDays = [];
     this.setYearDays(this.year)
   }
 
   onPreviousYear() {
     this.year--;
+    this.calendarCreator.changeYear(this.year);
     this.yearDays = [];
     this.setYearDays(this.year)
   }
