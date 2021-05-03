@@ -13,8 +13,6 @@ export class CalendarComponent implements OnInit {
   public yearDays = [];
   public year: number;
 
-
-
   constructor(
     public calendarCreator: CalendarCreatorService,
     private router: Router) {}
@@ -23,7 +21,18 @@ export class CalendarComponent implements OnInit {
     this.year = new Date().getFullYear();
 
     this.setYearDays(this.year);
-    
+  }
+
+  onNextYear() {
+    this.year++;
+    this.yearDays = [];
+    this.setYearDays(this.year)
+  }
+
+  onPreviousYear() {
+    this.year--;
+    this.yearDays = [];
+    this.setYearDays(this.year)
   }
 
   private setYearDays(year: number) {

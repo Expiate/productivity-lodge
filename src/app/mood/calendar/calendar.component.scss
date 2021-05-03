@@ -13,12 +13,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     color: #B3B8CD;
 }
 
 #round {
     background: #0f0f0f;
     margin: 2px;
+}
+
+#year {
+    letter-spacing: 4px;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 
@@ -86,7 +93,7 @@ body {
     position: relative;
 }
 
-.options {
+.roundButton {
     width: 40px;
     height: 40px;
     border-radius: 100%;
@@ -99,7 +106,7 @@ body {
     position: absolute;
 }
 
-.logo {
+.icon {
     width: 40px;
     height: 40px;
     z-index: 9;
@@ -112,6 +119,48 @@ body {
     transition: all 0.4s ease
 }
 
-.logo:hover {
+.icon:hover {
     background-color: #ea4c89;
+}
+
+.yearChangeButton {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#fff, 0.2);
+    border-radius: 100%;
+    backdrop-filter: blur(5px);
+}
+
+.yearChangeIconRight {
+    width: 20px;
+    height: 20px;
+    z-index: 9;
+    background-image: url(../../../assets/righArrowMini.svg);
+    background-repeat: no-repeat;
+    background-position: 1px 1px;
+    opacity: 0.9;
+    transition: all 0.4s ease;
+
+    &:hover {
+        background-color: #ea4c89;
+    }
+}
+
+.yearChangeIconLeft {
+    width: 20px;
+    height: 20px;
+    z-index: 9;
+    background-image: url(../../../assets/leftArrowMini.svg);
+    background-repeat: no-repeat;
+    background-position: 1px 1px;
+    opacity: 0.9;
+    transition: all 0.4s ease;
+
+    &:hover {
+        background-color: #ea4c89;
+    }
 }
