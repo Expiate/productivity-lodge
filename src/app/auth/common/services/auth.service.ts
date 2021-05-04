@@ -79,4 +79,9 @@ export class AuthService {
     return this.http.post<any>(`${this.authUrl}${this.resendEmailUrl}`, email, { observe: 'response' })
   }
 
+  requestUserData() {
+    // This URL returns the logged user data using the jwt auth
+    return this.http.get<any>(`${this.authUrl}/`, { observe: 'response' })
+  }
+
 }

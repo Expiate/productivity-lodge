@@ -21,6 +21,11 @@ export class StorageService {
     return localStorage.getItem(TOKEN_KEY)
   }
 
+  deleteToken() {
+    localStorage.removeItem(TOKEN_KEY)
+    console.log('Token Removed')
+  }
+
   saveUser(user) {
     const jsonString = JSON.stringify(user)
     localStorage.setItem(USER_KEY, jsonString)
@@ -30,6 +35,11 @@ export class StorageService {
   getUser() {
     const userData = localStorage.getItem(USER_KEY)
     return JSON.parse(userData)
+  }
+
+  deleteUser() {
+    localStorage.removeItem(USER_KEY)
+    console.log('User Removed')
   }
 
   isTokenStored() {

@@ -52,6 +52,7 @@ export class RegLogComponent implements OnInit {
 
     // Checks if there is login info in local storage to auto log in as that user
     if (this.storageService.isTokenStored() && this.storageService.isUserStored()) {
+      this.requestUserData()
       this.lastUserExists = true;
       this.lastUser = this.storageService.getUser().username
     }
@@ -102,17 +103,19 @@ export class RegLogComponent implements OnInit {
     if (this.logForm.status == 'VALID') {
       try {
         this.authService.login(credentials).subscribe(resp => {
+          // On Success
           console.log("Success: " + resp['status'])
           
           if (resp['status'] == 200) {
             // Log In
             console.log(resp['body'])
             this.storageService.clearStorage()
-            this.storageService.saveUser({ email: credentials.logEmail, username: resp['body']['user']})
+            this.requestUserData()
             this.storageService.saveToken(resp['body']['accessToken'])
             this.router.navigate(['main/'])
           }
         }, error => {
+          // On Error
           console.log("Error: " + error['status'])
 
           // Check if the credentials are wrong
@@ -139,6 +142,25 @@ export class RegLogComponent implements OnInit {
         console.log(err)
       }
 
+    }
+  }
+
+  /**
+   * This Function uses the JWT as a user authentificator and sends it to the API
+   * to request all the user's data, then it stores it into the Local Storage
+   */
+  requestUserData() {
+    try {
+      this.authService.requestUserData().subscribe(resp => {
+        // On Success
+        this.storageService.deleteUser()
+        this.storageService.saveUser(resp['body'])
+      }, error => {
+        // On Error
+        console.log('Error Requesting User Data in JWT')
+      })
+    } catch (err) {
+      console.log(err)
     }
   }
 
