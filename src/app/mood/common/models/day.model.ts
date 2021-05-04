@@ -10,4 +10,6 @@ export class Day {
     public weekDayNumber: number;
 
     public mood: number;
+    public emotions: [];
+    public note: string;
 }
