@@ -22,6 +22,24 @@ export class CalendarComponent implements OnInit {
     this.year = new Date().getFullYear();
     //this.calendarCreator.getApiDays();
     //this.setYearDays(this.year);
+    this.loadYear()
+  }
+
+  onNextYear() {
+    this.year++;
+    this.calendarCreator.changeYear(this.year);
+    this.yearDays = [];
+    this.loadYear()
+  }
+
+  onPreviousYear() {
+    this.year--;
+    this.calendarCreator.changeYear(this.year);
+    this.yearDays = [];
+    this.loadYear()
+  }
+
+  private loadYear() {
     this.calendarCreator.initialize(this.year, (days) => {
       this.yearDays = days
       console.log(this.yearDays)
@@ -29,25 +47,6 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  onNextYear() {
-    this.year++;
-    this.calendarCreator.changeYear(this.year);
-    this.yearDays = [];
-    this.setYearDays(this.year)
-  }
-
-  onPreviousYear() {
-    this.year--;
-    this.calendarCreator.changeYear(this.year);
-    this.yearDays = [];
-    this.setYearDays(this.year)
-  }
-
-  private setYearDays(year: number) {
-    for(let i = 0; i <= 11; i++) {
-      this.yearDays.push(this.calendarCreator.getMonth(i, year))
-    }
-  }
 
   showDay(day: Day) {
     console.log(day.number + " " + day.monthIndex + " " + day.year)
