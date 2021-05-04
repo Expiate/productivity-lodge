@@ -20,10 +20,22 @@ export class CalendarCreatorService {
     this.currentYear = date.getFullYear();
   }
 
+  /**
+   * Changes the Current Year of the service to match the provided one
+   * @param year In numeric value
+   */
   public changeYear(year: number) {
     this.currentYear = year
   }
 
+  /**
+   * This Function returns uses a MonthIndex and a Year to create X(Number of days in the Month)
+   * + Y(Number of empty days needed to adjust the UI) containing Day Data Model Info + API
+   * Request Info and returns it all in an Array
+   * @param monthIndex Month Number (0 for January - 11 for December)
+   * @param year In numeric value
+   * @returns Array
+   */
   public getMonth(monthIndex: number, year: number): Day[] {
     let days = [];
 
@@ -57,6 +69,12 @@ export class CalendarCreatorService {
     return days;
   }
 
+  /**
+   * Returns a string that defines an specific month of the year
+   * using the MonthIndex provided in the params
+   * @param monthIndex Month Number (0 for January - 11 for December)
+   * @returns String
+   */
   public getMonthName(monthIndex: number): string {
     switch (monthIndex) {
       case 0:
@@ -89,6 +107,11 @@ export class CalendarCreatorService {
     }
   }
 
+  /**
+   * Returns a 2 chars string that defines the Name of the Day
+   * @param weekDay In numeric value (0-6)
+   * @returns String
+   */
   public getWeekDayName(weekDay: number): string {
     switch (weekDay) {
       case 0:
@@ -111,6 +134,14 @@ export class CalendarCreatorService {
     }
   }
 
+  /**
+   * Creates a Day Object using the Day Model and containing the info provided in the param
+   * and fills it with API requested info then returns it as an Object
+   * @param dayNumber In numeric value (1-31)
+   * @param monthIndex Month Number (0 for January - 11 for December)
+   * @param year In numeric value
+   * @returns Day Object
+   */
   private createDay(dayNumber: number, monthIndex: number, year: number) {
     let day = new Day();
     let date = new Date(year, monthIndex, dayNumber);
@@ -135,6 +166,16 @@ export class CalendarCreatorService {
     return day;
   }
 
+  /**
+   * This Function resets ApiDays and Days Arrays and then does an HTTP Request to the API
+   * to get all Days data corresponding to a specific user (via JWT) in a specific year
+   * (via Year param) and then uses GetMonth method to get 1 Array that contains 12 Arrays
+   * each one containing all days GetMonth returns for a month. Then merges the data from the
+   * API and the data from the Day Model into 1 single structure. Finally it uses the Next param
+   * as a Method and sends the resulting Array into that methods params.
+   * @param year In numeric value
+   * @param next Method (Callback)
+   */
   public initialize(year, next) {
     this.apiDays = []
     this.days = []
@@ -154,6 +195,5 @@ export class CalendarCreatorService {
       // On Error
       console.log('Error Retrieving API Days ' + error)
     })
-    return []
   }
 }
