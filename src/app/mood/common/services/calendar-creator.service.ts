@@ -22,7 +22,6 @@ export class CalendarCreatorService {
 
   public changeYear(year: number) {
     this.currentYear = year
-    this.getApiDays();
   }
 
   public getMonth(monthIndex: number, year: number): Day[] {
@@ -120,7 +119,7 @@ export class CalendarCreatorService {
       let apiDate = new Date(this.apiDays[i].date)
       let formatDate = new Date(apiDate.getFullYear(), apiDate.getMonth(), apiDate.getDate())
       if (dayNumber == apiDate.getDate() && monthIndex == apiDate.getMonth()) {
-        console.log('Mood Changed')
+        console.log('Mood Changed :' + date)
         day.mood = this.apiDays[i].mood
       }
     }
@@ -151,8 +150,10 @@ export class CalendarCreatorService {
   }
 
   public initialize(year, next) {
+    this.apiDays = []
+    this.days = []
     // Request Api Days
-    this.http.get<any>(`${this.url}/${this.currentYear}`, { observe: 'response' }).subscribe(resp => {
+    this.http.get<any>(`${this.url}/${year}`, { observe: 'response' }).subscribe(resp => {
       // On Success
       console.log('Days Retrieved: ' + resp['body'].length)
       this.apiDays = resp['body']
