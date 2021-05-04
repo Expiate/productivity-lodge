@@ -20,8 +20,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.year = new Date().getFullYear();
-    //this.calendarCreator.getApiDays();
-    //this.setYearDays(this.year);
     this.loadYear()
   }
 

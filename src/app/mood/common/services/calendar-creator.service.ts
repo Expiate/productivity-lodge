@@ -136,19 +136,6 @@ export class CalendarCreatorService {
     return day;
   }
 
-  public getApiDays() {
-    this.http.get<any>(`${this.url}/${this.currentYear}`, { observe: 'response' }).subscribe(resp => {
-      // On Success
-      console.log('Days Retrieved: ' + resp['body'].length)
-      this.apiDays = resp['body']
-      console.log(this.apiDays.length)
-    }, error => {
-      // On Error
-      console.log('Error Retrieving API Days')
-    })
-
-  }
-
   public initialize(year, next) {
     this.apiDays = []
     this.days = []
@@ -158,6 +145,7 @@ export class CalendarCreatorService {
       console.log('Days Retrieved: ' + resp['body'].length)
       this.apiDays = resp['body']
       console.log(this.apiDays)
+
       for(let i = 0; i <= 11; i++) {
         this.days.push(this.getMonth(i, year))
       }
@@ -168,11 +156,5 @@ export class CalendarCreatorService {
       console.log('Error Retrieving API Days ' + error)
     })
     return []
-  }
-
-  public setDays(year) {
-    for(let i = 0; i <= 11; i++) {
-      this.days.push(this.getMonth(i, year))
-    }
   }
 }
