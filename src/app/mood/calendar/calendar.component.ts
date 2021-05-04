@@ -11,9 +11,13 @@ import { CalendarCreatorService } from '../common/services/calendar-creator.serv
 })
 
 export class CalendarComponent implements OnInit {
+  // Specific Year Day's
   public yearDays = [];
   public year: number;
+
+  // User Colors Fetched from API
   public userColors = []
+  // This signals when the data has been fetched
   public dataDelivered: Promise<boolean>;
 
   constructor(
@@ -26,7 +30,7 @@ export class CalendarComponent implements OnInit {
     this.getUserColors()
     this.loadYear()
   }
-
+  
   onNextYear() {
     this.year++;
     this.yearDays = [];
