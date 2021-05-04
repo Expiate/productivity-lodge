@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-electron'),
+      dir: require('path').join(__dirname, './coverage/productivity-lodge'),
       subdir: '.',
       reporters: [
         { type: 'html' },
