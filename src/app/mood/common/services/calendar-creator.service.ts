@@ -117,7 +117,6 @@ export class CalendarCreatorService {
 
     for (let i = 0; i < this.apiDays.length; i++) {
       let apiDate = new Date(this.apiDays[i].date)
-      let formatDate = new Date(apiDate.getFullYear(), apiDate.getMonth(), apiDate.getDate())
       if (dayNumber == apiDate.getDate() && monthIndex == apiDate.getMonth()) {
         console.log('Mood Changed :' + date)
         day.mood = this.apiDays[i].mood
