@@ -151,6 +151,8 @@ export class CalendarCreatorService {
       if (dayNumber == apiDate.getDate() && monthIndex == apiDate.getMonth()) {
         console.log('Mood Changed :' + date)
         day.mood = this.apiDays[i].mood
+        day.emotions = this.apiDays[i].emotions
+        day.note = this.apiDays[i].note
       }
     }
 
