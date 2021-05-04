@@ -110,8 +110,8 @@ export class RegLogComponent implements OnInit {
             // Log In
             console.log(resp['body'])
             this.storageService.clearStorage()
-            this.requestUserData()
             this.storageService.saveToken(resp['body']['accessToken'])
+            this.requestUserData()
             this.router.navigate(['main/'])
           }
         }, error => {
@@ -158,6 +158,10 @@ export class RegLogComponent implements OnInit {
       }, error => {
         // On Error
         console.log('Error Requesting User Data in JWT')
+        // Delete all User Data and JWT
+        this.storageService.clearStorage()
+        this.showAccountNoLongerAvaiable()
+        this.lastUserExists = false;
       })
     } catch (err) {
       console.log(err)
@@ -201,6 +205,15 @@ export class RegLogComponent implements OnInit {
 
   showPendingAccount() {
     this.toastr.info('Check your Email to get the code', 'You Account is still Pending', {
+      positionClass: 'toast-bottom-center',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 5000
+    });
+  }
+
+  showAccountNoLongerAvaiable() {
+    this.toastr.error('This Account is no longer avaiable', '', {
       positionClass: 'toast-bottom-center',
       progressBar: false,
       progressAnimation: 'decreasing',
