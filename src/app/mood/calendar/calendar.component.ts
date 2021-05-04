@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/common/services/storage.service';
 import { Day } from '../common/models/day.model';
 import { CalendarCreatorService } from '../common/services/calendar-creator.service';
 
@@ -12,14 +13,17 @@ import { CalendarCreatorService } from '../common/services/calendar-creator.serv
 export class CalendarComponent implements OnInit {
   public yearDays = [];
   public year: number;
+  public userColors = []
   public dataDelivered: Promise<boolean>;
 
   constructor(
     public calendarCreator: CalendarCreatorService,
+    private localStorage: StorageService,
     private router: Router) {}
 
   ngOnInit(): void {
     this.year = new Date().getFullYear();
+    this.getUserColors()
     this.loadYear()
   }
 
@@ -49,6 +53,20 @@ export class CalendarComponent implements OnInit {
   showDay(day: Day) {
     console.log(day.number + " " + day.monthIndex + " " + day.year)
     console.log('Mood: ' + day.mood)
+  }
+
+  getUserColors() {
+    this.userColors = this.localStorage.getUser().preferences.colors
+  }
+
+  getColor(day) {
+    if(day.mood == undefined) {
+      return '#1D1D1D'
+    } else {
+      let color
+      color = this.userColors[day.mood]
+      return color
+    }
   }
 
   navigateHome() {
