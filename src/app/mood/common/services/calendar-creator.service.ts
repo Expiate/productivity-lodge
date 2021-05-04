@@ -176,7 +176,7 @@ export class CalendarCreatorService {
    * @param year In numeric value
    * @param next Method (Callback)
    */
-  public initialize(year, next) {
+  public initialize(year: number, next: Function) {
     this.apiDays = []
     this.days = []
     // Request Api Days

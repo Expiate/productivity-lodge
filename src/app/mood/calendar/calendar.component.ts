@@ -42,7 +42,7 @@ export class CalendarComponent implements OnInit {
   }
 
   private loadYear() {
-    this.calendarCreator.initialize(this.year, (days) => {
+    this.calendarCreator.initialize(this.year, (days: []) => {
       this.yearDays = days
       console.log(this.yearDays)
       this.dataDelivered = Promise.resolve(true)
@@ -59,11 +59,11 @@ export class CalendarComponent implements OnInit {
     this.userColors = this.localStorage.getUser().preferences.colors
   }
 
-  getColor(day) {
+  getColor(day: Day) {
     if(day.mood == undefined) {
       return '#1D1D1D'
     } else {
-      let color
+      let color: string
       color = this.userColors[day.mood]
       return color
     }
