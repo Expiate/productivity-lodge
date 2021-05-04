@@ -22,6 +22,7 @@
                         <div *ngIf="day.number == null; else dayTemplate" class="emptyDay"></div>
                         <ng-template #dayTemplate>
                             <div [ngStyle]="{'background-color' : getColor(day)}" class="day" (click)="showDay(day)">
+                                <div *ngIf="day.note != undefined" id="noteIcon"></div>
                                 <div class="flex justify-center items-center text-textPrimary right-0 bottom-0 rounded-full absolute w-5 h-5"
                                     id="round">
                                     <p class="text-xs text-center">{{day.number}}</p>
