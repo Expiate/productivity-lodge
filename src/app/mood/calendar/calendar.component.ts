@@ -12,6 +12,7 @@ import { CalendarCreatorService } from '../common/services/calendar-creator.serv
 export class CalendarComponent implements OnInit {
   public yearDays = [];
   public year: number;
+  public dataDelivered: Promise<boolean>;
 
   constructor(
     public calendarCreator: CalendarCreatorService,
@@ -19,8 +20,13 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.year = new Date().getFullYear();
-
-    this.setYearDays(this.year);
+    //this.calendarCreator.getApiDays();
+    //this.setYearDays(this.year);
+    this.calendarCreator.initialize(this.year, (days) => {
+      this.yearDays = days
+      console.log(this.yearDays)
+      this.dataDelivered = Promise.resolve(true)
+    })
   }
 
   onNextYear() {
@@ -45,6 +51,7 @@ export class CalendarComponent implements OnInit {
 
   showDay(day: Day) {
     console.log(day.number + " " + day.monthIndex + " " + day.year)
+    console.log('Mood: ' + day.mood)
   }
 
   navigateHome() {

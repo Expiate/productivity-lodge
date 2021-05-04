@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
+    <div *ngIf="dataDelivered | async" class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton icon" (click)="navigateHome()"></a>
     </div>
     <div class="mb-3 flex flex-row gap-4 items-center">
@@ -22,7 +22,8 @@
                         <div *ngIf="day.number == null; else dayTemplate" class="emptyDay"></div>
                         <ng-template #dayTemplate>
                             <div class="day" (click)="showDay(day)">
-                                <div class="flex justify-center items-center text-textPrimary right-0 bottom-0 rounded-full absolute w-5 h-5" id="round">
+                                <div class="flex justify-center items-center text-textPrimary right-0 bottom-0 rounded-full absolute w-5 h-5"
+                                    id="round">
                                     <p class="text-xs text-center">{{day.number}}</p>
                                 </div>
                             </div>
@@ -31,7 +32,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </body>
 

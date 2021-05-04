@@ -9,7 +9,8 @@ import { environment } from '../../../../environments/environment';
 
 export class CalendarCreatorService {
   private url = `${environment.server_url}/days/getDays`;
-  private apiDays;
+  private apiDays = []
+  private days = []
   private currentYear: number;
 
   constructor(
@@ -17,7 +18,6 @@ export class CalendarCreatorService {
   ) {
     let date = new Date();
     this.currentYear = date.getFullYear();
-    this.getApiDays();
   }
 
   public changeYear(year: number) {
@@ -114,6 +114,15 @@ export class CalendarCreatorService {
 
   private createDay(dayNumber: number, monthIndex: number, year: number) {
     let day = new Day();
+    let date = new Date(year, monthIndex, dayNumber);
+
+    for (let i = 0; i > this.apiDays.length; i++) {
+      let apiDate = new Date(this.apiDays[i])
+      let formatDate = new Date(apiDate.getFullYear(), apiDate.getMonth(), apiDate.getDate())
+      if (date == formatDate) {
+        day.mood = this.apiDays[i].mood
+      }
+    }
 
     day.monthIndex = monthIndex;
     day.month = this.getMonthName(monthIndex);
@@ -121,19 +130,48 @@ export class CalendarCreatorService {
     day.number = dayNumber;
     day.year = this.currentYear;
 
-    day.weekDayNumber = new Date(year, monthIndex, dayNumber).getDay();
+    day.weekDayNumber = date.getDay();
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
+    day.mood = 1;
 
     return day;
   }
 
-  private getApiDays() {
+  public getApiDays() {
     this.http.get<any>(`${this.url}/${this.currentYear}`, { observe: 'response' }).subscribe(resp => {
       // On Success
       console.log('Days Retrieved: ' + resp['body'].length)
+      this.apiDays = resp['body']
+      console.log(this.apiDays.length)
     }, error => {
       // On Error
+      console.log('Error Retrieving API Days')
     })
 
+  }
+
+  public initialize(year, next) {
+    // Request Api Days
+    this.http.get<any>(`${this.url}/${this.currentYear}`, { observe: 'response' }).subscribe(resp => {
+      // On Success
+      console.log('Days Retrieved: ' + resp['body'].length)
+      this.apiDays = resp['body']
+      console.log(this.apiDays)
+      for(let i = 0; i <= 11; i++) {
+        this.days.push(this.getMonth(i, year))
+      }
+
+      next(this.days)
+    }, error => {
+      // On Error
+      console.log('Error Retrieving API Days ' + error)
+    })
+    return []
+  }
+
+  public setDays(year) {
+    for(let i = 0; i <= 11; i++) {
+      this.days.push(this.getMonth(i, year))
+    }
   }
 }

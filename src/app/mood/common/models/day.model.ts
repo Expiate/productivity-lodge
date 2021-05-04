@@ -9,5 +9,5 @@ export class Day {
     public weekDayName: string;
     public weekDayNumber: number;
 
-    public moodColor: string;
+    public mood: number;
 }
