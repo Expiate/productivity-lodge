@@ -52,7 +52,6 @@ export class RegLogComponent implements OnInit {
 
     // Checks if there is login info in local storage to auto log in as that user
     if (this.storageService.isTokenStored() && this.storageService.isUserStored()) {
-      this.requestUserData()
       this.lastUserExists = true;
       this.lastUser = this.storageService.getUser().username
     }
@@ -155,6 +154,7 @@ export class RegLogComponent implements OnInit {
         // On Success
         this.storageService.deleteUser()
         this.storageService.saveUser(resp['body'])
+        this.router.navigate(['main/'])
       }, error => {
         // On Error
         console.log('Error Requesting User Data in JWT')
@@ -219,9 +219,5 @@ export class RegLogComponent implements OnInit {
       progressAnimation: 'decreasing',
       timeOut: 5000
     });
-  }
-
-  navigateHome() {
-    this.router.navigate(['main/'])
   }
 }
