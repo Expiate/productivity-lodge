@@ -1,12 +1,30 @@
 <html>
 
-    <body>
-        <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-            <a class="roundButton icon" (click)="navigateMoodCalendar()"></a>
-        </div>
+<body>
+    <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
+        <a class="roundButton icon" (click)="navigateMoodCalendar()"></a>
+    </div>
 
-        <div class="table flex-nowrap">
-            
+    <div class="table flex-nowrap">
+        <!--
+            Ng If Mostrar Rellenar Dia o Informacion del Dia Rellenado
+        -->
+        <div class="daySelector">
+            <div class="buttons">
+                <div>
+                    B
+                </div>
+
+                <div class="dayView bg-primary">
+                    <p class="text-lg text-textPrimary">{{day.weekDayName}}, {{day.number}} {{day.month}}</p>
+                </div>
+
+                <div>
+                    B
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
