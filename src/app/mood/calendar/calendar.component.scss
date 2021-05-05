@@ -124,11 +124,12 @@ body {
 }
 
 #noteIcon {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background-image: url(../../../assets/note.svg);
+    background-size: contain;
     opacity: 0.9;
-    right: 4px;
+    right: 2px;
     top: -2px;
     position: absolute;
 }
