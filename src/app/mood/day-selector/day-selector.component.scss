@@ -128,3 +128,42 @@ body {
     }
 }
 
+.roundMood {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .moodIcon {
+        width: 60px;
+        height: 60px;
+        z-index: 9;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        opacity: 0.9;
+
+        &.m0 {
+            background-image: url(../../../assets/mood0.svg);
+        }
+
+        &.m1 {
+            background-image: url(../../../assets/mood1.svg);
+        }
+
+        &.m2 {
+            background-image: url(../../../assets/mood2.svg);
+        }
+
+        &.m3 {
+            background-image: url(../../../assets/mood3.svg);
+        }
+
+        &.m4 {
+            background-image: url(../../../assets/mood4.svg);
+        }
+    }
+
+}
+

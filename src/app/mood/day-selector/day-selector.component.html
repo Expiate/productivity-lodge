@@ -6,11 +6,18 @@
     </div>
 
     <div class="table flex-nowrap">
-        <div *ngIf="day.mood == undefined" class="flex flex-col items-center justify-items-center space-y-3 pb-12">
+        <div *ngIf="day.mood == undefined; else dayTemplate" class="flex flex-col items-center justify-items-center space-y-3 pb-12">
             <p class="text-textPrimary text-lg">How was your day today?</p>
             <a class="editButton editIcon"></a>
         </div>
-        <div class="daySelector" [ngStyle]="{'background-color' : getColor(day)}">
+        <ng-template #dayTemplate>
+            <div class="flex flex-col items-center justify-items-center space-y-10 pb-12">
+                <div class="roundMood" [ngStyle]="{'background-color' : getColor(day.mood)}">
+                    <span [className]="getMoodIcon(day.mood)"></span>
+                </div>
+            </div>
+        </ng-template>
+        <div class="daySelector" [ngStyle]="{'background-color' : getColor(day.mood)}">
             <div class="buttons">
                 <div class="dayView bg-primary flex items-center justify-center">
                     <p class="text-lg text-textPrimary">{{day.weekDayName}}, {{day.number}} {{day.month}}</p>

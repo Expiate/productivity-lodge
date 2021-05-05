@@ -31,13 +31,36 @@ export class DaySelectorComponent implements OnInit {
     this.userColors = this.localStorage.getUser().preferences.colors
   }
 
-  getColor(day: Day) {
-    if(day.mood == undefined) {
+  getColor(mood: number) {
+    if(mood == undefined) {
       return '#292929'
     } else {
       let color: string
-      color = this.userColors[day.mood]
+      color = this.userColors[mood]
       return color
     }
+  }
+
+  getMoodIcon(mood: number) {
+    if(mood == 0) {
+      return "moodIcon m0"
+    }
+
+    if(mood == 1) {
+      return "moodIcon m1"
+    }
+
+    if(mood == 2) {
+      return "moodIcon m2"
+    }
+
+    if(mood == 3) {
+      return "moodIcon m3"
+    }
+
+    if(mood == 4) {
+      return "moodIcon m4"
+    }
+    
   }
 }
