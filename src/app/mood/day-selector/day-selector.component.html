@@ -9,18 +9,10 @@
         <!--
             Ng If Mostrar Rellenar Dia o Informacion del Dia Rellenado
         -->
-        <div class="daySelector">
+        <div class="daySelector" [ngStyle]="{'background-color' : getColor(day)}">
             <div class="buttons">
-                <div>
-                    B
-                </div>
-
                 <div class="dayView bg-primary">
                     <p class="text-lg text-textPrimary">{{day.weekDayName}}, {{day.number}} {{day.month}}</p>
-                </div>
-
-                <div>
-                    B
                 </div>
             </div>
         </div>

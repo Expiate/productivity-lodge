@@ -11,6 +11,7 @@ import { Day } from '../common/models/day.model';
 export class DaySelectorComponent implements OnInit {
 
   public day: Day
+  public userColors: []
 
   constructor(
     private router: Router,
@@ -19,11 +20,24 @@ export class DaySelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.day = this.localStorage.getDay()
+    this.getUserColors()
   }
 
   navigateMoodCalendar() {
     this.router.navigate(['mood/calendar'])
   }
 
+  getUserColors() {
+    this.userColors = this.localStorage.getUser().preferences.colors
+  }
 
+  getColor(day: Day) {
+    if(day.mood == undefined) {
+      return '#292929'
+    } else {
+      let color: string
+      color = this.userColors[day.mood]
+      return color
+    }
+  }
 }
