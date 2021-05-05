@@ -6,9 +6,10 @@
     </div>
 
     <div class="table flex-nowrap">
-        <!--
-            Ng If Mostrar Rellenar Dia o Informacion del Dia Rellenado
-        -->
+        <div *ngIf="day.mood == undefined" class="flex flex-col items-center justify-items-center space-y-3 pb-12">
+            <p class="text-textPrimary text-lg">How was your day today?</p>
+            <a class="editButton editIcon"></a>
+        </div>
         <div class="daySelector" [ngStyle]="{'background-color' : getColor(day)}">
             <div class="buttons">
                 <div class="dayView bg-primary flex items-center justify-center">
