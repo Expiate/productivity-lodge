@@ -42,25 +42,17 @@ export class DaySelectorComponent implements OnInit {
   }
 
   getMoodIcon(mood: number) {
-    if(mood == 0) {
-      return "moodIcon m0"
+    switch(mood) {
+      case 0:
+        return "moodIcon m0"
+      case 1:
+        return "moodIcon m1"
+      case 2:
+        return "moodIcon m2"
+      case 3:
+        return "moodIcon m3"
+      case 4:
+        return "moodIcon m4"
     }
-
-    if(mood == 1) {
-      return "moodIcon m1"
-    }
-
-    if(mood == 2) {
-      return "moodIcon m2"
-    }
-
-    if(mood == 3) {
-      return "moodIcon m3"
-    }
-
-    if(mood == 4) {
-      return "moodIcon m4"
-    }
-    
   }
 }
