@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Day } from 'src/app/mood/common/models/day.model';
 
 const TOKEN_KEY = 'jwt-token';
 const USER_KEY = 'user-data';
+const DAY_KEY = 'day-data';
 const TEMP_KEY = 'temp-data';
 
 @Injectable({
@@ -82,5 +84,28 @@ export class StorageService {
   clearTemp() {
     localStorage.removeItem(TEMP_KEY)
     console.log('Temp Data Cleared')
+  }
+
+  saveDay(day: Day) {
+    const jsonString = JSON.stringify(day)
+    localStorage.setItem(DAY_KEY, jsonString)
+    console.log('Day Saved')
+  }
+
+  getDay() {
+    let day = localStorage.getItem(DAY_KEY)
+    return JSON.parse(day)
+  }
+
+  deleteDay() {
+    localStorage.removeItem(DAY_KEY)
+    console.log('Day Removed')
+  }
+
+  isDayStored() {
+    if (localStorage.getItem(DAY_KEY) == null) {
+      return false
+    }
+    return true
   }
 }
