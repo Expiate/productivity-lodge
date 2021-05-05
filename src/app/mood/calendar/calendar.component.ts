@@ -57,6 +57,7 @@ export class CalendarComponent implements OnInit {
   showDay(day: Day) {
     console.log(day.number + " " + day.monthIndex + " " + day.year)
     console.log('Mood: ' + day.mood)
+    this.router.navigate(['mood/day-selector'])
   }
 
   getUserColors() {

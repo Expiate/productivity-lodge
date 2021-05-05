@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-day-selector',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DaySelectorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  navigateMoodCalendar() {
+    this.router.navigate(['mood/calendar'])
   }
 
 }
