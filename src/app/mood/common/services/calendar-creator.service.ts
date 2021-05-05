@@ -108,26 +108,26 @@ export class CalendarCreatorService {
   }
 
   /**
-   * Returns a 2 chars string that defines the Name of the Day
+   * Returns a string that defines the Name of the Week Day
    * @param weekDay In numeric value (0-6)
    * @returns String
    */
   public getWeekDayName(weekDay: number): string {
     switch (weekDay) {
       case 0:
-        return "Su"; // Sunday
+        return "Sunday"; 
       case 1:
-        return "Mo"; // Monday
+        return "Monday"; 
       case 2:
-        return "Tu"; // Tuesday
+        return "Tuesday";
       case 3:
-        return "We"; // Wednesday
+        return "Wednesday";
       case 4:
-        return "Th"; // Thursday
+        return "Thursday";
       case 5:
-        return "Fr"; // Friday
+        return "Friday";
       case 6:
-        return "Sa"; // Saturday
+        return "Saturday";
 
       default:
         return "";
