@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
-import { emotions } from '../common/emotions';
+import { emotions } from '../common/data/emotions';
 import { Day } from '../common/models/day.model';
 
 @Component({
