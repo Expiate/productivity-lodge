@@ -20,10 +20,20 @@
                     <div class="title">
                         Emotions
                     </div>
+                    <div class="tags">
+                        <li *ngFor="let tag of day.emotions" [ngStyle]="{'grid-column' : getSpan(tag)}">
+                            <div class="tag">
+                                {{tag}}
+                            </div>
+                        </li>
+                    </div>
                 </div>
                 <div class="note">
                     <div class="title">
                         Note
+                    </div>
+                    <div class="noteText">
+                        {{day.note}}
                     </div>
                 </div>
             </div>

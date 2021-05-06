@@ -55,4 +55,16 @@ export class DaySelectorComponent implements OnInit {
         return "moodIcon m4"
     }
   }
+
+  getSpan(tag: string) {
+    let s1 = 'span 1'
+    let s2 = 'span 2'
+
+    switch(tag) {
+      case 'optimistic':
+        return s2
+      case 'motivated':
+        return s2
+    }
+  }
 }
