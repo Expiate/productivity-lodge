@@ -12,7 +12,7 @@
         </div>
         <ng-template #dayTemplate>
             <a class="editButton editIcon day"></a>
-            <div class="flex flex-col items-center justify-items-center space-y-10 pb-12">
+            <div class="container absolute top-1/4 w-full">
                 <div class="roundMood" [ngStyle]="{'background-color' : getColor(day.mood)}">
                     <span [className]="getMoodIcon(day.mood)"></span>
                 </div>
