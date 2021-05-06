@@ -5,6 +5,7 @@ import { MoodRoutingModule } from './mood-routing.module';
 import { MoodComponent } from './mood.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DaySelectorComponent } from './day-selector/day-selector.component';
+import { ModalModule } from '../_modal';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DaySelectorComponent } from './day-selector/day-selector.component';
   ],
   imports: [
     CommonModule,
-    MoodRoutingModule
+    MoodRoutingModule,
+    ModalModule
   ],
 })
 export class MoodModule { }

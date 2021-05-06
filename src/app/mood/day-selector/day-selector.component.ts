@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
+import { ModalService } from 'src/app/_modal';
 import { Day } from '../common/models/day.model';
 
 @Component({
@@ -15,7 +16,8 @@ export class DaySelectorComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private localStorage: StorageService
+    private localStorage: StorageService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class DaySelectorComponent implements OnInit {
   }
 
   getColor(mood: number) {
-    if(mood == undefined) {
+    if (mood == undefined) {
       return '#292929'
     } else {
       let color: string
@@ -42,7 +44,7 @@ export class DaySelectorComponent implements OnInit {
   }
 
   getMoodIcon(mood: number) {
-    switch(mood) {
+    switch (mood) {
       case 0:
         return "moodIcon m0"
       case 1:
@@ -60,11 +62,19 @@ export class DaySelectorComponent implements OnInit {
     let s1 = 'span 1'
     let s2 = 'span 2'
 
-    switch(tag) {
+    switch (tag) {
       case 'optimistic':
         return s2
       case 'motivated':
         return s2
     }
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 }

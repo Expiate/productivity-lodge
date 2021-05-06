@@ -1,6 +1,10 @@
 <html>
 
 <body>
+    <jw-modal id="modal1">
+        <button (click)="closeModal('modal1')">Close</button>
+    </jw-modal>
+
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton icon" (click)="navigateMoodCalendar()"></a>
     </div>
@@ -8,7 +12,7 @@
     <div class="table flex-nowrap">
         <div *ngIf="day.mood == undefined; else dayTemplate" class="flex flex-col items-center justify-items-center space-y-3 pb-12">
             <p class="text-textPrimary text-lg">How was your day today?</p>
-            <a class="editButton editIcon noDay"></a>
+            <a class="editButton editIcon noDay" (click)="openModal('modal1')"></a>
         </div>
         <ng-template #dayTemplate>
             <a class="editButton editIcon day"></a>
