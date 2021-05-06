@@ -1,4 +1,3 @@
-
 export class Day {
     public number: number;
     public year: number;

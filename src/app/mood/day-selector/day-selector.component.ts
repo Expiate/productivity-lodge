@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
+import { emotions } from '../common/emotions';
 import { Day } from '../common/models/day.model';
 
 @Component({
@@ -17,8 +18,10 @@ export class DaySelectorComponent implements OnInit {
   constructor(
     private router: Router,
     private localStorage: StorageService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private emotions: emotions
   ) { }
+
 
   ngOnInit(): void {
     this.day = this.localStorage.getDay()
@@ -43,6 +46,10 @@ export class DaySelectorComponent implements OnInit {
     }
   }
 
+  getSpan(tag: string) {
+    return this.emotions.getSpan(tag)
+  }
+
   getMoodIcon(mood: number) {
     switch (mood) {
       case 0:
@@ -55,18 +62,6 @@ export class DaySelectorComponent implements OnInit {
         return "moodIcon m3"
       case 4:
         return "moodIcon m4"
-    }
-  }
-
-  getSpan(tag: string) {
-    let s1 = 'span 1'
-    let s2 = 'span 2'
-
-    switch (tag) {
-      case 'optimistic':
-        return s2
-      case 'motivated':
-        return s2
     }
   }
 
