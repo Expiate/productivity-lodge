@@ -8,9 +8,10 @@
     <div class="table flex-nowrap">
         <div *ngIf="day.mood == undefined; else dayTemplate" class="flex flex-col items-center justify-items-center space-y-3 pb-12">
             <p class="text-textPrimary text-lg">How was your day today?</p>
-            <a class="editButton editIcon"></a>
+            <a class="editButton editIcon noDay"></a>
         </div>
         <ng-template #dayTemplate>
+            <a class="editButton editIcon day"></a>
             <div class="flex flex-col items-center justify-items-center space-y-10 pb-12">
                 <div class="roundMood" [ngStyle]="{'background-color' : getColor(day.mood)}">
                     <span [className]="getMoodIcon(day.mood)"></span>
