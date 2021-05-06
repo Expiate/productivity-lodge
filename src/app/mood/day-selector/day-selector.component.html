@@ -16,7 +16,18 @@
                 <div class="roundMood" [ngStyle]="{'background-color' : getColor(day.mood)}">
                     <span [className]="getMoodIcon(day.mood)"></span>
                 </div>
+                <div class="emotions">
+                    <div class="title">
+                        Emotions
+                    </div>
+                </div>
+                <div class="note">
+                    <div class="title">
+                        Note
+                    </div>
+                </div>
             </div>
+
         </ng-template>
         <div class="daySelector" [ngStyle]="{'background-color' : getColor(day.mood)}">
             <div class="buttons">
