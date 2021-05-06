@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../common/services/auth.service';
 import { StorageService } from '../../common/services/storage.service'
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-reg-log',
@@ -29,6 +30,7 @@ export class RegLogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService,
+    private modalService: ModalService,
     private router: Router
   ) { }
 
@@ -87,7 +89,8 @@ export class RegLogComponent implements OnInit {
 
       })
     } else {
-      this.showRegisterInvalid("Register Fields have invalid format")
+      this.openModal('infoCredentialsAuth')
+      this.signForm.reset()
     }
   }
 
@@ -219,5 +222,13 @@ export class RegLogComponent implements OnInit {
       progressAnimation: 'decreasing',
       timeOut: 5000
     });
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 }

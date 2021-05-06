@@ -6,6 +6,7 @@ import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountConfirmationComponent } from './account-confirmation/account-confirmation.component';
 import { RegLogComponent } from './reg-log/reg-log.component';
+import { ModalModule } from '../_modal';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RegLogComponent } from './reg-log/reg-log.component';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule
   ]
 })
 export class AuthModule { }
