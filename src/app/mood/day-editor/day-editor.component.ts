@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
@@ -14,17 +15,28 @@ export class DayEditorComponent implements OnInit {
 
   public day: Day
   public userColors: []
+  public checked: string
+
+  public moodForm: FormGroup
+
 
   constructor(
     private router: Router,
     private localStorage: StorageService,
     private modalService: ModalService,
+    private formBuilder: FormBuilder,
     private emotions: emotions
   ) { }
 
   ngOnInit(): void {
     this.day = this.localStorage.getDay()
     this.getUserColors()
+
+    // Mood Form Config
+    this.moodForm = this.formBuilder.group({
+      mood: [this.getRadio(this.day.mood)]
+    })
+    console.log(this.moodForm.get('mood').value)
   }
 
   getUserColors() {
@@ -45,6 +57,22 @@ export class DayEditorComponent implements OnInit {
     return this.emotions.getSpan(tag)
   }
 
+  getRadio(mood: number) {
+    switch(mood) {
+      case 0:
+        return 'super-sad'
+      case 1:
+        return 'sad'
+      case 2:
+        return 'neutral'
+      case 3:
+        return 'happy'
+      case 4:
+        return 'super-happy'
+    }
+    return null
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
   }
@@ -55,6 +83,14 @@ export class DayEditorComponent implements OnInit {
 
   navigateMoodDaySelector() {
     this.router.navigate(['mood/day-selector'])
+  }
+
+  changeMood(e) {
+    this.checked = e.target.value
+  }
+
+  getFill(string) {
+
   }
 
 }

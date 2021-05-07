@@ -326,6 +326,20 @@ input[class="neutral"]:focus + svg {
 	fill: rgb(232, 214, 0);
 }
 
+label[class="neutral"]:hover,
+label[class="neutral"]:focus {
+    svg {
+        fill: rgb(232, 214, 0);
+    }
+}
+
+label[class="neutral checked"] {
+    svg {
+        fill: rgb(232, 214, 0);
+    }
+}
+
+
 input[class="sad"]:hover + svg,
 input[class="sad"]:checked + svg,
 input[class="sad"]:focus + svg {
