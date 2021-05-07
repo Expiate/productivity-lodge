@@ -6,12 +6,14 @@ import { MoodComponent } from './mood.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DaySelectorComponent } from './day-selector/day-selector.component';
 import { ModalModule } from '../_modal';
+import { DayEditorComponent } from './day-editor/day-editor.component';
 
 @NgModule({
   declarations: [
     MoodComponent,
     CalendarComponent,
     DaySelectorComponent,
+    DayEditorComponent,
   ],
   imports: [
     CommonModule,
