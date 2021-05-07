@@ -7,6 +7,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DaySelectorComponent } from './day-selector/day-selector.component';
 import { ModalModule } from '../_modal';
 import { DayEditorComponent } from './day-editor/day-editor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { DayEditorComponent } from './day-editor/day-editor.component';
   imports: [
     CommonModule,
     MoodRoutingModule,
-    ModalModule
+    ModalModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
 })
 export class MoodModule { }

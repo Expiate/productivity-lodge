@@ -105,8 +105,12 @@ body {
 .dayContainer {
     width: 100%;
     position: absolute;
-    top: 18%;
-    
+    top: 10px;
+    bottom: $daySelectorHeight;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .roundMood {
