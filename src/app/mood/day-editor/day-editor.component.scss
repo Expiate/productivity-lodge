@@ -278,7 +278,6 @@ body {
 }
 
 svg {
-	fill: rgb(242, 242, 242);
 	height: 3.6rem;
 	width: 3.6rem;
 	margin: 0.2rem;
@@ -325,13 +324,14 @@ input[class="neutral"]:checked + svg,
 input[class="neutral"]:focus + svg {
 	fill: rgb(232, 214, 0);
 }
-
+/*
 label[class="neutral"]:hover,
 label[class="neutral"]:focus {
     svg {
         fill: rgb(232, 214, 0);
     }
 }
+*/
 
 label[class="neutral checked"] {
     svg {

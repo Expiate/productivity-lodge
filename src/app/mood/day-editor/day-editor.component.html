@@ -46,7 +46,7 @@
                                 </svg>
                             </label>
 
-                            <label class="neutral" for="neutral">
+                            <label class="neutral" for="neutral" >
                                 <input type="radio" name="mood" class="neutral" id="neutral" value="neutral"  formControlName="mood" (change)="changeMood($event)">
                                 <svg *ngIf="checked == 'neutral';else neutralTemplate" xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
                                     [ngStyle]="{'fill': getColor(2)}">
@@ -59,7 +59,7 @@
                                 </svg>
                                 <ng-template #neutralTemplate>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    fill="#FFFFFF">
+                                    [ngStyle]="{'fill': color }" (mouseover)="this.color = getColor(2)" (mouseout)="this.color = '#ffffff'">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <path d="M9 15.5h6v1H9v-1z" />
                                     <circle cx="15.5" cy="9.5" r="1.5" />

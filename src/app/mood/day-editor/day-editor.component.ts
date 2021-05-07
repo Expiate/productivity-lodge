@@ -16,6 +16,7 @@ export class DayEditorComponent implements OnInit {
   public day: Day
   public userColors: []
   public checked: string
+  public color: string = "#FFFFFF"
 
   public moodForm: FormGroup
 
@@ -43,7 +44,7 @@ export class DayEditorComponent implements OnInit {
     this.userColors = this.localStorage.getUser().preferences.colors
   }
 
-  getColor(mood: number) {
+  getColor(mood: number): string {
     if (mood == undefined) {
       return '#292929'
     } else {
@@ -87,6 +88,7 @@ export class DayEditorComponent implements OnInit {
 
   changeMood(e) {
     this.checked = e.target.value
+    this.color = '#FFFFFF'
   }
 
   getFill(string) {
