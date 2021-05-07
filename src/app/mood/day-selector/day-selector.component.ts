@@ -32,6 +32,10 @@ export class DaySelectorComponent implements OnInit {
     this.router.navigate(['mood/calendar'])
   }
 
+  navigateMoodDayEditor() {
+    this.router.navigate(['mood/day-editor'])
+  }
+
   getUserColors() {
     this.userColors = this.localStorage.getUser().preferences.colors
   }
