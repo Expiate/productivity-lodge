@@ -186,14 +186,12 @@ body {
         display: grid;
         @apply grid-cols-4;
         grid-row-gap: 10px;
-        @apply gap-x-2;
         @apply list-none;
         align-items: center;
+        place-content: space-around;
         grid-auto-flow: row;
 
         .tag {
-            display: flex;
-            flex-direction: row;
             background-color: $secondary;
             text-align: center;
             height: auto;
@@ -283,7 +281,7 @@ body {
 
 .rating {
 	background-color: $primary;
-	padding: 0.4rem 0.4rem 0.1rem 0.4rem;
+	padding: 0.3rem 0.3rem 0.3rem 0.3rem;
 	border-radius: 2.2rem;
 }
 
