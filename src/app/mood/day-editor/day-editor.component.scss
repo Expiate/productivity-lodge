@@ -192,6 +192,8 @@ body {
         grid-auto-flow: row;
 
         .tag {
+            display: flex;
+            flex-direction: row;
             background-color: $secondary;
             text-align: center;
             height: auto;
@@ -201,6 +203,7 @@ body {
             padding-left: 17px;
             border-radius: 20px;
             font-size: 14px;
+            cursor: url(../../../assets/delete.svg), auto;
         }
     }
 }
@@ -319,5 +322,9 @@ input[type="radio"] + svg {
 input + svg {
 	cursor: pointer;
 }
+
+
+
+
 
 

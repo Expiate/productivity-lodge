@@ -130,4 +130,8 @@ export class DayEditorComponent implements OnInit {
     }
   }
 
+  deleteTag(index: number) {
+    this.day.emotions.splice(index, 1)
+  }
+
 }

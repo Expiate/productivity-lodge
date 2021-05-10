@@ -160,9 +160,11 @@
                         Emotions
                     </div>
                     <div class="tags">
-                        <li *ngFor="let tag of day.emotions" [ngStyle]="{'grid-column' : getSpan(tag)}">
-                            <div class="tag">
-                                {{tag}}
+                        <li *ngFor="let tag of day.emotions; let i = index" [ngStyle]="{'grid-column' : getSpan(tag)}">
+                            <div class="flex flex-row space-x-2 justify-items-center content-center">    
+                                <div class="tag" (click)="deleteTag(i)">
+                                    {{tag}}
+                                </div>
                             </div>
                         </li>
                     </div>
