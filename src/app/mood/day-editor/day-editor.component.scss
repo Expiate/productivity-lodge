@@ -185,7 +185,7 @@ body {
 
         display: grid;
         @apply grid-cols-4;
-        @apply gap-y-1;
+        grid-row-gap: 10px;
         @apply gap-x-2;
         @apply list-none;
         align-items: center;
