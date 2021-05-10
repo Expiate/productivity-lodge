@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
@@ -37,7 +37,8 @@ export class DayEditorComponent implements OnInit {
 
     // Mood Form Config
     this.moodForm = this.formBuilder.group({
-      mood: [this.getRadio(this.day.mood)]
+      mood: [this.getRadio(this.day.mood), Validators.required],
+      note: [this.day.note, Validators.maxLength(255)]
     })
     // Auto Check the Radio Button using user data
     this.checked = this.moodForm.get('mood').value
