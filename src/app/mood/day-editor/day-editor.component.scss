@@ -233,10 +233,17 @@ body {
         text-align: left;
         padding: 10px;
         overflow: hidden;
-        resize: vertical;
+        resize: none;
         min-height: 100px;
         max-height: 100px;
         line-height: 16px;
+        border: none;
+        outline: none;
+    }
+
+    textarea {
+        outline: none;
+        border: none;
     }
 }
 
