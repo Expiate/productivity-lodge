@@ -168,30 +168,9 @@ body {
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 30px;
+    position: relative;
 
-    .addButton {
-        $size: 40px;
-        width: $size;
-        height: $size;
-        border-radius: 100%;
-        background-color: $accent;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     
-        &.addIcon {
-            width: $size - 10;
-            height: $size - 10;
-            z-index: 9;
-            background-image: url(../../../assets/add.svg);
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            opacity: 0.9;
-        }
-    }
 
     .title {
         font-size: 15px;
@@ -227,6 +206,39 @@ body {
             border-radius: 20px;
             font-size: 14px;
             cursor: url(../../../assets/delete.svg), auto;
+        }
+    }
+}
+
+.addButton {
+    $size: 25px;
+    width: $size;
+    height: $size;
+    border-radius: 100%;
+    background-color: $accent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.addIcon {
+        width: $size;
+        height: $size;
+        z-index: 9;
+        background-image: url(../../../assets/add.svg);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        opacity: 0.9;
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+            background-color: #1D1D1D;
         }
     }
 }
@@ -344,6 +356,22 @@ input[type="radio"] + svg {
 
 input + svg {
 	cursor: pointer;
+}
+
+.emotionsTable {
+    height: 400px;
+    width: 300px;
+    background-color: $secondary;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+    border: 2px solid rgba(7, 7, 7, 0.12);
+    font-size: 16px;   
+    position: relative;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 

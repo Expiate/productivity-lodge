@@ -7,6 +7,12 @@
         </div>
     </jw-modal>
 
+    <jw-modal id="addEmotions">
+        <div class="emotionsTable">
+            <button class="absolute bottom-2 right-2" (click)="closeModal('addEmotions')">Close</button>
+        </div>
+    </jw-modal>
+
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton icon" (click)="navigateMoodDaySelector()"></a>
     </div>
@@ -156,7 +162,7 @@
                 </div>
 
                 <div class="emotions">
-                    <a class="addButton addIcon"></a>
+                    <a class="addButton addIcon" (click)="openModal('addEmotions')"></a>
                     <div class="title">
                         Emotions
                     </div>
