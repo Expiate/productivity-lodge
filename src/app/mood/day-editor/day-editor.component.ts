@@ -85,6 +85,21 @@ export class DayEditorComponent implements OnInit {
     return null
   }
 
+  getMood(radio: string) {
+    switch(radio) {
+      case 'super-sad':
+        return 0
+      case 'sad':
+        return 1
+      case 'neutral':
+        return 2
+      case 'happy':
+        return 3
+      case 'super-happy':
+        return 4
+    }
+  }
+
   openModal(id: string) {
     this.modalService.open(id);
   }
