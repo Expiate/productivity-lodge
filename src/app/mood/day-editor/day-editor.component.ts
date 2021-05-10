@@ -66,9 +66,6 @@ export class DayEditorComponent implements OnInit {
     }
   }
 
-  getSpan(tag: string) {
-    return this.emotions.getSpan(tag)
-  }
 
   getRadio(mood: number) {
     switch(mood) {

@@ -169,6 +169,30 @@ body {
     padding: 10px;
     margin-bottom: 30px;
 
+    .addButton {
+        $size: 40px;
+        width: $size;
+        height: $size;
+        border-radius: 100%;
+        background-color: $accent;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        &.addIcon {
+            width: $size - 10;
+            height: $size - 10;
+            z-index: 9;
+            background-image: url(../../../assets/add.svg);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity: 0.9;
+        }
+    }
+
     .title {
         font-size: 15px;
         background-color: $primary;
@@ -183,13 +207,14 @@ body {
         color: #EEEE;
         padding: 8px;
 
-        display: grid;
-        @apply grid-cols-4;
-        grid-row-gap: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        @apply gap-y-3;
         @apply list-none;
         align-items: center;
-        place-content: space-around;
-        grid-auto-flow: row;
+        justify-content: space-around;
+        align-content: space-around;
 
         .tag {
             background-color: $secondary;

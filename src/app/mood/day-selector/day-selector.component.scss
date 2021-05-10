@@ -223,13 +223,14 @@ body {
         color: #EEEE;
         padding: 8px;
 
-        display: grid;
-        @apply grid-cols-4;
-        grid-row-gap: 10px;
-        @apply gap-x-2;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        @apply gap-y-3;
         @apply list-none;
         align-items: center;
-        grid-auto-flow: row;
+        justify-content: space-around;
+        align-content: space-around;
 
         .tag {
             background-color: $secondary;

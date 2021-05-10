@@ -21,7 +21,7 @@
                         Emotions
                     </div>
                     <div class="tags">
-                        <li *ngFor="let tag of day.emotions" [ngStyle]="{'grid-column' : getSpan(tag)}">
+                        <li *ngFor="let tag of day.emotions">
                             <div class="tag">
                                 {{tag}}
                             </div>

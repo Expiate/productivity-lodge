@@ -50,9 +50,6 @@ export class DaySelectorComponent implements OnInit {
     }
   }
 
-  getSpan(tag: string) {
-    return this.emotions.getSpan(tag)
-  }
 
   getMoodIcon(mood: number) {
     switch (mood) {

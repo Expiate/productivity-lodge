@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const shortName = [
+const list = [
     'anger',
     'stress',
     'void',
@@ -8,9 +8,6 @@ const shortName = [
     'love',
     'fear',
     'relax',
-]
-
-const longName = [
     'ansiety',
     'optimistic',
     'nervous',
@@ -26,15 +23,7 @@ const longName = [
 })
 
 export class emotions {
-    public getSpan(emotion: string) {
-        if(longName.includes(emotion)) {
-            return 'span 2'
-        }
-
-        if(shortName.includes(emotion)) {
-            return 'span 1'
-        }
-
-        return 'span 1'
+    public getAll(): string[] {
+        return list
     }
 }
