@@ -22,33 +22,60 @@
                     <div class="rating">
                         <form class="rating-form" [formGroup]="moodForm">
 
-                            <label for="super-sad">
-                                <input type="radio" name="mood" class="super-sad" id="super-sad" value="super-sad"  formControlName="mood" (change)="changeMood($event)" />
-                                <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    fill="#FFFFFF">
+                            <label for="super-sad" (mouseover)="updateActiveColor(true, 0)"
+                                (mouseout)="updateActiveColor(false, 0)">
+                                <input type="radio" name="mood" class="super-sad" id="super-sad" value="super-sad"
+                                    formControlName="mood" (change)="changeMood($event)" />
+                                <svg *ngIf="checked == 'super-sad';else superSadTemplate" xmlns="http://www.w3.org/2000/svg"
+                                    height="54px" viewBox="0 0 24 24" width="54px" [ngStyle]="{'fill': getColor(0)}">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <circle cx="15.5" cy="9.5" r="1.5" />
                                     <circle cx="8.5" cy="9.5" r="1.5" />
                                     <path
                                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-6c-2.33 0-4.32 1.45-5.12 3.5h1.67c.69-1.19 1.97-2 3.45-2s2.75.81 3.45 2h1.67c-.8-2.05-2.79-3.5-5.12-3.5z" />
                                 </svg>
+                                <ng-template #superSadTemplate>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24"
+                                        width="54px" [ngStyle]="{'fill': getActiveColor(0)}">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <circle cx="15.5" cy="9.5" r="1.5" />
+                                        <circle cx="8.5" cy="9.5" r="1.5" />
+                                        <path
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-6c-2.33 0-4.32 1.45-5.12 3.5h1.67c.69-1.19 1.97-2 3.45-2s2.75.81 3.45 2h1.67c-.8-2.05-2.79-3.5-5.12-3.5z" />
+                                    </svg>
+                                </ng-template>
                             </label>
 
-                            <label for="sad">
-                                <input type="radio" name="mood" class="sad" id="sad" value="sad" formControlName="mood" (change)="changeMood($event)"/>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    fill="#FFFFFF">
+                            <label for="sad" (mouseover)="updateActiveColor(true, 1)"
+                                (mouseout)="updateActiveColor(false, 1)">
+                                <input type="radio" name="mood" class="sad" id="sad" value="sad" formControlName="mood"
+                                    (change)="changeMood($event)" />
+                                <svg *ngIf="checked == 'sad';else sadTemplate" xmlns="http://www.w3.org/2000/svg"
+                                    height="54px" viewBox="0 0 24 24" width="54px" [ngStyle]="{'fill': getColor(1)}">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <circle cx="15.5" cy="9.5" r="1.5" />
                                     <circle cx="8.5" cy="9.5" r="1.5" />
                                     <path
                                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-3.5c.73 0 1.39.19 1.97.53.12-.14.86-.98 1.01-1.14-.85-.56-1.87-.89-2.98-.89-1.11 0-2.13.33-2.99.88.97 1.09.01.02 1.01 1.14.59-.33 1.25-.52 1.98-.52z" />
                                 </svg>
+                                <ng-template #sadTemplate>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24"
+                                        width="54px" [ngStyle]="{'fill': getActiveColor(1)}">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <circle cx="15.5" cy="9.5" r="1.5" />
+                                        <circle cx="8.5" cy="9.5" r="1.5" />
+                                        <path
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-3.5c.73 0 1.39.19 1.97.53.12-.14.86-.98 1.01-1.14-.85-.56-1.87-.89-2.98-.89-1.11 0-2.13.33-2.99.88.97 1.09.01.02 1.01 1.14.59-.33 1.25-.52 1.98-.52z" />
+                                    </svg>
+                                </ng-template>
                             </label>
 
-                            <label class="neutral" for="neutral" >
-                                <input type="radio" name="mood" class="neutral" id="neutral" value="neutral"  formControlName="mood" (change)="changeMood($event)">
-                                <svg *ngIf="checked == 'neutral';else neutralTemplate" xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
+                            <label for="neutral" (mouseover)="updateActiveColor(true, 2)"
+                                (mouseout)="updateActiveColor(false, 2)">
+                                <input type="radio" name="mood" class="neutral" id="neutral" value="neutral"
+                                    formControlName="mood" (change)="changeMood($event)">
+                                <svg *ngIf="checked == 'neutral';else neutralTemplate"
+                                    xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
                                     [ngStyle]="{'fill': getColor(2)}">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <path d="M9 15.5h6v1H9v-1z" />
@@ -58,41 +85,65 @@
                                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
                                 </svg>
                                 <ng-template #neutralTemplate>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    [ngStyle]="{'fill': color }" (mouseover)="this.color = getColor(2)" (mouseout)="this.color = '#ffffff'">
-                                    <path d="M0 0h24v24H0V0z" fill="none" />
-                                    <path d="M9 15.5h6v1H9v-1z" />
-                                    <circle cx="15.5" cy="9.5" r="1.5" />
-                                    <circle cx="8.5" cy="9.5" r="1.5" />
-                                    <path
-                                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
-                                </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24"
+                                        width="54px" [ngStyle]="{'fill': getActiveColor(2) }">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <path d="M9 15.5h6v1H9v-1z" />
+                                        <circle cx="15.5" cy="9.5" r="1.5" />
+                                        <circle cx="8.5" cy="9.5" r="1.5" />
+                                        <path
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" />
+                                    </svg>
                                 </ng-template>
                             </label>
 
-                            <label for="happy">
-                                <input type="radio" name="mood" class="happy" id="happy" value="happy" formControlName="mood" (change)="changeMood($event)"/>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    fill="#FFFFFF">
+                            <label for="happy" (mouseover)="updateActiveColor(true, 3)"
+                                (mouseout)="updateActiveColor(false, 3)">
+                                <input type="radio" name="mood" class="happy" id="happy" value="happy"
+                                    formControlName="mood" (change)="changeMood($event)" />
+                                <svg *ngIf="checked == 'happy';else happyTemplate" xmlns="http://www.w3.org/2000/svg"
+                                    height="54px" viewBox="0 0 24 24" width="54px" [ngStyle]="{'fill': getColor(3)}">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <circle cx="15.5" cy="9.5" r="1.5" />
                                     <circle cx="8.5" cy="9.5" r="1.5" />
                                     <path
                                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-4c-.73 0-1.38-.18-1.96-.52-.12.14-.86.98-1.01 1.15.86.55 1.87.87 2.97.87 1.11 0 2.12-.33 2.98-.88-.97-1.09-.01-.02-1.01-1.15-.59.35-1.24.53-1.97.53z" />
                                 </svg>
+                                <ng-template #happyTemplate>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24"
+                                        width="54px" [ngStyle]="{'fill': getActiveColor(3) }">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <circle cx="15.5" cy="9.5" r="1.5" />
+                                        <circle cx="8.5" cy="9.5" r="1.5" />
+                                        <path
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-4c-.73 0-1.38-.18-1.96-.52-.12.14-.86.98-1.01 1.15.86.55 1.87.87 2.97.87 1.11 0 2.12-.33 2.98-.88-.97-1.09-.01-.02-1.01-1.15-.59.35-1.24.53-1.97.53z" />
+                                    </svg>
+                                </ng-template>
                             </label>
 
-                            <label for="super-happy">
-                                <input type="radio" name="mood" class="super-happy" id="super-happy"
-                                    value="super-happy" formControlName="mood" (change)="changeMood($event)"/>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
-                                    fill="#FFFFFF" [ngStyle]="{'fill': getFill('super-happy')}">
+                            <label for="super-happy" (mouseover)="updateActiveColor(true, 4)"
+                                (mouseout)="updateActiveColor(false, 4)">
+                                <input type="radio" name="mood" class="super-happy" id="super-happy" value="super-happy"
+                                    formControlName="mood" (change)="changeMood($event)" />
+                                <svg *ngIf="checked == 'super-happy';else superHappyTemplate"
+                                    xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24" width="54px"
+                                    [ngStyle]="{'fill': getColor(4) }">
                                     <path d="M0 0h24v24H0V0z" fill="none" />
                                     <circle cx="15.5" cy="9.5" r="1.5" />
                                     <circle cx="8.5" cy="9.5" r="1.5" />
                                     <path
                                         d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-5-6c.78 2.34 2.72 4 5 4s4.22-1.66 5-4H7z" />
                                 </svg>
+                                <ng-template #superHappyTemplate>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="54px" viewBox="0 0 24 24"
+                                        width="54px" [ngStyle]="{'fill': getActiveColor(4) }">
+                                        <path d="M0 0h24v24H0V0z" fill="none" />
+                                        <circle cx="15.5" cy="9.5" r="1.5" />
+                                        <circle cx="8.5" cy="9.5" r="1.5" />
+                                        <path
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-5-6c.78 2.34 2.72 4 5 4s4.22-1.66 5-4H7z" />
+                                    </svg>
+                                </ng-template>
                             </label>
 
                         </form>

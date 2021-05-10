@@ -15,7 +15,9 @@ export class DayEditorComponent implements OnInit {
 
   public day: Day
   public userColors: []
+  public activeColors: [string] = ['']
   public checked: string
+  public hover: string
   public color: string = "#FFFFFF"
 
   public moodForm: FormGroup
@@ -37,7 +39,16 @@ export class DayEditorComponent implements OnInit {
     this.moodForm = this.formBuilder.group({
       mood: [this.getRadio(this.day.mood)]
     })
-    console.log(this.moodForm.get('mood').value)
+    // Auto Check the Radio Button using user data
+    this.checked = this.moodForm.get('mood').value
+
+    this.setupActiveColors()
+  }
+
+  setupActiveColors() {
+    for (let i = 0; i <= 4; i++) {
+      this.activeColors[i] = "#FFFFFF"
+    }
   }
 
   getUserColors() {
@@ -91,8 +102,16 @@ export class DayEditorComponent implements OnInit {
     this.color = '#FFFFFF'
   }
 
-  getFill(string) {
+  getActiveColor(mood: number): string {
+    return this.activeColors[mood]
+  }
 
+  updateActiveColor(active: boolean, mood: number) {
+    if (active) {
+      this.activeColors[mood] = this.userColors[mood]
+    } else {
+      this.activeColors[mood] = "#FFFFFF"
+    }
   }
 
 }

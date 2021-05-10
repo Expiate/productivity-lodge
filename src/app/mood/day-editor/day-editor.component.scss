@@ -307,48 +307,4 @@ input + svg {
 	cursor: pointer;
 }
 
-input[class="super-happy"]:hover + svg,
-input[class="super-happy"]:checked + svg,
-input[class="super-happy"]:focus + svg {
-	fill: rgb(0, 109, 217);
-}
-
-input[class="happy"]:hover + svg,
-input[class="happy"]:checked + svg,
-input[class="happy"]:focus + svg {
-	fill: rgb(0, 204, 79);
-}
-
-input[class="neutral"]:hover + svg,
-input[class="neutral"]:checked + svg,
-input[class="neutral"]:focus + svg {
-	fill: rgb(232, 214, 0);
-}
-/*
-label[class="neutral"]:hover,
-label[class="neutral"]:focus {
-    svg {
-        fill: rgb(232, 214, 0);
-    }
-}
-*/
-
-label[class="neutral checked"] {
-    svg {
-        fill: rgb(232, 214, 0);
-    }
-}
-
-
-input[class="sad"]:hover + svg,
-input[class="sad"]:checked + svg,
-input[class="sad"]:focus + svg {
-	fill: rgb(229, 132, 0);
-}
-
-input[class="super-sad"]:hover + svg,
-input[class="super-sad"]:checked + svg,
-input[class="super-sad"]:focus + svg {
-	fill: rgb(239, 42, 16);
-}
 
