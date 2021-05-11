@@ -3,13 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
+import { domAnimations } from '../common/animations/dom-animations';
 import { emotions } from '../common/data/emotions';
 import { Day } from '../common/models/day.model';
 
 @Component({
   selector: 'app-day-editor',
   templateUrl: './day-editor.component.html',
-  styleUrls: ['./day-editor.component.scss']
+  styleUrls: ['./day-editor.component.scss'],
+  animations: [domAnimations]
 })
 export class DayEditorComponent implements OnInit {
 
@@ -118,11 +120,7 @@ export class DayEditorComponent implements OnInit {
   }
 
   changeDisplayEmotions() {
-    if(this.displayEmotions == true) {
-      this.displayEmotions = false
-    } else {
-      this.displayEmotions = true
-    }
+    this.displayEmotions = !this.displayEmotions
   }
 
   getActiveColor(mood: number): string {

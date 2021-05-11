@@ -217,7 +217,13 @@
             </div>
         </div>
     </div>
-    <div [className]="this.displayEmotions ? 'tableEmotions open' : 'tableEmotions'"></div>
+    <div [className]="this.displayEmotions ? 'tableEmotions open' : 'tableEmotions'">
+        <div *ngIf="this.displayEmotions == true"[@inOutAnimation] class="wrapper">
+            <div class="title">
+                {{day.emotions.length}}/6 Emotions
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
