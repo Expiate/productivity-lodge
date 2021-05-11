@@ -8,6 +8,7 @@ $accent: #ea4c89;
 //measurements
 $tableWidth: 460px;
 $daySelectorHeight: 80px;
+$titleHeight: null;
 
 body {
     width: 100%;
@@ -70,14 +71,14 @@ body {
         position: relative;
         height: 100%;
         width: 100%;
-        padding: 5px;
 
         .title {
+            $titleHeight: 30px !global;
             position: absolute;
             top: 15px;
             right: 0px;
             width: 100%;
-            height: auto;
+            height: $titleHeight;
 
             text-align: center;
             justify-content: center;
@@ -85,6 +86,48 @@ body {
             font-size: 22px;
             color: #FFFFFF;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        .picker {
+            position: absolute;
+            top: $titleHeight + 15px;
+            width: 100%;
+            height: calc(100% - (#{$titleHeight} + 15px));
+
+            display: flex;
+            flex-direction: row;
+            justify-items: center;
+            align-content: center;
+            
+            .tags {
+                color: #EEEE;
+                padding: 12px;
+            
+                display: flex;
+                width: 100%;
+                height: auto;
+            
+                flex-wrap: wrap;
+                @apply gap-y-3;
+                @apply gap-x-1;
+                @apply list-none;
+                align-items: center;
+                justify-content: center;
+                align-content: center;
+            
+                .tag {
+                    background-color: $primary;
+                    text-align: center;
+                    height: auto;
+                    width: fit-content;
+                    margin: auto;
+                    padding-right: 16px;
+                    padding-left: 16px;
+                    border-radius: 20px;
+                    font-size: 17px;
+                    cursor: pointer;
+                }
+            }
         }
     }
 }
@@ -465,6 +508,8 @@ input + svg {
         }
     }
 }
+
+
 
 .emotionsContainer {
     display: block;

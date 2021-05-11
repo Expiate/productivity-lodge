@@ -15,7 +15,7 @@
                 </div>
                 <div class="tags">
                     <li *ngFor="let tag of getAvailableEmotions(); let i = index">
-                        <div class="flex flex-row space-x-2 justify-items-center content-center">    
+                        <div class="flex flex-row space-x-2 justify-items-center content-center">
                             <div class="tag" (click)="deleteTag(i)">
                                 {{tag}}
                             </div>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="tags">
                             <li *ngFor="let tag of day.emotions; let i = index">
-                                <div class="flex flex-row space-x-2 justify-items-center content-center">    
+                                <div class="flex flex-row space-x-2 justify-items-center content-center">
                                     <div class="tag" (click)="deleteTag(i)">
                                         {{tag}}
                                     </div>
@@ -196,17 +196,18 @@
                                 <span></span>
                             </div>
                         </label>
-                    </div> 
+                    </div>
                 </div>
-                
+
                 <div class="note">
                     <div class="title">
                         Note
                     </div>
-                    <textarea class="noteText" spellcheck="false" maxlength="180" placeholder="..." type="text"  formControlName="note" contenteditable="true"></textarea>
+                    <textarea class="noteText" spellcheck="false" maxlength="180" placeholder="..." type="text"
+                        formControlName="note" contenteditable="true"></textarea>
                 </div>
             </form>
-        </div> 
+        </div>
 
 
         <div class="daySelector" [ngStyle]="{'background-color' : getColor(getMood(this.checked))}">
@@ -218,10 +219,22 @@
         </div>
     </div>
     <div [className]="this.displayEmotions ? 'tableEmotions open' : 'tableEmotions'">
-        <div *ngIf="this.displayEmotions == true"[@inOutAnimation] class="wrapper">
+        <div *ngIf="this.displayEmotions == true" [@inOutAnimation] class="wrapper">
             <div class="title">
                 {{day.emotions.length}}/6 Emotions
             </div>
+            <div class="picker"> 
+                <div class="tags">
+                    <li *ngFor="let tag of getAvailableEmotions(); let i = index">
+                        <div class="flex flex-row space-x-2 justify-items-center content-center">
+                            <div class="tag">
+                                {{tag}}
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </div>
+            
         </div>
     </div>
 </body>
