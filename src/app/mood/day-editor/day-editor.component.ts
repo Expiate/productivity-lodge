@@ -18,6 +18,7 @@ export class DayEditorComponent implements OnInit {
   public activeColors: [string] = ['']
   public checked: string
   public hover: string
+  public displayEmotions: boolean = false;
   public color: string = "#FFFFFF"
 
   public moodForm: FormGroup
@@ -114,6 +115,14 @@ export class DayEditorComponent implements OnInit {
   changeMood(e) {
     this.checked = e.target.value
     this.color = '#FFFFFF'
+  }
+
+  changeDisplayEmotions() {
+    if(this.displayEmotions == true) {
+      this.displayEmotions = false
+    } else {
+      this.displayEmotions = true
+    }
   }
 
   getActiveColor(mood: number): string {

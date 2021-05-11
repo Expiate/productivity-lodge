@@ -174,21 +174,31 @@
                     </div>
                 </div>
 
-                <div class="emotions">
-                    <a class="addButton addIcon" (click)="openModal('addEmotions')"></a>
-                    <div class="title">
-                        Emotions
-                    </div>
-                    <div class="tags">
-                        <li *ngFor="let tag of day.emotions; let i = index">
-                            <div class="flex flex-row space-x-2 justify-items-center content-center">    
-                                <div class="tag" (click)="deleteTag(i)">
-                                    {{tag}}
+                <div class="emotionsContainer">
+                    <div class="emotions">
+                        <div class="title">
+                            Emotions
+                        </div>
+                        <div class="tags">
+                            <li *ngFor="let tag of day.emotions; let i = index">
+                                <div class="flex flex-row space-x-2 justify-items-center content-center">    
+                                    <div class="tag" (click)="deleteTag(i)">
+                                        {{tag}}
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        </div>
                     </div>
+                    <div class="addEmotionsButton">
+                        <label class="collection">
+                            <input type="checkbox" (click)="changeDisplayEmotions()">
+                            <div>
+                                <span></span>
+                            </div>
+                        </label>
+                    </div> 
                 </div>
+                
                 <div class="note">
                     <div class="title">
                         Note
@@ -207,7 +217,7 @@
             </div>
         </div>
     </div>
-    <div class="tableEmotions"></div>
+    <div [className]="this.displayEmotions ? 'tableEmotions open' : 'tableEmotions'"></div>
 </body>
 
 </html>

@@ -60,7 +60,7 @@ body {
     justify-content: center;
     flex-direction: column;
 
-    transition: all 1s ease;
+    transition: all .8s ease;
 
     &.open {
         transform: translateX(calc(#{$tableWidth * 0.5 }));
@@ -443,6 +443,105 @@ input + svg {
         }
     }
 }
+
+.emotionsContainer {
+    display: block;
+    width: $tableWidth;
+    height: auto;
+    position: relative;
+}
+
+.addEmotionsButton {
+    position: absolute;
+    height: auto;
+    width: auto;
+    right: 8px;
+    top: calc(50% - (36px * 0.5));
+}
+
+.collection {
+    input {
+        display: none;
+        & + div {
+            position: relative;
+            width: 24px;
+            height: 36px;
+            border-radius: 3px;
+            border: 2.5px solid $primary;
+            margin: 0 0 0 8px;
+            cursor: pointer;
+            transition: all .4s ease;
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 2px;
+                border-radius: 2px;
+                background: $primary;
+                right: 100%;
+                transition: all .4s ease, background .2s ease;
+            }
+            &:before {
+                transform: translate(-4px, 0);
+                top: 4px;
+                bottom: 4px;
+            }
+            &:after {
+                transform: translate(-8px, 0);
+                top: 8px;
+                bottom: 8px;
+            }
+            span {
+                display: block;
+                left: 50%;
+                top: 50%;
+                position: absolute;
+                transition: transform .4s ease;
+                &:before,
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    border-radius: 2px;
+                    background: $accent;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: background .2s ease;
+                }
+                &:before {
+                    width: 10px;
+                    height: 2px;
+                }
+                &:after {
+                    height: 10px;
+                    width: 2px;
+                }
+            }
+        }
+        &:checked + div {
+            height: 24px;
+            margin: 6px 4px;
+            background: $accent;
+            border: 2px solid $accent;
+            &:before,
+            &:after {
+                transform: translate(2px, 0);
+                opacity: 0;
+            }
+            span {
+                transform: rotate(-225deg);
+                &:before,
+                &:after {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+
 
 
 
