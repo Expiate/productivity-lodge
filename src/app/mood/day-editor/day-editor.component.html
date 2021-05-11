@@ -9,14 +9,27 @@
 
     <jw-modal id="addEmotions">
         <div class="emotionsTable">
-            <button class="absolute bottom-2 right-2" (click)="closeModal('addEmotions')">Close</button>
+            <div class="emotions">
+                <div class="title">
+                    Click to add Emotions
+                </div>
+                <div class="tags">
+                    <li *ngFor="let tag of getAvailableEmotions(); let i = index">
+                        <div class="flex flex-row space-x-2 justify-items-center content-center">    
+                            <div class="tag" (click)="deleteTag(i)">
+                                {{tag}}
+                            </div>
+                        </div>
+                    </li>
+                </div>
+                <button class="absolute bottom-2 right-2" (click)="closeModal('addEmotions')">Close</button>
+            </div>
         </div>
     </jw-modal>
 
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton icon" (click)="navigateMoodDaySelector()"></a>
     </div>
-
     <div class="table flex-nowrap">
         <a class="editButton editIcon day"></a>
         <div class="dayContainer">
@@ -183,7 +196,7 @@
                     <textarea class="noteText" spellcheck="false" maxlength="180" placeholder="..." type="text"  formControlName="note" contenteditable="true"></textarea>
                 </div>
             </form>
-        </div>
+        </div> 
 
 
         <div class="daySelector" [ngStyle]="{'background-color' : getColor(getMood(this.checked))}">
@@ -194,6 +207,7 @@
             </div>
         </div>
     </div>
+    <div class="tableEmotions"></div>
 </body>
 
 </html>

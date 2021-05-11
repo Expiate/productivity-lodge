@@ -33,6 +33,7 @@ export class DayEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.day = this.localStorage.getDay()
+    if (this.day.emotions == undefined) this.day.emotions = []
     this.getUserColors()
 
     // Mood Form Config
@@ -131,4 +132,8 @@ export class DayEditorComponent implements OnInit {
     this.day.emotions.splice(index, 1)
   }
 
+  getAvailableEmotions() {
+
+    return this.emotions.getOuterJoin(this.day.emotions)
+  }
 }
