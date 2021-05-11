@@ -13,6 +13,7 @@ import { Day } from '../common/models/day.model';
   styleUrls: ['./day-editor.component.scss'],
   animations: [domAnimations]
 })
+
 export class DayEditorComponent implements OnInit {
 
   public day: Day
@@ -140,7 +141,13 @@ export class DayEditorComponent implements OnInit {
   }
 
   getAvailableEmotions() {
-
     return this.emotions.getOuterJoin(this.day.emotions)
+  }
+
+  addToEmotions(i: number) {
+    if (this.day.emotions.length == 6) {
+      return
+    }
+    this.day.emotions.push(this.getAvailableEmotions()[i])
   }
 }
