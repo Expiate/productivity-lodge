@@ -280,19 +280,52 @@ export class DayEditorComponent implements OnInit {
   }
 
   /**
-   * Clears the MoodForm data and uses ApiMood Service to
+   * Uses ApiMood Service to
    * make an HTTP Call to remove specific day data from
    * the server
    */
   deleteDay() {
-    this.moodForm.get('mood').setValue("")
-    this.moodForm.get('note').setValue("")
-    this.checked = ""
-    this.day.emotions = []
-
     if(this.day.isRecoveredFromAPI) {
-      this.apiMood.deleteDay(this.day)
+      this.apiMood.deleteDay(this.day).subscribe(resp => {
+        // On Success
+        console.log("Success: " + resp['status'])
+        console.log(resp['body']['message'])
+  
+        if (resp['status'] == 201 || resp['status'] == 200) {
+          // Show Success Toast
+
+          this.localStorage.saveDay(this.createTemplateDay())
+          this.successToast('', 'Day deleted')
+          this.navigateMoodDaySelector()
+        }
+      }, error => {
+        // On Error
+        console.log("Error: " + error['status'])
+        console.log(error['body']['message'])
+  
+        this.errorToast('Something went wrong', 'Try again later')
+      })
     }
+  }
+
+  /**
+   * Creates a new Day Object using Day Model using basic data from
+   * Global Day Var (Only uses Date data, no API Data)
+   * @returns Day Object
+   */
+  createTemplateDay(): Day {
+    let day = new Day()
+
+    day.monthIndex = this.day.monthIndex;
+    day.month = this.day.month;
+
+    day.number = this.day.number;
+    day.year = this.day.year;
+
+    day.weekDayNumber = this.day.weekDayNumber;
+    day.weekDayName = this.day.weekDayName;
+
+    return day
   }
 
   successToast(title: string, content: string) {

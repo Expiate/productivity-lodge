@@ -47,10 +47,40 @@ export class ApiMoodService {
     return this.http.post<any>(this.createUrl, JSON, { observe: 'response' })
   }
 
+  /**
+   * Uses the Day Object to create a formated date and uses it to make an
+   * API Call to remove a day from the server and returns an Observable
+   * with the response
+   * @param day Day Model Object
+   * @returns Observable
+   */
   public deleteDay(day: Day) {
+    let month: string
+    let date: string
+    let fullDate: string
 
+    month = String(day.monthIndex + 1)
+    date = String(day.number)
+
+    if (month.length == 1) {
+      month = "0" + month
+    }
+
+    if (date.length == 1) {
+      date = "0" + date
+    }
+
+    fullDate = `${day.year}-${month}-${date}`
+    
+    return this.http.delete<any>(`${this.deleteUrl}${fullDate}`, { observe: 'response' })
   }
 
+  /**
+   * Creates a JSON with the formated contents of the Day Object and returns an
+   * Observable of the API call done to update a day using the JSON
+   * @param day Day Model Object
+   * @returns Observable
+   */
   public modifyDay(day: Day) {
     let month: string
     let date: string
