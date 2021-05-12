@@ -1,7 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { ModalService } from 'src/app/_modal';
 import { domAnimations } from '../common/animations/dom-animations';
@@ -234,6 +236,8 @@ export class DayEditorComponent implements OnInit {
    * @returns void
    */
   saveDay() {
+    let apiObservable: Observable<HttpResponse<any>>
+
     if (this.moodForm.get('mood').value != null) {
       this.day.mood = this.getMood(this.moodForm.get('mood').value)
     } else {
@@ -248,20 +252,23 @@ export class DayEditorComponent implements OnInit {
     
     if(this.day.isRecoveredFromAPI) {
       console.log('Modify')
-      this.apiMood.modifyDay(this.day)  
-      return
+      apiObservable = this.apiMood.modifyDay(this.day)  
+    } else {
+      console.log('new')
+      apiObservable = this.apiMood.createDay(this.day)
     }
 
-    this.apiMood.createDay(this.day).subscribe(resp => {
+    apiObservable.subscribe(resp => {
       // On Success
       console.log("Success: " + resp['status'])
       console.log(resp['body']['message'])
 
-      if (resp['status'] == 201) {
+      if (resp['status'] == 201 || resp['status'] == 200) {
         // Show Success Toast
         this.day.isRecoveredFromAPI = true
         this.localStorage.saveDay(this.day)
         this.successToast('', 'Day Saved')
+        this.navigateMoodDaySelector()
       }
     }, error => {
       // On Error

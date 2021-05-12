@@ -43,7 +43,7 @@ export class ApiMoodService {
       emotions: day.emotions,
       note: day.note
     }
-    
+
     return this.http.post<any>(this.createUrl, JSON, { observe: 'response' })
   }
 
@@ -52,6 +52,29 @@ export class ApiMoodService {
   }
 
   public modifyDay(day: Day) {
+    let month: string
+    let date: string
+    let fullDate: string
 
+    month = String(day.monthIndex + 1)
+    date = String(day.number)
+
+    if (month.length == 1) {
+      month = "0" + month
+    }
+
+    if (date.length == 1) {
+      date = "0" + date
+    }
+
+    fullDate = `${day.year}-${month}-${date}`
+    
+    let JSON = {
+      mood: day.mood,
+      emotions: day.emotions,
+      note: day.note
+    }
+
+    return this.http.patch<any>(`${this.modifyUrl}${fullDate}`, JSON, { observe: 'response' })
   }
 }
