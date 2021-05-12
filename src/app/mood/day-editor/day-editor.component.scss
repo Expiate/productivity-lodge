@@ -5,6 +5,9 @@ $primary: #1D1D1D;
 $secondary: #292929;
 $accent: #ea4c89;
 
+$text:#72879e;
+$green:#00c06d;
+
 //measurements
 $tableWidth: 460px;
 $daySelectorHeight: 80px;
@@ -563,6 +566,89 @@ input + svg {
                 }
             }
         }
+    }
+}
+
+.modal {
+    border-radius: 10px;
+    display:none;
+    position:relative;
+    width: 650px;
+    height: 350px;
+    background-color: $primary;
+
+    &.active {
+        display:block;
+    }
+
+    .content {
+        padding:30px;
+    }
+
+    .close {
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        color:#FFF;
+        width:50px;
+        height:50px;
+        text-align:center;
+        line-height:50px;
+        position:absolute;
+        right:0;
+        color:#999;
+        font-size:40px;
+
+        span {
+            transform:rotate(45deg);
+            display:block;
+        }
+    }
+    .buttons {
+        width:650px;
+        position:absolute;
+        bottom:0;
+        height:50px;
+        background-color:#FFF;
+
+        a {
+            width:50%;
+            height:50px;
+            line-height:50px;
+            text-align:center;
+            float:left;
+            background-color: $secondary;
+            color: #ffffff;
+            transition:0.3s;
+            text-transform:uppercase;
+            font-weight:bold;
+
+            &:hover {
+                background-color:brighten($secondary,5%);
+            }
+
+            &:nth-of-type(2) {
+                float:right;
+                color:#FFF;
+                background-color:$green;
+
+                &:hover {
+                    background-color:darken($green,5%);
+                }
+            }
+        }
+    }
+}
+
+.modalbttn {
+    background-color:#24252A;
+    padding:12px 25px;
+    text-transform:uppercase;
+    border-top:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius:4px;
+    &:hover {
+        background-color:lighten(#24252A,3%); 
     }
 }
 

@@ -2,13 +2,22 @@
 
 <body>
     <jw-modal id="closeDayEditorWithoutSaving">
-        <div class="w-40 h-40">
-            <button (click)="closeModal('closeDayEditorWithoutSaving')">Close</button>
+        <div class="modal active">
+            <div class="content">
+                <h2>Modal title</h2>
+                <p>Let's go up in here, and start having some fun The very fact that you're aware of suffering is enough
+                    reason to be overjoyed that you're alive and can experience it. It's a super day, so why not make a
+                    beautiful sky?</p>
+            </div>
+            <div class="buttons">
+                <a>Cancel</a>
+                <a (click)="closeModal('closeDayEditorWithoutSaving')">Accept</a>
+            </div>
         </div>
     </jw-modal>
 
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-        <a class="roundButton icon back" (click)="navigateMoodDaySelector()"></a>
+        <a class="roundButton icon back" (click)="openModal('closeDayEditorWithoutSaving')"></a>
     </div>
     <div class="table flex-nowrap">
         <div class="absolute top-2 right-2 flex flex-row items-center justify-items-center h-10 w-24">
@@ -208,7 +217,7 @@
             <div class="title">
                 {{day.emotions.length}}/6 Emotions
             </div>
-            <div class="picker"> 
+            <div class="picker">
                 <div class="tags">
                     <li *ngFor="let tag of getAvailableEmotions(); let i = index">
                         <div class="flex flex-row space-x-2 justify-items-center content-center">
@@ -219,7 +228,7 @@
                     </li>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </body>
