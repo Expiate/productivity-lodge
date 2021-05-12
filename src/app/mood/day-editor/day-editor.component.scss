@@ -8,6 +8,7 @@ $accent: #ea4c89;
 //measurements
 $tableWidth: 460px;
 $daySelectorHeight: 80px;
+$appButonSize: 40px;
 $titleHeight: null;
 
 body {
@@ -146,8 +147,8 @@ body {
 }
 
 .roundButton {
-    width: 40px;
-    height: 40px;
+    width: $appButonSize;
+    height: $appButonSize;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -158,10 +159,10 @@ body {
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
+    width: $appButonSize;
+    height: $appButonSize;
     z-index: 9;
-    background-image: url(../../../assets/backArrow.svg);
+
     background-repeat: no-repeat;
     background-position: 8px 8px;
     opacity: 0.9;
@@ -174,6 +175,21 @@ body {
         background-color: $accent;
         background-size: 63%;
         opacity: 1;
+    }
+
+    &.delete {
+        background-image: url(../../../assets/deleteBig.svg);
+        $appButonSize: 20px;
+        left: 0;
+    }
+
+    &.save {
+        background-image: url(../../../assets/save.svg);
+        $appButonSize: 20px;
+    }
+
+    &.back {
+        background-image: url(../../../assets/backArrow.svg);
     }
 }
 
