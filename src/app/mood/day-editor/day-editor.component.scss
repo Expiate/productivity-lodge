@@ -109,7 +109,7 @@ body {
             
                 flex-wrap: wrap;
                 @apply gap-y-3;
-                @apply gap-x-1;
+                @apply gap-x-2;
                 @apply list-none;
                 align-items: center;
                 justify-content: center;
@@ -124,8 +124,21 @@ body {
                     padding-right: 16px;
                     padding-left: 16px;
                     border-radius: 20px;
-                    font-size: 17px;
+                    
                     cursor: pointer;
+
+                    @media (max-height: 800px) {
+                        .picker {
+                            .tags {
+                                @apply gap-x-2;
+                                .tag {
+                                    padding-right: 11px;
+                                    padding-left: 11px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
