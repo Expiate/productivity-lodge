@@ -11,4 +11,6 @@ export class Day {
     public mood: number;
     public emotions: string[];
     public note: string;
+
+    public isRecoveredFromAPI: boolean;
 }

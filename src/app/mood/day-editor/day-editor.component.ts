@@ -6,6 +6,7 @@ import { ModalService } from 'src/app/_modal';
 import { domAnimations } from '../common/animations/dom-animations';
 import { emotions } from '../common/data/emotions';
 import { Day } from '../common/models/day.model';
+import { ApiMoodService } from '../common/services/api-mood.service';
 
 @Component({
   selector: 'app-day-editor',
@@ -31,11 +32,13 @@ export class DayEditorComponent implements OnInit {
     private router: Router,
     private localStorage: StorageService,
     private modalService: ModalService,
+    private apiMood: ApiMoodService,
     private formBuilder: FormBuilder,
     private emotions: emotions
   ) { }
 
   ngOnInit(): void {
+    // Get Data from Local Storage and Setup Variables 
     this.day = this.localStorage.getDay()
     if (this.day.emotions == undefined) this.day.emotions = []
     this.getUserColors()
@@ -149,5 +152,25 @@ export class DayEditorComponent implements OnInit {
       return
     }
     this.day.emotions.push(this.getAvailableEmotions()[i])
+  }
+
+  saveDay() {
+    if(this.day.isRecoveredFromAPI) {
+      this.apiMood.modifyDay(this.day)  
+      return
+    }
+
+    this.apiMood.createDay(this.day)
+  }
+
+  deleteDay() {
+    this.moodForm.get('mood').setValue("")
+    this.moodForm.get('note').setValue("")
+    this.checked = ""
+    this.day.emotions = []
+
+    if(this.day.isRecoveredFromAPI) {
+      this.apiMood.deleteDay(this.day)
+    }
   }
 }
