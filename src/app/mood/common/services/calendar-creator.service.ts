@@ -197,6 +197,13 @@ export class CalendarCreatorService {
     }, error => {
       // On Error
       console.log('Error Retrieving API Days ' + error)
+      this.apiDays = []
+
+      for(let i = 0; i <= 11; i++) {
+        this.days.push(this.getMonth(i, year))
+      }
+
+      next(this.days)
     })
   }
 }
