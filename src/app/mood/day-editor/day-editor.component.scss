@@ -220,49 +220,6 @@ body {
     align-items: center;
 }
 
-.roundMood {
-    $size: 60px;
-    width: $size;
-    height: $size;
-    border-radius: 100%;
-    margin-right: calc(50% - #{$size * 0.5 });
-    margin-left: calc(50% - #{$size * 0.5 });
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .moodIcon {
-        width: $size;
-        height: $size;
-        z-index: 9;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        opacity: 0.9;
-
-        &.m0 {
-            background-image: url(../../../assets/mood0.svg);
-        }
-
-        &.m1 {
-            background-image: url(../../../assets/mood1.svg);
-        }
-
-        &.m2 {
-            background-image: url(../../../assets/mood2.svg);
-        }
-
-        &.m3 {
-            background-image: url(../../../assets/mood3.svg);
-        }
-
-        &.m4 {
-            background-image: url(../../../assets/mood4.svg);
-        }
-    }
-
-}
-
 .emotions {
     $width: $tableWidth * 0.8;
     height: auto;
@@ -313,39 +270,6 @@ body {
             border-radius: 20px;
             font-size: 14px;
             cursor: url(../../../assets/delete.svg), auto;
-        }
-    }
-}
-
-.addButton {
-    $size: 25px;
-    width: $size;
-    height: $size;
-    border-radius: 100%;
-    background-color: $accent;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &.addIcon {
-        width: $size;
-        height: $size;
-        z-index: 9;
-        background-image: url(../../../assets/add.svg);
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        opacity: 0.9;
-
-        position: absolute;
-        top: 5px;
-        right: 5px;
-
-        cursor: pointer;
-
-        &:hover {
-            opacity: 1;
-            background-color: #1D1D1D;
         }
     }
 }
