@@ -16,12 +16,27 @@
         </div>
     </jw-modal>
 
+    <jw-modal id="deleteConfirm">
+        <div class="modal active">
+            <div class="content">
+                <h2 class="font-semibold text-textPrimary text-xl mb-3">Delete Warning</h2>
+                <p class="text-textPrimary">This action is irreversible, all data will be lost forever. Are you sure
+                    you want to continue?
+                </p>
+            </div>
+            <div class="buttons">
+                <a class="cursor-pointer" (click)="closeModal('deleteConfirm')">Cancel</a>
+                <a class="cursor-pointer" (click)="deleteDay()">Delete</a>
+            </div>
+        </div>
+    </jw-modal>
+
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton icon back" (click)="exit()"></a>
     </div>
     <div class="table flex-nowrap">
         <div class="absolute top-2 right-2 flex flex-row items-center justify-items-center h-10 w-24">
-            <a class="roundButton icon delete" (click)="deleteDay()"></a>
+            <a class="roundButton icon delete" (click)="openModal('deleteConfirm')"></a>
             <a class="roundButton icon save" (click)="saveDay()">
             </a>
         </div>
