@@ -59,13 +59,28 @@
     </div>
 </div>
 <jw-modal id="infoCredentialsAuth">
-    <div class="modalContainer">
-        <div class="title">
-            Account Credentials
+    <div class="modal active">
+        <div class="content">
+            <h2 class="font-semibold text-textPrimary text-xl mb-5">Credentials Requeriments</h2>
+            <ul class="pt-4 text-base">
+                <li>
+                    <p class="text-textPrimary">The Username must be at least 3 characters long.
+                    </p>
+                </li>
+                <li>
+                    <p class="text-textPrimary">The Email must be a valid one, you will have to confirm your
+                        account with it
+                    </p>
+                </li>
+                <li>
+                    <p class="text-textPrimary">The Password must be at least 6 characters long.
+                    </p>
+                </li>
+            </ul>
+
         </div>
-        <p>The Username must have at least 3 characters</p>
-        <p>The Email must be valid</p>
-        <p>The Passwod must have at least 6 characters</p>
-    </div> 
-    <a class="closeButton" (click)="closeModal('infoCredentialsAuth')">OK</a>
+        <div class="buttons">
+            <span class="cursor-pointer" (click)="closeModal('infoCredentialsAuth')">Understood</span>
+        </div>
+    </div>
 </jw-modal>

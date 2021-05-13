@@ -4,14 +4,14 @@
     <jw-modal id="closeDayEditorWithoutSaving">
         <div class="modal active">
             <div class="content">
-                <h2>Modal title</h2>
-                <p>Let's go up in here, and start having some fun The very fact that you're aware of suffering is enough
-                    reason to be overjoyed that you're alive and can experience it. It's a super day, so why not make a
-                    beautiful sky?</p>
+                <h2 class="font-semibold text-textPrimary text-xl mb-3">Exit without saving</h2>
+                <p class="text-textPrimary">You didn't save the changes before leaving. Are you sure you want
+                    to lose all changes?
+                </p>
             </div>
             <div class="buttons">
-                <a>Cancel</a>
-                <a (click)="closeModal('closeDayEditorWithoutSaving')">Accept</a>
+                <a class="cursor-pointer" (click)="closeModal('closeDayEditorWithoutSaving')">Cancel</a>
+                <a class="cursor-pointer">Exit Anyways</a>
             </div>
         </div>
     </jw-modal>

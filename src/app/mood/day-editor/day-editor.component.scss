@@ -4,8 +4,6 @@
 $primary: #1D1D1D;
 $secondary: #292929;
 $accent: #ea4c89;
-
-$text:#72879e;
 $green:#00c06d;
 
 //measurements
@@ -623,7 +621,7 @@ input + svg {
             font-weight:bold;
 
             &:hover {
-                background-color:brighten($secondary,5%);
+                background-color:lighten($secondary,5%);
             }
 
             &:nth-of-type(2) {
