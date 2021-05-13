@@ -37,6 +37,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ngneat/tailwind": "^7.0.3",
     "asar": "^3.0.3",
+    "chart.js": "^3.2.1",
     "ngx-electron": "^2.2.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
