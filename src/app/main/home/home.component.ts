@@ -30,4 +30,8 @@ export class HomeComponent implements OnInit {
   navigateMood() {
     this.router.navigate(['mood'])
   }
+
+  navigateJournal() {
+    this.router.navigate(['journal'])
+  }
 }
