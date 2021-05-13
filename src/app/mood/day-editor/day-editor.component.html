@@ -11,13 +11,13 @@
             </div>
             <div class="buttons">
                 <a class="cursor-pointer" (click)="closeModal('closeDayEditorWithoutSaving')">Cancel</a>
-                <a class="cursor-pointer">Exit Anyways</a>
+                <a class="cursor-pointer" (click)="navigateMoodDaySelector()">Exit Anyways</a>
             </div>
         </div>
     </jw-modal>
 
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-        <a class="roundButton icon back" (click)="openModal('closeDayEditorWithoutSaving')"></a>
+        <a class="roundButton icon back" (click)="exit()"></a>
     </div>
     <div class="table flex-nowrap">
         <div class="absolute top-2 right-2 flex flex-row items-center justify-items-center h-10 w-24">
@@ -198,7 +198,7 @@
                         Note
                     </div>
                     <textarea class="noteText" spellcheck="false" maxlength="180" placeholder="..." type="text"
-                        formControlName="note" contenteditable="true"></textarea>
+                        formControlName="note" contenteditable="true" (change)="changeNote()"></textarea>
                 </div>
             </form>
         </div>

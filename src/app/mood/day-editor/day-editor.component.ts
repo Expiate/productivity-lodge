@@ -27,6 +27,7 @@ export class DayEditorComponent implements OnInit {
   public hover: string
   public displayEmotions: boolean = false;
   public color: string = "#FFFFFF"
+  public newData: boolean = false
 
   public moodForm: FormGroup
 
@@ -159,12 +160,32 @@ export class DayEditorComponent implements OnInit {
   }
 
   /**
+   * Trys to exit the component 
+   */
+  exit() {
+    if(this.newData == true) {
+      this.openModal('closeDayEditorWithoutSaving')
+    } else {
+      this.navigateMoodDaySelector()
+    }
+  }
+
+  /**
    * Registers UI Events and stores Event values in Checked var
    * @param e Event
    */
   changeMood(e) {
     this.checked = e.target.value
+    this.newData = true
     this.color = '#FFFFFF'
+  }
+
+  /**
+   * Detect changes in Note Input Control and signal that
+   * changes has been made
+   */
+  changeNote() {
+    this.newData = true
   }
 
   /**
@@ -203,6 +224,7 @@ export class DayEditorComponent implements OnInit {
    */
   deleteTag(index: number) {
     this.day.emotions.splice(index, 1)
+    this.newData = true
   }
 
   /**
@@ -225,6 +247,7 @@ export class DayEditorComponent implements OnInit {
       return
     }
     this.day.emotions.push(this.getAvailableEmotions()[i])
+    this.newData = true
   }
 
   /**
@@ -268,6 +291,7 @@ export class DayEditorComponent implements OnInit {
         this.day.isRecoveredFromAPI = true
         this.localStorage.saveDay(this.day)
         this.successToast('', 'Day Saved')
+        this.newData = false
         this.navigateMoodDaySelector()
       }
     }, error => {
@@ -305,6 +329,8 @@ export class DayEditorComponent implements OnInit {
   
         this.errorToast('Something went wrong', 'Try again later')
       })
+    } else {
+      this.navigateMoodDaySelector()
     }
   }
 
