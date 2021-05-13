@@ -21,11 +21,17 @@ const routes: Routes = [
     loadChildren: () => import('./mood/mood.module').then(m => m.MoodModule)
   },
   {
+    path: 'journal',
+    loadChildren: () => import('./journal/journal.module').then(m => m.JournalModule)
+  },
+  {
+    path: 'stats',
+    loadChildren: () => import('./stats/stats.module').then(m => m.StatsModule)
+  },
+  {
     path: 'app',
     component: AppComponent
   },
-
-
 ];
 
 @NgModule({
