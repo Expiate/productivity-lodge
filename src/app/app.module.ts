@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DevInfoComponent } from './main/dev-info/dev-info.component';
 import { HeaderInterceptor } from './common/interceptors/header.interceptor';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
