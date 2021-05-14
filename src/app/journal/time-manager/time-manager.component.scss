@@ -64,3 +64,11 @@ body {
         opacity: 1;
     }
 }
+
+.canvasContainer {
+    display: block;
+    position: relative;
+    height: fit-content;
+    width: 75%;
+    padding-top: 5%;
+}

@@ -1,31 +1,37 @@
 <html>
-    <head>
 
-    </head>
+<head>
 
-    <body>
-        <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-            <a class="roundButton icon" (click)="navigateHome()"></a>
+</head>
+
+<body>
+    <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
+        <a class="roundButton icon" (click)="navigateHome()"></a>
+    </div>
+    <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
+        <div *ngIf="newJournal == true; else modifyTemplate">
+
         </div>
-        <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
-            <p>{{journal}}</p>
-            <div class="w-full h-full">
-                <canvas baseChart class="w-80 h-80 z-50"
-                    [datasets]="this.lineChartData" 
-                    [labels]="lineChartLabels" 
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors" 
-                    [legend]="lineChartLegend" 
-                    [chartType]="lineChartType" 
-                    [plugins]="lineChartPlugins">
+
+        <ng-template #modifyTemplate>
+            <div>
+                
+            </div>
+            <div class="canvasContainer">
+                <canvas baseChart height="65" [datasets]="this.lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType" [plugins]="lineChartPlugins">
                 </canvas>
             </div>
-        </div>
-
-        <ng-template #loadTemplate>
-            <div class="table flex-nowrap">
-
-            </div>
         </ng-template>
-    </body>
+
+    </div>
+
+    <ng-template #loadTemplate>
+        <div class="table flex-nowrap">
+
+        </div>
+    </ng-template>
+</body>
+
 </html>

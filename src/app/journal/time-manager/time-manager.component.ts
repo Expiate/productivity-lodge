@@ -15,16 +15,27 @@ export class TimeManagerComponent implements OnInit {
   // This signals when the data has been fetched
   public dataDelivered: Promise<boolean>
   public journal: Journal
-  public newJournal: boolean
+  public newJournal: boolean = false
 
   public lineChartData: ChartDataSets[] = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
+    { data: [0], label: 'Work', stack: 'a' },
+    { data: [0], label: 'Leisure', stack: 'a' },
+    { data: [0], label: 'Sleep', stack: 'a' },
+    { data: [0], label: 'Personal Development', stack: 'a' },
+    { data: [0], label: 'Others', stack: 'a'}
   ];
 
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
+  public lineChartLabels: Label[] = ['Hours'];
 
   public lineChartOptions = {
     responsive: true,
+    scales: {
+      xAxes: [{
+        ticks: {
+          max: 24,
+        }
+      }],
+    }
   };
 
   public lineChartColors: Color[] = [
@@ -32,11 +43,14 @@ export class TimeManagerComponent implements OnInit {
       borderColor: 'black',
       backgroundColor: 'rgba(255,255,0,0.28)',
     },
+    {
+      backgroundColor: '#3deb34'
+    }
   ];
 
   public lineChartLegend = true;
   public lineChartPlugins = [];
-  public lineChartType = 'line';
+  public lineChartType = 'horizontalBar';
   
 
   constructor(
@@ -57,15 +71,25 @@ export class TimeManagerComponent implements OnInit {
     this.apiJournal.getJournal(
       this.journalGenerator.generateJournal(),
       (journalRecieved: boolean, journal: Journal) => {
-        this.newJournal = journalRecieved
+        this.newJournal = !journalRecieved
         this.journal = journal
         console.log(this.journal)
+        if (journalRecieved) {
+          this.loadJournalGraphData()
+        }
         this.dataDelivered = Promise.resolve(true)
-        this.setupGraph()
       })
   }
 
-  setupGraph() {
-
+  loadJournalGraphData() {
+    let others = 24 - this.journal.work - this.journal.leisure - this.journal.sleep - this.journal.personalDevelopment
+    let journalValues = [
+      { data: [this.journal.sleep], label: 'Sleep', stack: 'a' },
+      { data: [this.journal.work], label: 'Work', stack: 'a' },
+      { data: [this.journal.leisure], label: 'Leisure', stack: 'a' },
+      { data: [this.journal.personalDevelopment], label: 'Personal Development', stack: 'a' },
+      { data: [others], label: 'Others', stack: 'a'}
+    ]
+    this.lineChartData = journalValues
   }
 }
