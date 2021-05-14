@@ -19,7 +19,7 @@ export class JournalGeneratorService {
   }
 
   public generateJournal(): Journal {
-    let journal: Journal
+    let journal: Journal = new Journal()
 
     journal.monthIndex = this.monthIndex;
     journal.month = this.getMonthName(this.monthIndex);
@@ -29,7 +29,6 @@ export class JournalGeneratorService {
 
     journal.weekDayNumber = this.date.getDay();
     journal.weekDayName = this.getWeekDayName(journal.weekDayNumber);
-    
     return journal
   }
 

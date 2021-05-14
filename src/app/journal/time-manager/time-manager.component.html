@@ -8,12 +8,12 @@
             <a class="roundButton icon" (click)="navigateHome()"></a>
         </div>
         <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
-            
+            <p>{{journal}}</p>
         </div>
 
         <ng-template #loadTemplate>
             <div class="table flex-nowrap">
-                
+
             </div>
         </ng-template>
     </body>
