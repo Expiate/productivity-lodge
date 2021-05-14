@@ -7,8 +7,14 @@
         <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
             <a class="roundButton icon" (click)="navigateHome()"></a>
         </div>
-        <div class="table flex-nowrap">
+        <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
             
         </div>
+
+        <ng-template #loadTemplate>
+            <div class="table flex-nowrap">
+                
+            </div>
+        </ng-template>
     </body>
 </html>

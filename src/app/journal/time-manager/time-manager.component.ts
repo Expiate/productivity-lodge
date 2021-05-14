@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./time-manager.component.scss']
 })
 export class TimeManagerComponent implements OnInit {
+  // This signals when the data has been fetched
+  public dataDelivered: Promise<boolean>;
 
   constructor(
     private router: Router
