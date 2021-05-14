@@ -9,6 +9,17 @@
         </div>
         <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
             <p>{{journal}}</p>
+            <div class="w-full h-full">
+                <canvas baseChart class="w-80 h-80 z-50"
+                    [datasets]="this.lineChartData" 
+                    [labels]="lineChartLabels" 
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors" 
+                    [legend]="lineChartLegend" 
+                    [chartType]="lineChartType" 
+                    [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
         </div>
 
         <ng-template #loadTemplate>
