@@ -18,13 +18,9 @@ module.exports = {
         primary: '#1D1D1D',
         secondary: '#292929',
         accent: '#ea4c89',
-        tertiary: '#FEBC2C',
 
         textPrimary: '#EEEEEE',
         textSecondary: '#aeaebc',
-        textTertiary: '#818294',
-        textQuaternary:'#64657A',
-
       },
       fontFamily: {
         fontx: ['Cooper', 'cooper-black-std'],
