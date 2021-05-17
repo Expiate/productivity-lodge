@@ -41,10 +41,19 @@ export class TimeManagerComponent implements OnInit {
   public lineChartColors: Color[] = [
     {
       borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
+      backgroundColor: '#206a5d',
     },
     {
-      backgroundColor: '#3deb34'
+      backgroundColor: '#81b214'
+    },
+    {
+      backgroundColor: '#ffcc29'
+    },
+    {
+      backgroundColor: '#f58634'
+    },
+    {
+      backgroundColor: '#c8c2bc'
     }
   ];
 
