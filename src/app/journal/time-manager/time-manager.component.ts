@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Chart, ChartDataSets , ChartOptions } from 'chart.js';
+import { Chart, ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Journal } from '../common/models/journal.model';
 import { ApiJournalService } from '../common/services/api-journal.service';
@@ -25,7 +25,7 @@ export class TimeManagerComponent implements OnInit {
     { data: [0], label: 'Leisure', stack: 'a' },
     { data: [0], label: 'Sleep', stack: 'a' },
     { data: [0], label: 'Personal Development', stack: 'a' },
-    { data: [0], label: 'Others', stack: 'a'}
+    { data: [0], label: 'Others', stack: 'a' }
   ];
 
   public lineChartLabels: Label[] = ['Hours'];
@@ -63,7 +63,7 @@ export class TimeManagerComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartPlugins = [];
   public lineChartType = 'horizontalBar';
-  
+
 
   constructor(
     private router: Router,
@@ -115,7 +115,7 @@ export class TimeManagerComponent implements OnInit {
       { data: [work], label: 'Work', stack: 'a' },
       { data: [leisure], label: 'Leisure', stack: 'a' },
       { data: [personalDevelopment], label: 'Personal Development', stack: 'a' },
-      { data: [others], label: 'Others', stack: 'a'}
+      { data: [others], label: 'Others', stack: 'a' }
     ]
     this.lineChartData = journalValues
   }
