@@ -9,20 +9,28 @@
         <a class="roundButton icon" (click)="navigateHome()"></a>
     </div>
     <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
+        <div class="canvasContainer">
+            <canvas baseChart height="65" [datasets]="this.lineChartData" [labels]="lineChartLabels"
+                [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                [chartType]="lineChartType" [plugins]="lineChartPlugins">
+            </canvas>
+        </div>
         <div *ngIf="newJournal == true; else modifyTemplate">
-
+            <div class="fillButton">
+                Journal Day
+            </div>
         </div>
 
         <ng-template #modifyTemplate>
-            <div>
-                
+            <div class="main">
+                <div class="fillButton">
+                    Change Hours
+                </div>
+                <div>
+                    Text
+                </div>
             </div>
-            <div class="canvasContainer">
-                <canvas baseChart height="65" [datasets]="this.lineChartData" [labels]="lineChartLabels"
-                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                    [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                </canvas>
-            </div>
+
         </ng-template>
 
     </div>

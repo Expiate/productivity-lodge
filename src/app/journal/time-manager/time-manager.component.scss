@@ -72,3 +72,39 @@ body {
     width: 75%;
     padding-top: 5%;
 }
+
+.fillButton {
+    width: fit-content;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    padding-right: 10px;
+    padding-left: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#fff, 0.2);
+    backdrop-filter: blur(5px);
+    position: relative;
+
+    text-align: center;
+    font-weight: 500;
+
+    opacity: 0.9;
+    transition: background-color 0.4s ease, background-size 1s ease;
+    cursor: pointer;
+
+    &:hover {
+        background-size: 63%;
+        opacity: 1;
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 75%;
+
+    align-items: center;
+    justify-content: center;
+}

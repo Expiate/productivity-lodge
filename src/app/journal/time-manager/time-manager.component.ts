@@ -35,6 +35,13 @@ export class TimeManagerComponent implements OnInit {
           max: 24,
         }
       }],
+    },
+    chart: {
+      defaults: {
+        global: {
+          defaultFontFamily: 'Montserrat'
+        }
+      }
     }
   };
 
@@ -83,20 +90,22 @@ export class TimeManagerComponent implements OnInit {
         this.newJournal = !journalRecieved
         this.journal = journal
         console.log(this.journal)
+        console.log(this.newJournal)
         if (journalRecieved) {
-          this.loadJournalGraphData()
+          this.loadJournalGraphData(this.journal.sleep, this.journal.work,
+            this.journal.leisure, this.journal.personalDevelopment)
         }
         this.dataDelivered = Promise.resolve(true)
       })
   }
 
-  loadJournalGraphData() {
-    let others = 24 - this.journal.work - this.journal.leisure - this.journal.sleep - this.journal.personalDevelopment
+  loadJournalGraphData(sleep: number, work: number, leisure: number, personalDevelopment: number) {
+    let others = 24 - sleep - leisure - work - personalDevelopment
     let journalValues = [
-      { data: [this.journal.sleep], label: 'Sleep', stack: 'a' },
-      { data: [this.journal.work], label: 'Work', stack: 'a' },
-      { data: [this.journal.leisure], label: 'Leisure', stack: 'a' },
-      { data: [this.journal.personalDevelopment], label: 'Personal Development', stack: 'a' },
+      { data: [sleep], label: 'Sleep', stack: 'a' },
+      { data: [work], label: 'Work', stack: 'a' },
+      { data: [leisure], label: 'Leisure', stack: 'a' },
+      { data: [personalDevelopment], label: 'Personal Development', stack: 'a' },
       { data: [others], label: 'Others', stack: 'a'}
     ]
     this.lineChartData = journalValues
