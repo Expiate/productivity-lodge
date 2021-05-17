@@ -1,7 +1,8 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChartDataSets , ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { Chart, ChartDataSets , ChartOptions } from 'chart.js';
+import { BaseChartDirective, Color, Label } from 'ng2-charts';
 import { Journal } from '../common/models/journal.model';
 import { ApiJournalService } from '../common/services/api-journal.service';
 import { JournalGeneratorService } from '../common/services/journal-generator.service';
@@ -36,13 +37,6 @@ export class TimeManagerComponent implements OnInit {
         }
       }],
     },
-    chart: {
-      defaults: {
-        global: {
-          defaultFontFamily: 'Montserrat'
-        }
-      }
-    }
   };
 
   public lineChartColors: Color[] = [
@@ -76,6 +70,8 @@ export class TimeManagerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    Chart.defaults.global.defaultFontColor = '#B3B8CD'
+    Chart.defaults.global.defaultFontFamily = 'Montserrat'
     this.loadJournal()
   }
 
