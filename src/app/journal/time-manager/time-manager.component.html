@@ -12,42 +12,54 @@
         <div class="graph">
             <p class="text-center font-semibold text-xl">Today's Time</p>
             <div class="canvasContainer">
-                <canvas baseChart height="65" [datasets]="this.lineChartData" 
-                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                    [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                <canvas baseChart height="65" [datasets]="this.lineChartData" [options]="lineChartOptions"
+                    [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
                 </canvas>
             </div>
         </div>
-
-        <div class="main">
+        <form [formGroup]="journalForm">
             <div class="day">
                 <div class="form__group field">
-                    <input type="number" class="form__field" placeholder="Sleep" name="sleep" id='sleep' required />
+                    <input type="number" class="form__field" formControlName="sleep" placeholder="Sleep" name="sleep"
+                        id='sleep' required />
                     <label for="sleep" class="form__label">Sleep</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" placeholder="Work" name="work" id='work' required />
+                    <input type="number" class="form__field" formControlName="work" placeholder="Work" name="work"
+                        id='work' required />
                     <label for="work" class="form__label">Work</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" placeholder="Leisure" name="leisure" id='leisure' required />
+                    <input type="number" class="form__field" formControlName="leisure" placeholder="Leisure"
+                        name="leisure" id='leisure' required />
                     <label for="leisure" class="form__label">Leisure</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" placeholder="Personal Development" name="pers" id='pers' required />
+                    <input type="number" class="form__field" formControlName="pers" placeholder="Personal Development"
+                        name="pers" id='pers' required />
                     <label for="pers" class="form__label">PD</label>
                 </div>
             </div>
 
-            <div>
+            <div class="flex flex-row items-center justify-between">
+                <div class="flex flex-row items-center gap-2">
+                    <p>Rate your productivity </p>
+
+                    <div class="form__group field">
+                        <input type="number" class="form__field" formControlName="prod" placeholder="prod"
+                            name="prod" id='leisure' required />
+                    </div>
+                </div>
+
                 <div class="flex flex-row items-center gap-2">
                     <p>Did your workout today?</p>
 
                     <label class="checkbox">
-                        <input type="checkbox" />
+                        <input type="checkbox" formControlName="workout" />
                         <svg viewBox="0 0 21 18">
                             <symbol id="tick-path" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69"
@@ -69,9 +81,18 @@
                         </svg>
                     </label>
                 </div>
-                
+
+                <div class="flex flex-row items-center gap-2">
+                    <p>Rate your quality of sleep</p>
+
+                    <div class="form__group field">
+                        <input type="number" class="form__field" formControlName="sleepQ" placeholder="sleepQ"
+                            name="sleepQ" id='sleepQ' required />
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </form>
 
         <!--
         <div *ngIf="newJournal == true; else modifyTemplate">

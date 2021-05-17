@@ -1,8 +1,8 @@
-import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Chart, ChartDataSets , ChartOptions } from 'chart.js';
-import { BaseChartDirective, Color, Label } from 'ng2-charts';
+import { Color, Label } from 'ng2-charts';
 import { Journal } from '../common/models/journal.model';
 import { ApiJournalService } from '../common/services/api-journal.service';
 import { JournalGeneratorService } from '../common/services/journal-generator.service';
@@ -17,6 +17,8 @@ export class TimeManagerComponent implements OnInit {
   public dataDelivered: Promise<boolean>
   public journal: Journal
   public newJournal: boolean = false
+
+  public journalForm: FormGroup
 
   public lineChartData: ChartDataSets[] = [
     { data: [0], label: 'Work', stack: 'a' },
@@ -66,6 +68,7 @@ export class TimeManagerComponent implements OnInit {
   constructor(
     private router: Router,
     private journalGenerator: JournalGeneratorService,
+    private formBuilder: FormBuilder,
     private apiJournal: ApiJournalService
   ) { }
 
@@ -73,6 +76,7 @@ export class TimeManagerComponent implements OnInit {
     Chart.defaults.global.defaultFontColor = '#B3B8CD'
     Chart.defaults.global.defaultFontFamily = 'Montserrat'
     this.loadJournal()
+
   }
 
   navigateHome() {
@@ -90,8 +94,17 @@ export class TimeManagerComponent implements OnInit {
         if (journalRecieved) {
           this.loadJournalGraphData(this.journal.sleep, this.journal.work,
             this.journal.leisure, this.journal.personalDevelopment)
+        } else {
+          this.journal.sleep = 0
+          this.journal.work = 0
+          this.journal.leisure = 0
+          this.journal.personalDevelopment = 0
+          this.journal.workout = false
+          this.journal.productivityLevel = 0
+          this.journal.sleepQuality = 0
         }
         this.dataDelivered = Promise.resolve(true)
+        this.bindFormData()
       })
   }
 
@@ -105,5 +118,17 @@ export class TimeManagerComponent implements OnInit {
       { data: [others], label: 'Others', stack: 'a'}
     ]
     this.lineChartData = journalValues
+  }
+
+  bindFormData() {
+    this.journalForm = this.formBuilder.group({
+      work: [this.journal.work, Validators.compose([Validators.min(0), Validators.required])],
+      sleep: [this.journal.sleep, Validators.compose([Validators.min(0), Validators.required])],
+      leisure: [this.journal.leisure, Validators.compose([Validators.min(0), Validators.required])],
+      pers: [this.journal.personalDevelopment, Validators.compose([Validators.min(0), Validators.required])],
+      workout: [this.journal.workout, Validators.compose([Validators.required])],
+      prod: [this.journal.productivityLevel, Validators.compose([Validators.min(0), Validators.required])],
+      sleepQ: [this.journal.sleepQuality, Validators.compose([Validators.min(0), Validators.required])],
+    })
   }
 }
