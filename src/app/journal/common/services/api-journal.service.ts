@@ -8,6 +8,7 @@ import { Journal } from '../models/journal.model';
 })
 export class ApiJournalService {
   private createUrl = `${environment.server_url}/journals/create`;
+  private udpateUrl = `${environment.server_url}/journals/update`;
   private getUrl =`${environment.server_url}/journals/getJournal/`;
 
   constructor(
@@ -46,7 +47,34 @@ export class ApiJournalService {
   }
 
   public updateJournal(journal: Journal) {
+    let month: string
+    let date: string
 
+    month = String(journal.monthIndex + 1)
+    date = String(journal.number)
+
+    if (month.length == 1) {
+      month = "0" + month
+    }
+
+    if (date.length == 1) {
+      date = "0" + date
+    }
+
+    let JSON = {
+      date: `${journal.year}-${month}-${date}`,
+      schedule: {
+        work: journal.work,
+        leisure: journal.leisure,
+        sleep: journal.sleep,
+        personalDevelopment: journal.personalDevelopment
+      },
+      productivityLevel: journal.productivityLevel,
+      sleepQuality: journal.sleepQuality,
+      workout: journal.workout
+    }
+
+    return this.http.patch<any>(this.udpateUrl, JSON, { observe: 'response' })
   }
 
   public getJournal(journal: Journal, next: Function) {

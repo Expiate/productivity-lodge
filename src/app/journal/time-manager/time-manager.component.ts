@@ -1,9 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Chart, ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/_modal';
 import { Journal } from '../common/models/journal.model';
 import { ApiJournalService } from '../common/services/api-journal.service';
@@ -194,6 +196,43 @@ export class TimeManagerComponent implements OnInit {
   changeWorkout() {
     this.journal.workout = this.journalForm.get('workout').value
     this.newData = true
+  }
+
+  save() {
+    let apiObservable: Observable<HttpResponse<any>>
+    
+    if (this.journalForm.valid) {
+
+      if (this.newJournal) {
+        console.log('new')
+        apiObservable = this.apiJournal.createJournal(this.journal)
+      } else {
+        console.log('update')
+        apiObservable = this.apiJournal.updateJournal(this.journal)
+      }
+
+      apiObservable.subscribe(resp => {
+        // On Success
+        console.log("Success: " + resp['status'])
+        console.log(resp['body']['message'])
+  
+        if (resp['status'] == 201 || resp['status'] == 200) {
+          // Show Success Toast
+          this.newJournal = false
+          this.successToast('', 'Journal Saved')
+          this.newData = false
+        }
+      }, error => {
+        // On Error
+        console.log("Error: " + error['status'])
+        console.log(error['body']['message'])
+  
+        this.errorToast('Something went wrong', 'Try again later')
+      })
+    } else {
+      this.errorToast('', 'There is an error in the fields')
+      return
+    }
   }
 
   exit() {
