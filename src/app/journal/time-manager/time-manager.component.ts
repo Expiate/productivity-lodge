@@ -113,7 +113,13 @@ export class TimeManagerComponent implements OnInit {
   }
 
   loadJournalGraphData(sleep: number, work: number, leisure: number, personalDevelopment: number) {
-    let others = 24 - sleep - leisure - work - personalDevelopment
+    let others: number
+    if(sleep + work + leisure + personalDevelopment < 16) {
+      others = 0
+    } else {
+      others = 24 - sleep - leisure - work - personalDevelopment
+    }
+
     let journalValues = [
       { data: [sleep], label: 'Sleep', stack: 'a' },
       { data: [work], label: 'Work', stack: 'a' },
@@ -134,5 +140,79 @@ export class TimeManagerComponent implements OnInit {
       prod: [this.journal.productivityLevel, Validators.compose([Validators.min(0), Validators.required])],
       sleepQ: [this.journal.sleepQuality, Validators.compose([Validators.min(0), Validators.required])],
     })
+  }
+
+  updateData(e, controlName: string) {
+    let value: number = this.journalForm.get(controlName).value
+
+    if (value < 24) {
+      switch (controlName) {
+        case 'sleep':
+          this.journal.sleep = value
+          break;
+        case 'work':
+          this.journal.work = value
+          break;
+        case 'leisure':
+          this.journal.leisure = value
+          break;
+        case 'pers':
+          this.journal.personalDevelopment = value
+          break;
+      }
+
+      let sum: number = this.journal.sleep + this.journal.work + this.journal.leisure + this.journal.personalDevelopment
+      if (sum > 24) {
+        this.errorToast('', 'Total hours exceeds 24')
+      } else {
+        this.loadJournalGraphData(this.journal.sleep, this.journal.work, this.journal.leisure, this.journal.personalDevelopment)
+      }
+    } else {
+      this.errorToast('', 'Total hours exceeds 24')
+    }
+  }
+
+  changeRatings(controlName) {
+    let value: number = this.journalForm.get(controlName).value
+    if (value <= 10 && value >= 0) {
+      switch (controlName) {
+        case 'prod':
+          this.journal.productivityLevel = value
+          break;
+        case 'sleepQ':
+          this.journal.sleepQuality = value
+          break;
+      }
+    } else {
+      this.errorToast('', 'Ratings have to be 0-10')
+    }
+  }
+
+  changeWorkout() {
+    this.journal.workout = this.journalForm.get('workout').value
+  }
+
+  successToast(title: string, content: string) {
+    if (title == null) {
+      title = ""
+    }
+    this.toastr.success(content, title, {
+      positionClass: 'toast-bottom-right',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 3000
+    });
+  }
+
+  errorToast(title: string, content: string) {
+    if (title == null) {
+      title = ""
+    }
+    this.toastr.error(content, title, {
+      positionClass: 'toast-bottom-right',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 3000
+    });
   }
 }

@@ -22,25 +22,25 @@
             <div class="day">
                 <div class="form__group field">
                     <input type="number" min="0" class="form__field" formControlName="sleep" placeholder="Sleep" name="sleep"
-                        id='sleep' required />
+                        id='sleep' required (change)="updateData($event, 'sleep')"/>
                     <label for="sleep" class="form__label">Sleep</label>
                 </div>
 
                 <div class="form__group field">
                     <input type="number" min="0" class="form__field" formControlName="work" placeholder="Work" name="work"
-                        id='work' required />
+                        id='work' required (change)="updateData($event, 'work')" />
                     <label for="work" class="form__label">Work</label>
                 </div>
 
                 <div class="form__group field">
                     <input type="number" min="0" class="form__field" formControlName="leisure" placeholder="Leisure"
-                        name="leisure" id='leisure' required />
+                        name="leisure" id='leisure' required (change)="updateData($event, 'leisure')" />
                     <label for="leisure" class="form__label">Leisure</label>
                 </div>
 
                 <div class="form__group field">
                     <input type="number" min="0" class="form__field" formControlName="pers" placeholder="Personal Development"
-                        name="pers" id='pers' required />
+                        name="pers" id='pers' required (change)="updateData($event, 'pers')" />
                     <label for="pers" class="form__label">PD</label>
                 </div>
             </div>
@@ -50,8 +50,8 @@
                     <p class="text-base">Rate your productivity </p>
 
                     <div class="form__group questions field">
-                        <input type="number" min="0" class="form__field questions" formControlName="prod" placeholder="prod"
-                            name="prod" id='prod' required />
+                        <input type="number" min="0" max="10" class="form__field questions" formControlName="prod" placeholder="prod"
+                            name="prod" id='prod' required (change)="changeRatings('prod')" />
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                     <p class="text-base">Did your workout today?</p>
 
                     <label class="checkbox">
-                        <input type="checkbox" formControlName="workout" />
+                        <input type="checkbox" formControlName="workout" (change)="changeWorkout()" />
                         <svg viewBox="0 0 21 18">
                             <symbol id="tick-path" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69"
@@ -86,8 +86,8 @@
                     <p class="text-base">Rate your quality of sleep</p>
 
                     <div class="form__group questions field">
-                        <input type="number" min="0" class="form__field questions" formControlName="sleepQ" placeholder="sleepQ"
-                            name="sleepQ" id='sleepQ' required />
+                        <input type="number" min="0" max="10" class="form__field questions" formControlName="sleepQ" placeholder="sleepQ"
+                            name="sleepQ" id='sleepQ' required (change)="changeRatings('sleepQ')" />
                     </div>
                 </div>
 
