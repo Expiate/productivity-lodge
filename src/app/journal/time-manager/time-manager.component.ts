@@ -19,6 +19,7 @@ export class TimeManagerComponent implements OnInit {
   public dataDelivered: Promise<boolean>
   public journal: Journal
   public newJournal: boolean = false
+  public newData: boolean = false
 
   public journalForm: FormGroup
 
@@ -166,6 +167,7 @@ export class TimeManagerComponent implements OnInit {
         this.errorToast('', 'Total hours exceeds 24')
       } else {
         this.loadJournalGraphData(this.journal.sleep, this.journal.work, this.journal.leisure, this.journal.personalDevelopment)
+        this.newData = true
       }
     } else {
       this.errorToast('', 'Total hours exceeds 24')
@@ -183,6 +185,7 @@ export class TimeManagerComponent implements OnInit {
           this.journal.sleepQuality = value
           break;
       }
+      this.newData = true
     } else {
       this.errorToast('', 'Ratings have to be 0-10')
     }
@@ -190,7 +193,34 @@ export class TimeManagerComponent implements OnInit {
 
   changeWorkout() {
     this.journal.workout = this.journalForm.get('workout').value
+    this.newData = true
   }
+
+  exit() {
+    if (this.newData == true) {
+      this.openModal('closeDayEditorWithoutSaving')
+    } else {
+      this.navigateHome()
+    }
+  }
+
+    /**
+   * Uses Modal Service to open a Modal Window (content in html template)
+   * using the id provided in params
+   * @param id String (Declared in HTML JW-MODAL Template)
+   */
+    openModal(id: string) {
+      this.modalService.open(id);
+    }
+  
+      /**
+     * Uses Modal Service to close a Modal Window (content in html template)
+     * using the id provided in params
+     * @param id String (Declared in HTML JW-MODAL Template)
+     */
+    closeModal(id: string) {
+      this.modalService.close(id);
+    }
 
   successToast(title: string, content: string) {
     if (title == null) {

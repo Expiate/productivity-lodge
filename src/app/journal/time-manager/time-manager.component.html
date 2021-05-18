@@ -5,8 +5,23 @@
 </head>
 
 <body>
+    <jw-modal id="closeDayEditorWithoutSaving">
+        <div class="modal active">
+            <div class="content">
+                <h2 class="font-semibold text-textPrimary text-xl mb-3">Exit without saving</h2>
+                <p class="text-textPrimary">You didn't save the changes before leaving. Are you sure you want
+                    to lose all changes?
+                </p>
+            </div>
+            <div class="buttons">
+                <a class="cursor-pointer" (click)="closeModal('closeDayEditorWithoutSaving')">Cancel</a>
+                <a class="cursor-pointer" (click)="navigateHome()">Exit Anyways</a>
+            </div>
+        </div>
+    </jw-modal>
+
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-        <a class="roundButton icon" (click)="navigateHome()"></a>
+        <a class="roundButton icon" (click)="exit()"></a>
     </div>
     <div *ngIf="dataDelivered | async; else loadTemplate" class="table flex-nowrap">
         <div class="graph">
@@ -103,7 +118,9 @@
         <ng-template #modifyTemplate>
         </ng-template>
         -->
-
+        <div class="absolute bottom-3 right-3 flex items-center justify-center h-10 w-10">
+            <a class="roundButton icon save" (click)="navigateHome()"></a>
+        </div>
     </div>
 
     <ng-template #loadTemplate>
