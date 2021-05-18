@@ -18,6 +18,12 @@ export class JournalGeneratorService {
     this.year = this.date.getFullYear()
   }
 
+  /**
+   * Creates a Journal Object that serves as a template
+   * it contains todays date and all its data specified
+   * in Journal Model
+   * @returns Journal Object
+   */
   public generateJournal(): Journal {
     let journal: Journal = new Journal()
 
@@ -70,6 +76,11 @@ export class JournalGeneratorService {
     }
   }
 
+  /**
+   * Returns a string that defines the Name of the Week Day
+   * @param weekDay In numeric value (0-6)
+   * @returns String
+   */
   public getWeekDayName(weekDay: number): string {
     switch (weekDay) {
       case 0:

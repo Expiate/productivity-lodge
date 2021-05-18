@@ -19,8 +19,12 @@ import { JournalGeneratorService } from '../common/services/journal-generator.se
 export class TimeManagerComponent implements OnInit {
   // This signals when the data has been fetched
   public dataDelivered: Promise<boolean>
+
   public journal: Journal
+
+  // Specifies wether the journal has been feched from the DB or its a new one
   public newJournal: boolean = false
+  // Signals wether there has been changes into the UI fields
   public newData: boolean = false
 
   public journalForm: FormGroup
@@ -83,13 +87,21 @@ export class TimeManagerComponent implements OnInit {
     Chart.defaults.global.defaultFontColor = '#B3B8CD'
     Chart.defaults.global.defaultFontFamily = 'Montserrat'
     this.loadJournal()
-
   }
 
+  /**
+   * Navigates app to home
+   */
   navigateHome() {
     this.router.navigate(['main/'])
   }
 
+  /**
+   * Uses ApiJournal Service to fecth a Journal form the DB using
+   * a Template Journal obtained through the Journal Generator Service
+   * if it gets data from the db it loads it into the UI but if it gets
+   * no data, creates a new Journal to be filled
+   */
   loadJournal() {
     this.apiJournal.getJournal(
       this.journalGenerator.generateJournal(),
@@ -115,6 +127,13 @@ export class TimeManagerComponent implements OnInit {
       })
   }
 
+  /**
+   * Loads the data provided in the params into the UI Chart
+   * @param sleep Number
+   * @param work Number
+   * @param leisure Number
+   * @param personalDevelopment Number
+   */
   loadJournalGraphData(sleep: number, work: number, leisure: number, personalDevelopment: number) {
     let others: number
     if(sleep + work + leisure + personalDevelopment < 16) {
@@ -133,6 +152,11 @@ export class TimeManagerComponent implements OnInit {
     this.lineChartData = journalValues
   }
 
+  /**
+   * Creates the Form that contains all the required controls to run the
+   * Component, uses journal data as default values for the controls and adds
+   * validators to the controls as well
+   */
   bindFormData() {
     this.journalForm = this.formBuilder.group({
       work: [this.journal.work, Validators.compose([Validators.min(0), Validators.required])],
@@ -145,6 +169,13 @@ export class TimeManagerComponent implements OnInit {
     })
   }
 
+  /**
+   * Detect changes in the UI Controls values (Schedule) and loads its into
+   * the Journal Object if its passes validation, also updates the
+   * UI Chart values
+   * @param e Event
+   * @param controlName String
+   */
   updateData(e, controlName: string) {
     let value: number = this.journalForm.get(controlName).value
 
@@ -175,7 +206,11 @@ export class TimeManagerComponent implements OnInit {
       this.errorToast('', 'Total hours exceeds 24')
     }
   }
-
+  /**
+   * Detect changes in the UI Controls values (Ratings) and loads its into
+   * the Journal Object if its passes validation
+   * @param controlName String
+   */
   changeRatings(controlName) {
     let value: number = this.journalForm.get(controlName).value
     if (value <= 10 && value >= 0) {
@@ -193,11 +228,21 @@ export class TimeManagerComponent implements OnInit {
     }
   }
 
+  /**
+   * Detect changes in Workout UI Checkbox and loads the value
+   * into the Journal Object
+   */
   changeWorkout() {
     this.journal.workout = this.journalForm.get('workout').value
     this.newData = true
   }
 
+  /**
+   * Attemps to make an HTTP Call to wether create a new Journal
+   * with the new values or update an existing one if it was originally
+   * retrieved from the DB
+   * @returns void
+   */
   save() {
     let apiObservable: Observable<HttpResponse<any>>
     
@@ -235,6 +280,10 @@ export class TimeManagerComponent implements OnInit {
     }
   }
 
+  /**
+   * Checks if values have been changed in the controls before exiting
+   * the view. If changes has been made it opens a modal window
+   */
   exit() {
     if (this.newData == true) {
       this.openModal('closeDayEditorWithoutSaving')
@@ -243,23 +292,23 @@ export class TimeManagerComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Uses Modal Service to open a Modal Window (content in html template)
    * using the id provided in params
    * @param id String (Declared in HTML JW-MODAL Template)
    */
-    openModal(id: string) {
-      this.modalService.open(id);
-    }
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
   
-      /**
-     * Uses Modal Service to close a Modal Window (content in html template)
-     * using the id provided in params
-     * @param id String (Declared in HTML JW-MODAL Template)
-     */
-    closeModal(id: string) {
-      this.modalService.close(id);
-    }
+  /**
+   * Uses Modal Service to close a Modal Window (content in html template)
+   * using the id provided in params
+   * @param id String (Declared in HTML JW-MODAL Template)
+   */
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 
   successToast(title: string, content: string) {
     if (title == null) {

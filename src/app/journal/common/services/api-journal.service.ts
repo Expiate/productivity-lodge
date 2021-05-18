@@ -15,6 +15,13 @@ export class ApiJournalService {
     private http: HttpClient
   ) { }
 
+  /**
+   * Use a Journal Object to build a formatted date and uses it to make an
+   * HTTP Call to the API to create a new Journal in the DB
+   * and returns an observable with its response
+   * @param journal Journal Object 
+   * @returns Observable
+   */
   public createJournal(journal: Journal) {
     let month: string
     let date: string
@@ -46,6 +53,13 @@ export class ApiJournalService {
     return this.http.post<any>(this.createUrl, JSON, { observe: 'response' })
   }
 
+  /**
+   * Use a Journal Object to build a formatted date and uses it to make an
+   * HTTP Call to the API to update an existing Journal in the DB
+   * and returns an observable with its response
+   * @param journal Journal Object 
+   * @returns Observable
+   */
   public updateJournal(journal: Journal) {
     let month: string
     let date: string
@@ -77,6 +91,13 @@ export class ApiJournalService {
     return this.http.patch<any>(this.udpateUrl, JSON, { observe: 'response' })
   }
 
+  /**
+   * Use a Journal Object to build a formatted date and uses it to make an
+   * HTTP Call to the API to fecht an existing Journal in the DB
+   * and returns an observable with its response
+   * @param journal Journal Object 
+   * @returns Observable
+   */
   public getJournal(journal: Journal, next: Function) {
     let month: string
     let date: string
