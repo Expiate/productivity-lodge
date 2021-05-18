@@ -179,6 +179,10 @@ export class RegLogComponent implements OnInit {
     this.isActive = true
   }
 
+  powerOff() {
+    window.close()
+  }
+
   showRegisterSuccess() {
     this.toastr.success('Check your Email to confirm your Account', 'New Account Registered', {
       positionClass: 'toast-bottom-center',
