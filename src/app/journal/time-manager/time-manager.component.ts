@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Chart, ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { ToastrService } from 'ngx-toastr';
+import { ModalService } from 'src/app/_modal';
 import { Journal } from '../common/models/journal.model';
 import { ApiJournalService } from '../common/services/api-journal.service';
 import { JournalGeneratorService } from '../common/services/journal-generator.service';
@@ -69,7 +71,9 @@ export class TimeManagerComponent implements OnInit {
     private router: Router,
     private journalGenerator: JournalGeneratorService,
     private formBuilder: FormBuilder,
-    private apiJournal: ApiJournalService
+    private apiJournal: ApiJournalService,
+    private toastr: ToastrService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {

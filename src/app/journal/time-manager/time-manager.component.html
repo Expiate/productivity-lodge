@@ -21,42 +21,42 @@
         <form [formGroup]="journalForm">
             <div class="day">
                 <div class="form__group field">
-                    <input type="number" class="form__field" formControlName="sleep" placeholder="Sleep" name="sleep"
+                    <input type="number" min="0" class="form__field" formControlName="sleep" placeholder="Sleep" name="sleep"
                         id='sleep' required />
                     <label for="sleep" class="form__label">Sleep</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" formControlName="work" placeholder="Work" name="work"
+                    <input type="number" min="0" class="form__field" formControlName="work" placeholder="Work" name="work"
                         id='work' required />
                     <label for="work" class="form__label">Work</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" formControlName="leisure" placeholder="Leisure"
+                    <input type="number" min="0" class="form__field" formControlName="leisure" placeholder="Leisure"
                         name="leisure" id='leisure' required />
                     <label for="leisure" class="form__label">Leisure</label>
                 </div>
 
                 <div class="form__group field">
-                    <input type="number" class="form__field" formControlName="pers" placeholder="Personal Development"
+                    <input type="number" min="0" class="form__field" formControlName="pers" placeholder="Personal Development"
                         name="pers" id='pers' required />
                     <label for="pers" class="form__label">PD</label>
                 </div>
             </div>
 
-            <div class="flex flex-row items-center justify-between">
-                <div class="flex flex-row items-center gap-2">
-                    <p>Rate your productivity </p>
+            <div class="flex flex-row items-center justify-between pb-4 w-full h-1/3">
+                <div class="flex flex-row items-center justify-items-center gap-2">
+                    <p class="text-base">Rate your productivity </p>
 
-                    <div class="form__group field">
-                        <input type="number" class="form__field" formControlName="prod" placeholder="prod"
-                            name="prod" id='leisure' required />
+                    <div class="form__group questions field">
+                        <input type="number" min="0" class="form__field questions" formControlName="prod" placeholder="prod"
+                            name="prod" id='prod' required />
                     </div>
                 </div>
 
-                <div class="flex flex-row items-center gap-2">
-                    <p>Did your workout today?</p>
+                <div class="flex flex-row items-center justify-items-center gap-2">
+                    <p class="text-base">Did your workout today?</p>
 
                     <label class="checkbox">
                         <input type="checkbox" formControlName="workout" />
@@ -82,11 +82,11 @@
                     </label>
                 </div>
 
-                <div class="flex flex-row items-center gap-2">
-                    <p>Rate your quality of sleep</p>
+                <div class="flex flex-row items-center justify-items-center gap-2">
+                    <p class="text-base">Rate your quality of sleep</p>
 
-                    <div class="form__group field">
-                        <input type="number" class="form__field" formControlName="sleepQ" placeholder="sleepQ"
+                    <div class="form__group questions field">
+                        <input type="number" min="0" class="form__field questions" formControlName="sleepQ" placeholder="sleepQ"
                             name="sleepQ" id='sleepQ' required />
                     </div>
                 </div>
