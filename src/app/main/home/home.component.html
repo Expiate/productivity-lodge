@@ -10,7 +10,7 @@
             <div class="title">
                 <div class="bar">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
-                        viewBox="0 0 24 24" width="36px" fill="#ebecf2">
+                        viewBox="0 0 24 24" width="36px" fill="#ebecf2" class="mt-3">
                         <g>
                             <path d="M0,0h24v24H0V0z" fill="none" />
                             <path
@@ -60,13 +60,19 @@
                     </div>
 
                 </div>
-                <div class="acc">
+                <div class="acc" *ngIf="selectedMenu == 1; else menu2">
                     <div class="subtitles">Account</div>
                     <div class="line">Username: </div>
                     <div class="line">Email: </div>
                     <div class="line">Register Date: </div>
                     <div class="line">Logout </div>
                 </div>
+
+                <ng-template #menu2>
+                    <div class="acc">
+                        <div class="subtitles">Color Palette</div>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </jw-modal>

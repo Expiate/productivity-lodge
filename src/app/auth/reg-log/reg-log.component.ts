@@ -220,7 +220,7 @@ export class RegLogComponent implements OnInit {
   }
 
   showAccountNoLongerAvaiable() {
-    this.toastr.error('This Account is no longer avaiable', '', {
+    this.toastr.error('This Account is no longer available', '', {
       positionClass: 'toast-bottom-center',
       progressBar: false,
       progressAnimation: 'decreasing',
