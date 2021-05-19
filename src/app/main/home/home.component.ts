@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalService } from 'src/app/_modal';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -20,7 +22,26 @@ export class HomeComponent implements OnInit {
   }
 
   goToSettings() {
+    this.openModal('settings')
+  }
 
+  
+  /**
+   * Uses Modal Service to open a Modal Window (content in html template)
+   * using the id provided in params
+   * @param id String (Declared in HTML JW-MODAL Template)
+   */
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+    /**
+   * Uses Modal Service to close a Modal Window (content in html template)
+   * using the id provided in params
+   * @param id String (Declared in HTML JW-MODAL Template)
+   */
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
   goToDev() {

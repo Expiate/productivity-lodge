@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DevInfoComponent } from './main/dev-info/dev-info.component';
 import { HeaderInterceptor } from './common/interceptors/header.interceptor';
 import { ChartsModule } from 'ng2-charts';
+import { NgxColorsModule } from 'ngx-colors';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChartsModule } from 'ng2-charts';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxColorsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
