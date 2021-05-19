@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  server_url: 'http://localhost:5000'
+  server_url: 'https://productivity-lodge-api.herokuapp.com'
 };
