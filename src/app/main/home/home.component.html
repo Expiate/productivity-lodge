@@ -62,9 +62,9 @@
                 </div>
                 <div class="acc" *ngIf="selectedMenu == 1; else menu2">
                     <div class="subtitles">Account</div>
-                    <div class="line">Username: </div>
-                    <div class="line">Email: </div>
-                    <div class="line">Register Date: </div>
+                    <div class="line">Username: {{userData.username}}</div>
+                    <div class="line">Email: {{userData.email}}</div>
+                    <div class="line">Register Date: {{userData.registerDate}}</div>
                     <div class="line">Logout </div>
                 </div>
 
