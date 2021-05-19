@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/_modal';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public selectedMenu: number = 1
 
   constructor(
     private router: Router,
@@ -15,6 +16,18 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  changeMenuSelected(menuID: number) {
+    this.selectedMenu = menuID
+  }
+
+  getColor(menuID: number) {
+    if(menuID == this.selectedMenu) {
+      return '#ebecf2'
+    } else {
+      return '#B3B8CD'
+    }
   }
 
   closeApp() {

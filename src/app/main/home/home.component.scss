@@ -290,8 +290,8 @@ body {
     border-radius: 10px;
     display:none;
     position:relative;
-    width: 60vw;
-    height: 80vh;
+    width: 45vw;
+    height: 85vh;
     background-color: $primary;
 
     &.active {
@@ -319,9 +319,9 @@ body {
 
             h1 {
                 text-align: center;
-                font-size: 36px;
+                font-size: 24px;
                 font-family: 'Montserrat', sans-serif;
-                color: #B3B8CD;
+                color: #ebecf2;
                 font-weight: bolder;
             }
         }
@@ -329,32 +329,33 @@ body {
 
     }
 
-    .divider {
-        position: absolute;
-        top: 64px;
-        width: 100%;
-        border-bottom: 1px solid #B3B8CD;
-    }
 
     .acc {
-        width: 65%;
+        width: 50%;
         height: 40%;
-        background-color: $secondary;
         display: flex;
         flex-direction: column;
-        border-radius: 10px;
-        padding: 10px;
-        margin-top: 15px;
+        margin-left: 70px;
+        margin-top: 5px;
 
         .subtitles {
             position: relative;
             padding-left: 5px;
-            font-size: 24px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            color: #ebecf2;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .line {
+            position: relative;
+            text-align: left;
             font-family: 'Montserrat', sans-serif;
             color: #B3B8CD;
-            background-color: $secondary;
-            text-align: left;
-            font-weight: bolder;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-left: 5px;
         }
     }
 
@@ -363,9 +364,30 @@ body {
         padding-top: 80px;
         position: relative;
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         justify-content: flex-start;
+    }
+
+    .navSet {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: left;
+        height: auto;
+        width: 20%;
+        margin-left: 10px;
+        @apply gap-3;
+
+        .option {
+            position: relative;
+            text-align: left;
+            padding-bottom: 3px;
+            color: #B3B8CD;
+            font-size: 20px;
+            cursor: pointer;
+        }
     }
 
     .close {
@@ -456,6 +478,7 @@ body {
     background-image: url(../../../assets/close.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-size: 63%;
     opacity: 0.9;
     bottom: 0;
     right: 0;
@@ -464,7 +487,7 @@ body {
 
     &:hover {
         background-color: $accent;
-        background-size: 63%;
+        background-size: 65%;
         opacity: 1;
     }
 }
