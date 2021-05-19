@@ -8,7 +8,7 @@
     <jw-modal id="settings">
         <div class="modal active">
             <div class="title">
-                <div class="flex flex-row items-center justify-items-center pl-3 pt-1 gap-2">
+                <div class="bar">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px"
                         viewBox="0 0 24 24" width="36px" fill="#B3B8CD">
                         <g>
@@ -34,11 +34,9 @@
                 <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
                     <a class="roundButton ico" (click)="closeModal('settings')"></a>
                 </div>
-            </div>
-            <!--Bottom Buttons-->
-            <div class="buttons">
-                <a class="cursor-pointer invisible disabled" (click)="closeModal('settings')">Close</a>
-                <a class="cursor-pointer" (click)="closeModal('settings')">Save</a>
+                <div class="acc">
+                    <div class="subtitles">Account</div>
+                </div>
             </div>
         </div>
     </jw-modal>
