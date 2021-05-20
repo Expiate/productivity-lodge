@@ -5,6 +5,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 import { HomeComponent } from './home/home.component';
 import { ModalModule } from '../_modal';
+import { NgxColorsModule } from 'ngx-colors';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +17,10 @@ import { ModalModule } from '../_modal';
   imports: [
     CommonModule,
     MainRoutingModule,
-    ModalModule
+    ModalModule,
+    NgxColorsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }
