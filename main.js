@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Notification, IpcMessagesEvent } = require('electron')
+const { app, BrowserWindow } = require('electron')
 
 let splashScreen;
 let win;
@@ -53,12 +53,6 @@ function createMainWindow () {
   win.on('closed', function () {
     win = null
   })
-
-  const notification = {
-    title: 'Basic Notification',
-    body: 'Notification from the Main process'
-  }
-  new Notification(notification).show()
 }
 
 // Create window on electron initialization
@@ -83,12 +77,4 @@ app.on('activate', function () {
   if (win === null) {
     createMainWindow()
   }
-})
-
-ipcMain.on('popup-signal', (event, arg) => {
-  const notification = {
-    title: 'Basic Notification',
-    body: 'Notification from the Main process'
-  }
-  new Notification(notification).show()
 })
