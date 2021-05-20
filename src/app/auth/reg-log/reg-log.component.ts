@@ -114,7 +114,6 @@ export class RegLogComponent implements OnInit {
             this.storageService.clearStorage()
             this.storageService.saveToken(resp['body']['accessToken'])
             this.requestUserData()
-            this.router.navigate(['main/'])
           }
         }, error => {
           // On Error
