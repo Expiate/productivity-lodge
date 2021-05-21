@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { StatsRoutingModule } from './stats-routing.module';
 import { StatsComponent } from './stats.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
   declarations: [
-    StatsComponent
+    StatsComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

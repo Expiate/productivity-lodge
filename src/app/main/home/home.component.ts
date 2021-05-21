@@ -139,6 +139,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['mood'])
   }
 
+  navigateStats() {
+    this.router.navigate(['stats'])
+  }
+
   navigateJournal() {
     this.router.navigate(['journal'])
   }
