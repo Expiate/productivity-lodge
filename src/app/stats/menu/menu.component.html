@@ -10,35 +10,35 @@
     </div>
     <div class="tableMenu">
         <!-- card -->
-        <div class="card">
+        <div [className]="this.selectedMenu == 1 ? 'card selected' : 'card'" (click)="selectMenu(1)">
 
             <div class="icon"><i class="material-icons md-36">cottage</i></div>
-            <p class="title">Stats</p>
-            <p class="text">Check your stats.</p>
+            <p class="title">Monthly Review</p>
+            <p class="text">Month score and interesting data</p>
 
         </div>
         <!-- end card -->
         <!-- card -->
-        <div class="card">
+        <div [className]="this.selectedMenu == 2 ? 'card selected' : 'card'" (click)="selectMenu(2)">
 
             <div class="icon"><i class="material-icons md-36">edit_calendar</i></div>
-            <p class="title">Journal</p>
-            <p class="text">Manage your time.</p>
+            <p class="title">Time</p>
+            <p class="text">Time investment</p>
 
         </div>
         <!-- end card -->
         <!-- card -->
-        <div class="card">
+        <div [className]="this.selectedMenu == 3 ? 'card selected' : 'card'" (click)="selectMenu(3)">
 
             <div class="icon"><i class="material-icons md-36">mood</i></div>
             <p class="title">Mood</p>
-            <p class="text">Start caring about your daily mood.</p>
+            <p class="text">Mood fluctuations</p>
 
         </div>
     </div>
     <div class="table">
         <div class="title">
-            Year in Review
+            {{getTitle()}}
         </div>
     </div>
 </body>

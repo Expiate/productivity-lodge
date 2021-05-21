@@ -25,7 +25,7 @@ body {
     align-items: center;
     flex-direction: row;
     gap: 20px;
-    color: #B3B8CD;
+    color: white;
 }
 
 .table {
@@ -120,6 +120,34 @@ body {
     flex-direction: column;
     cursor: pointer;
     transition: all 0.3s ease;
+
+    &.selected {
+        height: 270px;
+        
+        .info {
+            height: 90%;
+        }
+
+        .text {
+            transition: all 0.3s ease;
+            opacity: 1;
+            max-height:40px;
+        }
+
+        .icon {
+            background-position: -120px;
+            transition: all 0.3s ease;
+        }
+
+        .icon i {
+            background: linear-gradient(90deg, #FF7E7E, #FF4848);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+    }
 }
 
 .icon {
@@ -151,7 +179,7 @@ body {
     color: white;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 }
 
 .card .text {
@@ -167,7 +195,7 @@ body {
     max-height:0;
     transition: all 0.3s ease;
 }
-
+/*
 .card:hover {
     height: 270px;
 }
@@ -195,3 +223,4 @@ body {
     opacity: 1;
     transition: all 0.3s ease;
 }
+*/
