@@ -1,15 +1,46 @@
 <html>
-    <body>
-        <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
-            <a class="roundButton icon" (click)="navigateHome()"></a>
-        </div>
-        <div class="tableMenu">
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
+        <a class="roundButton ico" (click)="navigateHome()"></a>
+    </div>
+    <div class="tableMenu">
+        <!-- card -->
+        <div class="card">
+
+            <div class="icon"><i class="material-icons md-36">cottage</i></div>
+            <p class="title">Stats</p>
+            <p class="text">Check your stats.</p>
 
         </div>
-        <div class="table">
-            <div class="title">
-                Year in Review
-            </div>
+        <!-- end card -->
+        <!-- card -->
+        <div class="card">
+
+            <div class="icon"><i class="material-icons md-36">edit_calendar</i></div>
+            <p class="title">Journal</p>
+            <p class="text">Manage your time.</p>
+
         </div>
-    </body>
+        <!-- end card -->
+        <!-- card -->
+        <div class="card">
+
+            <div class="icon"><i class="material-icons md-36">mood</i></div>
+            <p class="title">Mood</p>
+            <p class="text">Start caring about your daily mood.</p>
+
+        </div>
+    </div>
+    <div class="table">
+        <div class="title">
+            Year in Review
+        </div>
+    </div>
+</body>
+
 </html>
