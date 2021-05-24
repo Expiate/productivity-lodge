@@ -6,7 +6,7 @@ const USER_KEY = 'user-data';
 const DAY_KEY = 'day-data';
 const TEMP_KEY = 'temp-data';
 const CACHE_DAY_KEY = 'cache-day-data';
-const CACHE_JOURNAL_KEY = 'cache-day-data';
+const CACHE_JOURNAL_KEY = 'cache-journal-data';
 
 @Injectable({
   providedIn: 'root'
