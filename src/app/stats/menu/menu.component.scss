@@ -14,6 +14,10 @@ $tableWidth: 60%;
 $menuWidth: 20%;
 $appButonSize: 40px;
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 100%;
     height: 100vh;

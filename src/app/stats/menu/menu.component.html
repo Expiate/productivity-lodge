@@ -67,8 +67,29 @@
         </ng-template>
     </div>
     <div class="table">
-        <div class="title">
+        <div class="title" id="title" #title>
             {{getTitle()}}
+        </div>
+
+        <div *ngIf="getTitle() == 'How to use'" class="w-full h-full flex flex-col p-7 justify-around text-center">
+            <div class="flex flex-col gap-3 justify-items-center content-center">
+                <p class="text-2xl font-bold pb-3">General</p>
+                <p class="text-lg">This app uses your data to build graphs and custom scores</p>
+                <p class="text-lg">You should log your mood and journal daily to get accurate results</p>
+            </div>
+
+            <div class="flex flex-col gap-3 justify-items-center content-center"> 
+                <p class="text-center text-2xl font-bold pb-3 pt-5">Review</p>
+                <p class="text-lg">The final score is an approximation of your productivity level using an internal formule</p>
+                <p class="text-lg">You should always preserve your mental and physical health before looking into being productive</p>
+            </div>
+
+            <div class="flex flex-col gap-3 justify-items-center content-center"> 
+                <p class="text-center text-2xl font-bold pb-3 pt-5">Time & Mood</p>
+                <p class="text-lg">This section is like your personal book</p>
+                <p class="text-lg">Use it to take a quick look at how are you doing lately</p>
+            </div>
+            
         </div>
     </div>
 </body>
