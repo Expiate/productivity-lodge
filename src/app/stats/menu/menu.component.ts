@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { StorageService } from 'src/app/common/services/storage.service';
+import { cache } from '../common/models/cache.model';
 import { ApiStatsService } from '../common/services/api-stats.service';
 
 @Component({
@@ -20,10 +22,8 @@ export class MenuComponent implements OnInit {
   public moodState: boolean = true
 
   // Data
-  public dayMonth
-  public dayYear
-  public journalMonth
-  public JournalYear
+  public dayCache: cache = new cache()
+  public journalCache: cache = new cache()
 
   // This signals when the data has been fetched
   public dataDelivered: Promise<boolean>
@@ -34,7 +34,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private router: Router,
     private statsService: ApiStatsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private localStorage: StorageService
   ) { }
 
   ngOnInit(): void {
@@ -101,7 +102,7 @@ export class MenuComponent implements OnInit {
     this.fetchManager(0).subscribe(resp => {
       // On Success
       console.log('Success: ' + resp['status'])
-      this.dayMonth = resp['body']
+      this.dayCache.month = resp['body']
       this.lock()
 
     }, error => {
@@ -114,7 +115,7 @@ export class MenuComponent implements OnInit {
     this.fetchManager(1).subscribe(resp => {
       // On Success
       console.log('Success: ' + resp['status'])
-      this.dayYear = resp['body']
+      this.dayCache.year = resp['body']
       this.lock()
 
     }, error => {
@@ -128,7 +129,7 @@ export class MenuComponent implements OnInit {
     this.fetchManager(2).subscribe(resp => {
       // On Success
       console.log('Success: ' + resp['status'])
-      this.journalMonth = resp['body']
+      this.journalCache.month = resp['body']
       this.lock()
 
     }, error => {
@@ -142,7 +143,7 @@ export class MenuComponent implements OnInit {
     this.fetchManager(3).subscribe(resp => {
       // On Success
       console.log('Success: ' + resp['status'])
-      this.journalMonth = resp['body']
+      this.journalCache.year = resp['body']
       this.lock()
 
     }, error => {
@@ -181,6 +182,8 @@ export class MenuComponent implements OnInit {
     console.log('Lock: ' + this.lockCounter)
     if(this.lockCounter == 5) {
       this.dataDelivered = Promise.resolve(true)
+      this.localStorage.saveCacheDay(this.dayCache)
+      this.localStorage.saveCacheJournal(this.journalCache)
       console.log('Errors: ' + this.errors) 
     }
   }

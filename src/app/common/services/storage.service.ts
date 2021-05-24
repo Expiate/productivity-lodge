@@ -5,6 +5,8 @@ const TOKEN_KEY = 'jwt-token';
 const USER_KEY = 'user-data';
 const DAY_KEY = 'day-data';
 const TEMP_KEY = 'temp-data';
+const CACHE_DAY_KEY = 'cache-day-data';
+const CACHE_JOURNAL_KEY = 'cache-day-data';
 
 @Injectable({
   providedIn: 'root'
@@ -107,5 +109,33 @@ export class StorageService {
       return false
     }
     return true
+  }
+
+  saveCacheDay(cacheDay) {
+    const jsonString = JSON.stringify(cacheDay)
+    localStorage.setItem(CACHE_DAY_KEY, jsonString)
+    console.log('Cache Day Saved')
+  }
+
+  getCacheDay() {
+    let cacheDay = localStorage.getItem(CACHE_DAY_KEY)
+    return JSON.parse(cacheDay)
+  }
+
+  saveCacheJournal(cacheJournal) {
+    const jsonString = JSON.stringify(cacheJournal)
+    localStorage.setItem(CACHE_JOURNAL_KEY, jsonString)
+    console.log('Cache Journal Saved')
+  }
+
+  getCacheJournal() {
+    let cacheJournal = localStorage.getItem(CACHE_JOURNAL_KEY)
+    return JSON.parse(cacheJournal)
+  }
+
+  deleteCache() {
+    localStorage.removeItem(CACHE_DAY_KEY)
+    localStorage.removeItem(CACHE_JOURNAL_KEY)
+    console.log('Cache Removed')
   }
 }
