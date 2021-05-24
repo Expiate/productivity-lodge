@@ -71,7 +71,7 @@
             {{getTitle()}}
         </div>
 
-        <div *ngIf="getTitle() == 'How to use'" class="w-full h-full flex flex-col p-7 justify-around text-center">
+        <div *ngIf="getTitle() == 'How to use';else router" class="w-full h-full flex flex-col p-7 justify-around text-center">
             <div class="flex flex-col gap-3 justify-items-center content-center">
                 <p class="text-2xl font-bold pb-3">General</p>
                 <p class="text-lg">This app uses your data to build graphs and custom scores</p>
@@ -89,8 +89,13 @@
                 <p class="text-lg">This section is like your personal book</p>
                 <p class="text-lg">Use it to take a quick look at how are you doing lately</p>
             </div>
-            
         </div>
+
+        <ng-template #router>
+            <div class="w-full h-full relative">
+                <router-outlet></router-outlet>
+            </div>
+        </ng-template>
     </div>
 </body>
 
