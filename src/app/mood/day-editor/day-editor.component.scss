@@ -108,6 +108,7 @@ body {
                 display: flex;
                 width: 100%;
                 height: auto;
+                object-fit: contain;
             
                 flex-wrap: wrap;
                 @apply gap-y-3;
@@ -136,16 +137,21 @@ body {
 }
 
 @media (max-height: 56.25rem) {
-    .picker {
-        .tags {
-            @apply gap-x-2;
-            .tag {
-                padding-right: 11px;
-                padding-left: 11px;
-                font-size: 12px;
+    .tableEmotions {
+        .wrapper {
+            .picker {
+                .tags {
+                    @apply gap-x-2;
+                    .tag {
+                        padding-right: 15px;
+                        padding-left: 15px;
+                        font-size: 16px;
+                    }
+                }
             }
         }
     }
+    
 }
 
 .roundButton {
