@@ -48,7 +48,7 @@
         </ng-template>
         <!-- end card -->
         <!-- card -->
-        <div *ngIf="this.moodState; else moodDisabled" [className]="this.selectedMenu == 3 ? 'card selected' : 'card'" (click)="selectMenu(3)">
+        <div *ngIf="this.moodState; else moodDisabled" [className]="this.selectedMenu == 3 ? 'card selected' : 'card'" (click)="selectMenu(3)" routerLink="/stats/menu/moodReview">
 
             <div class="icon"><i class="material-icons md-36">mood</i></div>
             <p class="title">Mood</p>

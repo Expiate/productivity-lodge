@@ -185,6 +185,19 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  public getRouterLink() {
+    switch(this.selectedMenu) {
+      case 0:
+        return ''
+      case 1:
+        return 'monthReview'
+      case 2:
+        return 'timeReview'
+      case 3:
+        return 'moodReview'
+    }
+  }
+
   successToast(title: string, content: string) {
     if (title == null) {
       title = ""

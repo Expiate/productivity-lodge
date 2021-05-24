@@ -10,6 +10,7 @@ export class MoodReviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('hola')
   }
 
 }
