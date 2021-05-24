@@ -121,6 +121,13 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+
+    }
+
     &.selected {
         height: 270px;
         

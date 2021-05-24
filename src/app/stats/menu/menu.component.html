@@ -4,37 +4,67 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body *ngIf="this.dataDelivered; else loading">
     <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
         <a class="roundButton ico" (click)="navigateHome()"></a>
     </div>
     <div class="tableMenu">
         <!-- card -->
-        <div [className]="this.selectedMenu == 1 ? 'card selected' : 'card'" (click)="selectMenu(1)">
+        <div *ngIf="this.reviewState; else reviewDisabled" [className]="this.selectedMenu == 1 ? 'card selected' : 'card'" (click)="selectMenu(1)">
 
-            <div class="icon"><i class="material-icons md-36">cottage</i></div>
+            <div class="icon"><i class="material-icons md-36">insights</i></div>
             <p class="title">Monthly Review</p>
             <p class="text">Month score and interesting data</p>
 
         </div>
+
+        <ng-template #reviewDisabled>
+            <div class="card disabled" (click)="showNotEnoughDataError()">
+
+                <div class="icon"><i class="material-icons md-36">insights</i></div>
+                <p class="title">Monthly Review</p>
+                <p class="text">Month score and interesting data</p>
+    
+            </div>
+        </ng-template>
         <!-- end card -->
         <!-- card -->
-        <div [className]="this.selectedMenu == 2 ? 'card selected' : 'card'" (click)="selectMenu(2)">
+        <div *ngIf="this.timeState; else timeDisabled" [className]="this.selectedMenu == 2 ? 'card selected' : 'card'" (click)="selectMenu(2)">
 
-            <div class="icon"><i class="material-icons md-36">edit_calendar</i></div>
+            <div class="icon"><i class="material-icons md-36">schedule</i></div>
             <p class="title">Time</p>
             <p class="text">Time investment</p>
 
         </div>
+
+        <ng-template #timeDisabled>
+            <div class="card disabled" (click)="showNotEnoughDataError()">
+
+                <div class="icon"><i class="material-icons md-36">schedule</i></div>
+                <p class="title">Time</p>
+                <p class="text">Time investment</p>
+    
+            </div>
+        </ng-template>
         <!-- end card -->
         <!-- card -->
-        <div [className]="this.selectedMenu == 3 ? 'card selected' : 'card'" (click)="selectMenu(3)">
+        <div *ngIf="this.moodState; else moodDisabled" [className]="this.selectedMenu == 3 ? 'card selected' : 'card'" (click)="selectMenu(3)">
 
             <div class="icon"><i class="material-icons md-36">mood</i></div>
             <p class="title">Mood</p>
             <p class="text">Mood fluctuations</p>
 
         </div>
+
+        <ng-template #moodDisabled>
+            <div class="card disabled" (click)="showNotEnoughDataError()">
+
+                <div class="icon"><i class="material-icons md-36">mood</i></div>
+                <p class="title">Mood</p>
+                <p class="text">Mood fluctuations</p>
+    
+            </div>
+        </ng-template>
     </div>
     <div class="table">
         <div class="title">
@@ -42,5 +72,17 @@
         </div>
     </div>
 </body>
+
+<ng-template #loading>
+    <body>
+        <div class="absolute top-3 right-3 flex items-center justify-center h-10 w-10">
+            <a class="roundButton ico" (click)="navigateHome()"></a>
+        </div>
+        <div class="tableMenu">
+
+        </div>
+        <div class="table"></div>
+    </body>
+</ng-template>
 
 </html>
