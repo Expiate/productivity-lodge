@@ -13,12 +13,12 @@
         </ng-template>
     </body>
     -->
-    <body>
+    <body #body>
         <div *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
             <div class="monthPieGraph">
                 <p class="graphTitle">This Month</p>
                 <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData" [labels]="this.monthPie.chartLabels"
-                [options]="this.monthPie.chartOptions"[colors]="this.monthPie.chartColors" 
+                [options]="this.monthPie.chartOptions" [colors]="this.monthPie.chartColors" 
                 [legend]="this.monthPie.chartLegend" [chartType]="this.monthPie.chartType"
                 [plugins]="this.monthPie.chartPlugins">
                 </canvas>
@@ -35,6 +35,10 @@
                     </ng-template>
                 </div>
             </div>
+        </div>
+
+        <div class="moodContainer">
+
         </div>
 
     </body>

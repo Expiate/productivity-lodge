@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
@@ -10,6 +11,8 @@ import { chart } from '../common/models/chart.model';
   styleUrls: ['./mood-review.component.scss']
 })
 export class MoodReviewComponent implements OnInit, AfterViewInit {
+  @ViewChild('body', { read: ElementRef }) public body: ElementRef<any>;
+  
   public moodData: cache
   public userColors: any[]
   // Month
