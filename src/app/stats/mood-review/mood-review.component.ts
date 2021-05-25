@@ -125,6 +125,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
       // Comparations
       this.comparationsAvailable = true
       this.averageComp = this.calcAverageComp()
+
     }
   }
 
@@ -150,12 +151,14 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   calcAverageComp(): any[2] {
     let base = this.monthAverage - this.yearAverage
     base = base / 5
+    base = base * 100
+    let baseFormat = new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(base)
     if (base < 0) {
-      return [base * 100, -1]
+      return [baseFormat, -1]
     } else if (base == 0) {
-      return [base * 100, 0]
+      return [baseFormat, 0]
     } else {
-      return [base * 100, 1]
+      return [baseFormat, 1]
     }
   }
 
@@ -177,10 +180,26 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
 
     this.monthPie.chartLabels = ['Super Bad', 'Bad', 'Neutral', 'Good', 'Super Good']
     this.monthPie.chartOptions = {
-      responsive: true,
+      responsive: false,
+      responsiveAnimationDuration: 1500,
       animation: {
         duration: 1500
       },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'left',
+        padding : {
+          right: 0,
+        }
+      }
     }
     this.monthPie.chartColors = [
       {
