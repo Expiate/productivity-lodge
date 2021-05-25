@@ -42,6 +42,7 @@ export class MenuComponent implements OnInit {
     this.today = new Date()
     this.reviewState = this.isReviewAvailable()
     this.fetchData()
+    this.router.navigate(['stats/menu/howToUse'])
   }
 
   navigateHome() {
@@ -51,9 +52,11 @@ export class MenuComponent implements OnInit {
   selectMenu(id: number) {
     if (this.selectedMenu == id) {
       this.selectedMenu = 0
+      this.router.navigate(['stats/menu/howToUse'])
       return
     }
     this.selectedMenu = id
+    this.router.navigate([`stats/menu/${this.getRouterLink()}`])
   }
 
   getTitle() {
