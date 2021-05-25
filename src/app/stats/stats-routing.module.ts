@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { MenuComponent } from './menu/menu.component';
 import { MonthReviewComponent } from './month-review/month-review.component';
 import { MoodReviewComponent } from './mood-review/mood-review.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
         path: 'menu',
         component: MenuComponent,
         children: [
+          {
+            path: 'howToUse',
+            component: HowToUseComponent
+          },
           {
             path: 'monthReview',
             component: MonthReviewComponent

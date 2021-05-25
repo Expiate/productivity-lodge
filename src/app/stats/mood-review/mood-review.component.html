@@ -1,9 +1,10 @@
 <html>
+    <!--
     <body>
         <p>Media del mes: {{this.monthAverage}} / 5</p>
-        <p>Reparto --> {{this.monthData[0]}} {{this.monthData[1]}} {{this.monthData[2]}} {{this.monthData[3]}} {{this.monthData[4]}}</p>
+        <p>Reparto  {{this.monthData[0]}} {{this.monthData[1]}} {{this.monthData[2]}} {{this.monthData[3]}} {{this.monthData[4]}}</p>
         <p>Media del año: {{this.yearAverage}} / 5</p>
-        <p>Reparto Año --> {{this.yearData[0]}} {{this.yearData[1]}} {{this.yearData[2]}} {{this.yearData[3]}} {{this.yearData[4]}}</p>
+        <p>Reparto Año  {{this.yearData[0]}} {{this.yearData[1]}} {{this.yearData[2]}} {{this.yearData[3]}} {{this.yearData[4]}}</p>
         <div *ngIf="this.averageComp[1] == -1; else avgComp2">
             <p>Este mes tu media de mood es un{{this.averageComp[0]}}% menor de lo normal</p>
         </div>
@@ -11,4 +12,23 @@
             <p>Este mes tu media de mood es {{this.averageComp[0]}}% mayor de lo normal</p>
         </ng-template>
     </body>
+    -->
+    <body>
+        <div *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
+            <p class="font-bold text-xl text-center">This Month</p>
+            <canvas id="monthPie" baseChart height="110" [datasets]="this.monthPie.chartData" [labels]="this.monthPie.chartLabels"
+            [options]="this.monthPie.chartOptions"[colors]="this.monthPie.chartColors" 
+            [legend]="this.monthPie.chartLegend" [chartType]="this.monthPie.chartType"
+            [plugins]="this.monthPie.chartPlugins">
+        </canvas>
+            <div *ngIf="this.comparationsAvailable == true">
+
+            </div>
+        </div>
+
+        <div *ngIf="this.isYearDataAvailable == true" class="moodContainer">
+
+        </div>
+    </body>
+    <script src="node_modules/chart.js/src/chart.js"></script>
 </html>

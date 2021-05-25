@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { cache } from '../common/models/cache.model';
+import { chart } from '../common/models/chart.model';
 
 @Component({
   selector: 'app-mood-review',
   templateUrl: './mood-review.component.html',
   styleUrls: ['./mood-review.component.scss']
 })
-export class MoodReviewComponent implements OnInit {
+export class MoodReviewComponent implements OnInit, AfterViewInit {
   public moodData: cache
-
+  public userColors: any[]
   // Month
   public monthData = [0, 0, 0, 0, 0]
 
@@ -23,17 +25,27 @@ export class MoodReviewComponent implements OnInit {
   // Comparations
   public averageComp: any[2]
 
+  // Graphs
+  public monthPie: chart = new chart()
+  public yearPie: chart = new chart()
+
   // Data Booleans
   public isMonthDataAvailable = false
   public isYearDataAvailable = false
-  public comparationsAvaiable = false
+  public comparationsAvailable = false
 
   constructor(
     private localStorage: StorageService
   ) { }
+  ngAfterViewInit(): void {
+    
+  }
 
   ngOnInit(): void {
+    Chart.defaults.global.animation.duration = 1500
     this.moodData = this.localStorage.getCacheDay()
+    this.userColors = this.localStorage.getUser().preferences.colors
+    console.log(this.userColors)
     console.log(this.moodData)
 
     if(this.moodData.year == undefined) {
@@ -51,6 +63,7 @@ export class MoodReviewComponent implements OnInit {
     }
 
     this.calculateStats()
+    this.createGraphs()
     console.log(this.monthData)
   }
 
@@ -99,7 +112,6 @@ export class MoodReviewComponent implements OnInit {
   }
 
   calculateStats() {
-
     if(this.isYearDataAvailable) {
       this.yearAverage = this.calcMoodAverage(this.moodData.year)
     }
@@ -109,7 +121,18 @@ export class MoodReviewComponent implements OnInit {
       console.log(this.monthAverage)
 
       // Comparations
+      this.comparationsAvailable = true
       this.averageComp = this.calcAverageComp()
+    }
+  }
+
+  createGraphs() {
+    if (this.isYearDataAvailable) {
+
+    }
+
+    if(this.isMonthDataAvailable) {
+      this.createMonthPieGraph()
     }
   }
 
@@ -127,11 +150,44 @@ export class MoodReviewComponent implements OnInit {
     base = base / 5
     if (base < 0) {
       return [base * 100, -1]
-    } else if ( base == 0) {
+    } else if (base == 0) {
       return [base * 100, 0]
     } else {
       return [base * 100, 1]
     }
+  }
+
+  createMonthPieGraph() {
+
+    this.monthPie.chartData = [
+      {
+        data: [0]
+      }
+    ]
+
+    this.monthPie.chartData = null
+
+    this.monthPie.chartData = [
+      {
+        data: this.monthData
+      }
+    ]
+
+    this.monthPie.chartLabels = ['Super Bad', 'Bad', 'Neutral', 'Good', 'Super Good']
+    this.monthPie.chartOptions = {
+      responsive: true,
+      animation: {
+        duration: 1500
+      },
+    }
+    this.monthPie.chartColors = [
+      {
+        backgroundColor: this.userColors
+      },
+    ]
+    this.monthPie.chartLegend = true
+    this.monthPie.chartPlugins = []
+    this.monthPie.chartType = 'pie'
   }
 
 }

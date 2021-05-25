@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { MoodReviewComponent } from './mood-review/mood-review.component';
 import { TimeReviewComponent } from './time-review/time-review.component';
 import { MonthReviewComponent } from './month-review/month-review.component';
+import { ChartsModule } from 'ng2-charts';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { MonthReviewComponent } from './month-review/month-review.component';
     MenuComponent,
     MoodReviewComponent,
     TimeReviewComponent,
-    MonthReviewComponent
+    MonthReviewComponent,
+    HowToUseComponent
   ],
   imports: [
     CommonModule,
-    StatsRoutingModule
+    StatsRoutingModule,
+    ChartsModule
   ]
 })
 export class StatsModule { }
