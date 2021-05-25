@@ -15,20 +15,26 @@
     -->
     <body>
         <div *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
-            <p class="font-bold text-xl text-center">This Month</p>
-            <canvas id="monthPie" baseChart height="110" [datasets]="this.monthPie.chartData" [labels]="this.monthPie.chartLabels"
-            [options]="this.monthPie.chartOptions"[colors]="this.monthPie.chartColors" 
-            [legend]="this.monthPie.chartLegend" [chartType]="this.monthPie.chartType"
-            [plugins]="this.monthPie.chartPlugins">
-        </canvas>
-            <div *ngIf="this.comparationsAvailable == true">
-
+            <div class="w-full h-auto flex flex-col gap-4 justify-items-center content-center">
+                <p class="font-bold text-2xl text-center">This Month</p>
+                <canvas id="monthPie" baseChart height="110" [datasets]="this.monthPie.chartData" [labels]="this.monthPie.chartLabels"
+                [options]="this.monthPie.chartOptions"[colors]="this.monthPie.chartColors" 
+                [legend]="this.monthPie.chartLegend" [chartType]="this.monthPie.chartType"
+                [plugins]="this.monthPie.chartPlugins">
+                </canvas>
+            </div>
+            
+            <p class="text-center text-xl mt-12">Average Mood</p><p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
+            <div *ngIf="this.comparationsAvailable == true" class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
+                <div *ngIf="this.averageComp[1] == -1; else avgComp2" class="justify-items-center content-center mt-4">
+                    <p class="w-full h-auto text-center text-2xl font-bold text-red-600">-{{this.averageComp[0]}}%</p>
+                </div>
+                <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
+                    <p class="w-full h-auto  text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
+                </ng-template>
             </div>
         </div>
 
-        <div *ngIf="this.isYearDataAvailable == true" class="moodContainer">
-
-        </div>
     </body>
     <script src="node_modules/chart.js/src/chart.js"></script>
 </html>

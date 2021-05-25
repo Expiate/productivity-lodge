@@ -42,6 +42,8 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    Chart.defaults.global.defaultFontColor = '#FFFFFF'
+    Chart.defaults.global.defaultFontFamily = 'Montserrat'
     Chart.defaults.global.animation.duration = 1500
     this.moodData = this.localStorage.getCacheDay()
     this.userColors = this.localStorage.getUser().preferences.colors
@@ -139,7 +141,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   calcMoodAverage(array: any[]): number {
     let sum: number = 0
     for (let i = 0; i < array.length; i++) {
-      sum = sum + array[i].mood
+      sum = sum + (array[i].mood + 1)
     }
     sum = sum / (array.length)
     return sum
