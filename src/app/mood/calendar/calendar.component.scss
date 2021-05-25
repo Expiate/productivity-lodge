@@ -52,12 +52,14 @@ body {
 	border-radius: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 10px;
 	background-color: $secondary;
 }
 
 #style-1::-webkit-scrollbar
 {
-	width: 6px;
+    margin-left: 10px;
+	width: 10px;
     border-radius: 10px;
 	background-color: $secondary;
 }
