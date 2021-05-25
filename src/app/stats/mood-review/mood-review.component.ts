@@ -15,7 +15,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   // Month
   public monthData = [0, 0, 0, 0, 0]
 
-  public monthAverage: number
+  public monthAverage: any
 
   // Year
   public yearData = [0, 0, 0, 0, 0]
@@ -125,7 +125,11 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
       // Comparations
       this.comparationsAvailable = true
       this.averageComp = this.calcAverageComp()
+    }
 
+    // Corrections and Formating
+    if(this.monthAverage != (null || undefined)) {
+      this.monthAverage =  new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(this.monthAverage)
     }
   }
 
@@ -152,6 +156,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     let base = this.monthAverage - this.yearAverage
     base = base / 5
     base = base * 100
+    console.log(base)
     let baseFormat = new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(base)
     if (base < 0) {
       return [baseFormat, -1]
