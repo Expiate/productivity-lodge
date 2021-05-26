@@ -1,5 +1,5 @@
 <html>
-    <!--
+<!--
     <body>
         <p>Media del mes: {{this.monthAverage}} / 5</p>
         <p>Reparto  {{this.monthData[0]}} {{this.monthData[1]}} {{this.monthData[2]}} {{this.monthData[3]}} {{this.monthData[4]}}</p>
@@ -13,34 +13,81 @@
         </ng-template>
     </body>
     -->
-    <body #body>
-        <div *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
-            <div class="monthPieGraph">
-                <p class="graphTitle">This Month</p>
-                <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData" [labels]="this.monthPie.chartLabels"
-                [options]="this.monthPie.chartOptions" [colors]="this.monthPie.chartColors" 
-                [legend]="this.monthPie.chartLegend" [chartType]="this.monthPie.chartType"
-                [plugins]="this.monthPie.chartPlugins">
-                </canvas>
-            </div>
 
-            <div class="monthStats">
-                <p class="text-center text-xl">Average Mood</p><p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
-                <div *ngIf="this.comparationsAvailable == true" class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
-                    <div *ngIf="this.averageComp[1] == -1; else avgComp2" class="w-full h-auto justify-items-center content-center mt-4">
-                        <p class="w-full h-auto text-center text-2xl font-bold text-red-600">{{this.averageComp[0]}}%</p>
-                    </div>
-                    <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
-                        <p class="w-full h-auto text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
-                    </ng-template>
+<body #body>
+    <div #month *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
+        <div class="monthPieGraph">
+            <p class="graphTitle">This Month</p>
+            <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData"
+                [labels]="this.monthPie.chartLabels" [options]="this.monthPie.chartOptions"
+                [colors]="this.monthPie.chartColors" [legend]="this.monthPie.chartLegend"
+                [chartType]="this.monthPie.chartType" [plugins]="this.monthPie.chartPlugins">
+            </canvas>
+        </div>
+
+        <div class="monthStats">
+            <p class="text-center text-xl">Average Mood</p>
+            <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
+            <div *ngIf="this.comparationsAvailable == true"
+                class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
+                <div *ngIf="this.averageComp[1] == -1; else avgComp2"
+                    class="w-full h-auto justify-items-center content-center mt-4">
+                    <p class="w-full h-auto text-center text-2xl font-bold text-red-600">{{this.averageComp[0]}}%</p>
                 </div>
+                <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
+                    <p class="w-full h-auto text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
+                </ng-template>
             </div>
         </div>
+    </div>
 
-        <div class="moodContainer">
-
+    <div #year class="moodContainer">
+        <div class="monthPieGraph">
+            <p class="graphTitle">This Month</p>
+            <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData"
+                [labels]="this.monthPie.chartLabels" [options]="this.monthPie.chartOptions"
+                [colors]="this.monthPie.chartColors" [legend]="this.monthPie.chartLegend"
+                [chartType]="this.monthPie.chartType" [plugins]="this.monthPie.chartPlugins">
+            </canvas>
         </div>
 
-    </body>
-    <script src="node_modules/chart.js/src/chart.js"></script>
+        <div class="monthStats">
+            <p class="text-center text-xl">Average Mood</p>
+            <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
+            <div *ngIf="this.comparationsAvailable == true"
+                class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
+                <div *ngIf="this.averageComp[1] == -1; else avgComp2"
+                    class="w-full h-auto justify-items-center content-center mt-4">
+                    <p class="w-full h-auto text-center text-2xl font-bold text-red-600">{{this.averageComp[0]}}%</p>
+                </div>
+                <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
+                    <p class="w-full h-auto text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+
+    <div #buttons class="stickyButtons" [@inOutAnimation]>
+        <button class="button" (click)="scrollTop()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+                <path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" />
+            </svg>
+        </button>
+        <button class="button" (click)="scrollBottom()">
+            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24"
+                width="24px" fill="#FFFFFF">
+                <g>
+                    <path d="M0,0h24v24H0V0z" fill="none" />
+                </g>
+                <g>
+                    <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
+                </g>
+            </svg>
+        </button>
+    </div>
+
+</body>
+<script src="node_modules/chart.js/src/chart.js"></script>
+
 </html>

@@ -1,17 +1,22 @@
-import { ViewChild } from '@angular/core';
+import { Renderer2, ViewChild } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
+import { domAnimations } from 'src/app/mood/common/animations/dom-animations';
 import { cache } from '../common/models/cache.model';
 import { chart } from '../common/models/chart.model';
 
 @Component({
   selector: 'app-mood-review',
   templateUrl: './mood-review.component.html',
-  styleUrls: ['./mood-review.component.scss']
+  styleUrls: ['./mood-review.component.scss'],
+  animations: [domAnimations]
 })
 export class MoodReviewComponent implements OnInit, AfterViewInit {
-  @ViewChild('body', { read: ElementRef }) public body: ElementRef<any>;
+  @ViewChild('body', { read: ElementRef }) public bodyView: ElementRef<any>;
+  @ViewChild('month', { read: ElementRef }) public monthView: ElementRef<any>;
+  @ViewChild('year', { read: ElementRef }) public yearView: ElementRef<any>;
+  @ViewChild('buttons', { read: ElementRef }) public buttonsView: ElementRef;
   
   public moodData: cache
   public userColors: any[]
@@ -38,10 +43,10 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   public comparationsAvailable = false
 
   constructor(
-    private localStorage: StorageService
+    private localStorage: StorageService,
+    private renderer: Renderer2
   ) { }
   ngAfterViewInit(): void {
-    
   }
 
   ngOnInit(): void {
@@ -168,6 +173,16 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     } else {
       return [baseFormat, 1]
     }
+  }
+
+  scrollTop() {
+    this.monthView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+    this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(5px)`)
+  }
+
+  scrollBottom() {
+    this.yearView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+    this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${this.bodyView.nativeElement.offsetHeight * 0.5 + 5}px)`)
   }
 
   createMonthPieGraph() {
