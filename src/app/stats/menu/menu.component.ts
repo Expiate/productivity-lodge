@@ -73,12 +73,15 @@ export class MenuComponent implements OnInit {
   }
 
   public isReviewAvailable(): boolean {
-    let month = this.today.getMonth()
+    let month = this.today.getMonth() + 1
     let formatMonth = month.toString()
     if (formatMonth.length == 1) {
       formatMonth = '0' + formatMonth
     }
     let year = this.today.getFullYear().toString()
+    console.log(year + " " + formatMonth)
+
+    let response: boolean = false
 
     this.statsService.getJournalMonth(year, formatMonth).subscribe(resp => {
       // On Success
@@ -87,18 +90,22 @@ export class MenuComponent implements OnInit {
       let days = resp['body']
 
       this.lock()
+      
       if (days.length >= 25) {
-        return true
+        response = true
       } else {
-        return false
+        response = false
       }
     }, error => {
       // On Error
       console.log('Error: ' + error['status'])
+      this.errors++
       this.lock()
-      return false
+      response = false
     })
-    return false
+    // TODO Delete this in prod
+    response = true
+    return response
   }
 
   public fetchData() {
