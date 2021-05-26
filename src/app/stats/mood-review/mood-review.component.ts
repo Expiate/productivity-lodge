@@ -2,7 +2,7 @@ import { Renderer2, ViewChild } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
-import { domAnimations } from 'src/app/mood/common/animations/dom-animations';
+import { stickyAnimation } from '../common/animations/stickyButtons';
 import { cache } from '../common/models/cache.model';
 import { chart } from '../common/models/chart.model';
 
@@ -10,13 +10,14 @@ import { chart } from '../common/models/chart.model';
   selector: 'app-mood-review',
   templateUrl: './mood-review.component.html',
   styleUrls: ['./mood-review.component.scss'],
-  animations: [domAnimations]
+  animations: [stickyAnimation]
 })
 export class MoodReviewComponent implements OnInit, AfterViewInit {
   @ViewChild('body', { read: ElementRef }) public bodyView: ElementRef<any>;
   @ViewChild('month', { read: ElementRef }) public monthView: ElementRef<any>;
   @ViewChild('year', { read: ElementRef }) public yearView: ElementRef<any>;
   @ViewChild('buttons', { read: ElementRef }) public buttonsView: ElementRef;
+  public state: boolean = true
   
   public moodData: cache
   public userColors: any[]
@@ -28,7 +29,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   // Year
   public yearData = [0, 0, 0, 0, 0]
 
-  public yearAverage: number
+  public yearAverage: any
 
   // Comparations
   public averageComp: any[2]
@@ -139,11 +140,14 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     if(this.monthAverage != (null || undefined)) {
       this.monthAverage =  new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(this.monthAverage)
     }
+    if(this.yearAverage != (null || undefined)) {
+      this.yearAverage =  new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(this.yearAverage)
+    }
   }
 
   createGraphs() {
     if (this.isYearDataAvailable) {
-
+      this.createYearPieGraph()
     }
 
     if(this.isMonthDataAvailable) {
@@ -161,14 +165,12 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   }
 
   calcAverageComp(): any[2] {
-    let base = this.monthAverage - this.yearAverage
-    base = base / 5
-    base = base * 100
-    console.log(base)
-    let baseFormat = new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(base)
-    if (base < 0) {
+    let diff = this.monthAverage - this.yearAverage
+    diff = diff / this.yearAverage * 100
+    let baseFormat = new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(diff)
+    if (diff < 0) {
       return [baseFormat, -1]
-    } else if (base == 0) {
+    } else if (diff == 0) {
       return [baseFormat, 0]
     } else {
       return [baseFormat, 1]
@@ -177,12 +179,32 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
 
   scrollTop() {
     this.monthView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+    this.state= true
     this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(5px)`)
   }
 
   scrollBottom() {
     this.yearView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+    this.state = false
     this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${this.bodyView.nativeElement.offsetHeight * 0.5 + 5}px)`)
+  }
+
+  getNavButtonColor(id: number) {
+    if (this.state) {
+      switch (id) {
+        case 1:
+          return '#B3B8CD'
+        case 2:
+          return '#FFFFFF'
+      }
+    } else {
+      switch (id) {
+        case 1:
+          return '#FFFFFF'
+        case 2:
+          return '#B3B8CD'
+      }
+    }
   }
 
   createMonthPieGraph() {
@@ -218,9 +240,12 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
       },
       legend: {
         display: true,
-        position: 'left',
+        position: 'bottom',
         padding : {
           right: 0,
+        },
+        labels: {
+          boxWidth: 30
         }
       }
     }
@@ -232,6 +257,58 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     this.monthPie.chartLegend = true
     this.monthPie.chartPlugins = []
     this.monthPie.chartType = 'pie'
+  }
+
+  createYearPieGraph() {
+
+    this.yearPie.chartData = [
+      {
+        data: [0]
+      }
+    ]
+
+    this.yearPie.chartData = null
+
+    this.yearPie.chartData = [
+      {
+        data: this.yearData
+      }
+    ]
+
+    this.yearPie.chartLabels = ['Super Bad', 'Bad', 'Neutral', 'Good', 'Super Good']
+    this.yearPie.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.yearPie.chartColors = [
+      {
+        backgroundColor: this.userColors
+      },
+    ]
+    this.yearPie.chartLegend = true
+    this.yearPie.chartPlugins = []
+    this.yearPie.chartType = 'pie'
   }
 
 }

@@ -16,9 +16,12 @@
 
 <body #body>
     <div #month *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
+        <div class="pagTitle">
+            <p class="text-center text-xl font-bold">This Month</p>
+        </div>
         <div class="monthPieGraph">
-            <p class="graphTitle">This Month</p>
-            <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData"
+            <p class="graphTitle"></p>
+            <canvas id="monthPie" baseChart height="300" width="450" [datasets]="this.monthPie.chartData"
                 [labels]="this.monthPie.chartLabels" [options]="this.monthPie.chartOptions"
                 [colors]="this.monthPie.chartColors" [legend]="this.monthPie.chartLegend"
                 [chartType]="this.monthPie.chartType" [plugins]="this.monthPie.chartPlugins">
@@ -27,62 +30,53 @@
 
         <div class="monthStats">
             <p class="text-center text-xl">Average Mood</p>
-            <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
-            <div *ngIf="this.comparationsAvailable == true"
-                class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
-                <div *ngIf="this.averageComp[1] == -1; else avgComp2"
-                    class="w-full h-auto justify-items-center content-center mt-4">
-                    <p class="w-full h-auto text-center text-2xl font-bold text-red-600">{{this.averageComp[0]}}%</p>
+            <div class="w-full flex flex-row gap-2 justify-center content-around">
+                <p class="opacity-0 text-lg font-bold text-green-600">{{this.averageComp[0]}}%</p>
+                <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
+                <div *ngIf="this.comparationsAvailable == true"
+                    class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">
+                    <div *ngIf="this.averageComp[1] == -1; else avgComp2"
+                        class="w-auto h-auto justify-items-center content-center">
+                        <p class="w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[0]}}%</p>
+                    </div>
+                    <ng-template #avgComp2 class="w-auto h-auto justify-items-center content-center">
+                        <p class="w-auto h-auto text-center text-lg font-bold text-green-600">+{{this.averageComp[0]}}%</p>
+                    </ng-template>
                 </div>
-                <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
-                    <p class="w-full h-auto text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
-                </ng-template>
             </div>
+            
         </div>
     </div>
 
     <div #year class="moodContainer">
+        <div class="pagTitle">
+            <p class="text-center text-xl font-bold">This Year</p>
+        </div>
         <div class="monthPieGraph">
-            <p class="graphTitle">This Month</p>
-            <canvas id="monthPie" baseChart height="250" width="400" [datasets]="this.monthPie.chartData"
-                [labels]="this.monthPie.chartLabels" [options]="this.monthPie.chartOptions"
-                [colors]="this.monthPie.chartColors" [legend]="this.monthPie.chartLegend"
-                [chartType]="this.monthPie.chartType" [plugins]="this.monthPie.chartPlugins">
+            <canvas id="yearPie" baseChart height="300" width="450" [datasets]="this.yearPie.chartData"
+                [labels]="this.yearPie.chartLabels" [options]="this.yearPie.chartOptions"
+                [colors]="this.yearPie.chartColors" [legend]="this.yearPie.chartLegend"
+                [chartType]="this.yearPie.chartType" [plugins]="this.yearPie.chartPlugins">
             </canvas>
         </div>
 
         <div class="monthStats">
             <p class="text-center text-xl">Average Mood</p>
-            <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
-            <div *ngIf="this.comparationsAvailable == true"
-                class="w-full h-auto flex flex-row gap-2 justify-items-center content-center">
-                <div *ngIf="this.averageComp[1] == -1; else avgComp2"
-                    class="w-full h-auto justify-items-center content-center mt-4">
-                    <p class="w-full h-auto text-center text-2xl font-bold text-red-600">{{this.averageComp[0]}}%</p>
-                </div>
-                <ng-template #avgComp2 class="w-full h-auto justify-items-center content-center mt-4">
-                    <p class="w-full h-auto text-center text-2xl font-bold text-green-600">+{{this.averageComp[0]}}%</p>
-                </ng-template>
-            </div>
+            <p class="text-center text-2xl font-bold">{{this.yearAverage}}/5</p>
         </div>
     </div>
 
-    <div #buttons class="stickyButtons" [@inOutAnimation]>
+    <div #buttons [@stickyScroll]="state ? 'up' : 'down'" class="stickyButtons">
         <button class="button" (click)="scrollTop()">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
-                <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
-                <path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" />
+            <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" [ngStyle]="{'fill': getNavButtonColor(1) }">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z" />
             </svg>
         </button>
         <button class="button" (click)="scrollBottom()">
-            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24"
-                width="24px" fill="#FFFFFF">
-                <g>
-                    <path d="M0,0h24v24H0V0z" fill="none" />
-                </g>
-                <g>
-                    <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
-                </g>
+            <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 0 24 24" width="36px" [ngStyle]="{'fill': getNavButtonColor(2) }">
+                <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
             </svg>
         </button>
     </div>
