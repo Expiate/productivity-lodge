@@ -1,0 +1,39 @@
+//colors
+$primary: #1D1D1D;
+$secondary: #292929;
+$accent: #ea4c89;
+$white: #fff;
+$gray: #9b9b9b;
+$green:#00c06d;
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 200%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.partContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 50px;
+    padding-top: 0px;
+
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+}

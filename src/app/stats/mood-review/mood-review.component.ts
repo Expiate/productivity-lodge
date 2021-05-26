@@ -82,19 +82,19 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.moodData.month.length; i++) {
       switch(this.moodData.month[i].mood) {
         case 0:
-          this.monthData[0] = this.monthData[0] + 1
+          this.monthData[0] += 1
           break;
         case 1:
-          this.monthData[1] = this.monthData[1] + 1
+          this.monthData[1] += 1
           break;
         case 2:
-          this.monthData[2] = this.monthData[2] + 1
+          this.monthData[2] += 1
           break;
         case 3:
-          this.monthData[3] = this.monthData[3] + 1
+          this.monthData[3] += 1
           break;
         case 4:
-          this.monthData[4] = this.monthData[4] + 1
+          this.monthData[4] += 1
           break;
       }
     }
@@ -104,19 +104,19 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.moodData.year.length; i++) {
       switch(this.moodData.year[i].mood) {
         case 0:
-          this.yearData[0] = this.yearData[0] + 1
+          this.yearData[0] += 1
           break;
         case 1:
-          this.yearData[1] = this.yearData[1] + 1
+          this.yearData[1] += 1
           break;
         case 2:
-          this.yearData[2] = this.yearData[2] + 1
+          this.yearData[2] += 1
           break;
         case 3:
-          this.yearData[3] = this.yearData[3] + 1
+          this.yearData[3] += 1
           break;
         case 4:
-          this.yearData[4] = this.yearData[4] + 1
+          this.yearData[4] += 1
           break;
       }
     }
@@ -186,7 +186,8 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   scrollBottom() {
     this.yearView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
     this.state = false
-    this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${this.bodyView.nativeElement.offsetHeight * 0.5 + 5}px)`)
+    this.renderer.setStyle(this.buttonsView.nativeElement,
+      'transform', `translateY(${this.bodyView.nativeElement.offsetHeight * 0.5 + 5}px)`)
   }
 
   getNavButtonColor(id: number) {
