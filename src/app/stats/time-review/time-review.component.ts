@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
 import { cache } from '../common/models/cache.model';
+import { chart } from '../common/models/chart.model';
 
 @Component({
   selector: 'app-time-review',
@@ -13,6 +14,11 @@ import { cache } from '../common/models/cache.model';
 })
 export class TimeReviewComponent implements OnInit {
   @ViewChild('body', { read: ElementRef }) public bodyView: ElementRef<any>;
+  @ViewChild('month', { read: ElementRef }) public monthView: ElementRef<any>;
+  @ViewChild('year', { read: ElementRef }) public yearView: ElementRef<any>;
+  @ViewChild('stats', { read: ElementRef }) public statsView: ElementRef<any>;
+  @ViewChild('buttons', { read: ElementRef }) public buttonsView: ElementRef;
+  public state: number = 1
   
   public userColors: any[]
   public journalData: cache
@@ -28,11 +34,20 @@ export class TimeReviewComponent implements OnInit {
   public loggedYear: number
   public yearWorkoutDays: number
   public yearAverages = [0, 0, 0, 0, 0, 0, 0]
+
+  // Comparations
+  public averageComp = [0, 0, 0, 0, 0, 0, 0]
   
   // Data Booleans
   public isMonthDataAvailable = false
   public isYearDataAvailable = false
   public comparationsAvailable = false
+
+  // Graphs
+  public totalMonthGraph: chart = new chart()
+  public averageMonthGraph: chart = new chart()
+  public totalYearGraph: chart = new chart()
+  public averageYearGraph: chart = new chart()
 
   constructor(
     private localStorage: StorageService,
@@ -63,7 +78,7 @@ export class TimeReviewComponent implements OnInit {
     }
 
     this.calculateStats()
-    //this.createGraphs()
+    this.createGraphs()
   }
 
   loadMonthData() {
@@ -111,29 +126,188 @@ export class TimeReviewComponent implements OnInit {
 
   calculateStats() {
     if(this.isYearDataAvailable) {
-      this.yearAverages = this.calcMoodAverage(this.yearData)
+      this.yearAverages = this.calcMoodAverage(Object.assign([], this.yearData), this.loggedYear)
+      console.log('Average Year :' + this.yearAverages)
     }
 
     if (this.isMonthDataAvailable) {
-      this.monthAverages = this.calcMoodAverage(this.monthData)
-      console.log(this.monthAverages)
+      this.monthAverages = this.calcMoodAverage(Object.assign([], this.monthData), this.loggedMonth)
+      console.log('Average Month :' + this.monthAverages)
 
       // Comparations
       this.comparationsAvailable = true
-      // this.averageComp = this.calcAverageComp()
+      this.averageComp = this.calcAverageComp(Object.assign([], this.monthAverages), Object.assign([], this.yearAverages))
+      console.log('Average Comparison :' + this.averageComp)
     }
   }
 
-  calcMoodAverage(array: any[]): any[] {
+  calcMoodAverage(array: any[], length: number): any[] {
     for (let i = 0; i < array.length; i++) {
-      array[i] /= array.length
-      array[i] = new Intl.NumberFormat('en-us', { maximumFractionDigits: 2}).format(array[i])
+      array[i] /= length
+      array[i] = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(array[i]))
     }
     return array
   }
 
-  createGraphs() {
+  calcAverageComp(mAverage: any[], yAverage: any[]): any[] {
+    let diff: any[] = []
+    for (let i = 0; i < mAverage.length; i++) {
+      let base = (mAverage[i] - yAverage[i]) / yAverage[i] * 100
+      diff.push(Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(base)))
+    }
+    return diff
+  }
 
+  createGraphs() {
+    if (this.isYearDataAvailable == true) {
+      this.createTotalYearGraph()
+      this.createAverageYearGraph()
+    }
+
+    if (this.isMonthDataAvailable == true) {
+      this.createTotalMonthGraph()
+      this.createAverageMonthGraph()
+    }
+  }
+
+  createTotalMonthGraph() {
+
+    this.totalMonthGraph.chartData = [
+      { data: [0], label: 'Sleep' },
+      { data: [0], label: 'Work' },
+      { data: [0], label: 'Leisure' },
+      { data: [0], label: 'PD' },
+      { data: [0], label: 'Others' }
+    ]
+
+    this.totalMonthGraph.chartData = null
+
+    this.totalMonthGraph.chartData = [
+      { data: [this.monthData[0]], label: 'Sleep' },
+      { data: [this.monthData[1]], label: 'Work' },
+      { data: [this.monthData[2]], label: 'Leisure' },
+      { data: [this.monthData[3]], label: 'PD' },
+      { data: [this.monthData[4]], label: 'Others' }
+    ]
+
+    this.totalMonthGraph.chartLabels = []
+    this.totalMonthGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'top',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.totalMonthGraph.chartColors = [
+      {
+        borderColor: 'black',
+        backgroundColor: '#206a5d',
+      },
+      {
+        backgroundColor: '#81b214'
+      },
+      {
+        backgroundColor: '#ffcc29'
+      },
+      {
+        backgroundColor: '#f58634'
+      },
+      {
+        backgroundColor: '#c8c2bc'
+      }
+    ]
+    this.totalMonthGraph.chartLegend = true
+    this.totalMonthGraph.chartPlugins = []
+    this.totalMonthGraph.chartType = 'bar'
+  }
+
+  createAverageMonthGraph() {
+
+  }
+
+  createTotalYearGraph() {
+
+  }
+
+  createAverageYearGraph() {
+
+  }
+
+  scrollTop() {
+    switch(this.state) {
+      case 1:
+        break;
+      case 2:
+        this.monthView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+        this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(5px)`)
+        this.state--
+        break;
+      case 3:
+        this.yearView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+        this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${this.bodyView.nativeElement.offsetHeight /3 + 5}px)`)
+        this.state--
+        break;
+    }
+    console.log(this.state)
+  }
+
+  scrollBottom() {
+    switch(this.state) {
+      case 1:
+        this.yearView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+        this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${this.bodyView.nativeElement.offsetHeight / 3  + 5}px)`)
+        this.state++
+        break;
+      case 2:
+        this.statsView.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'})
+        this.renderer.setStyle(this.buttonsView.nativeElement, 'transform', `translateY(${(this.bodyView.nativeElement.offsetHeight / 3) * 2 + 5}px)`)
+        this.state++
+        break;
+      case 3:
+        break;
+    }
+    console.log(this.state)
+  }
+
+  getNavButtonColor(id: number) {
+    switch(this.state) {
+      case 1:
+        if(id == 1) {
+          return '#B3B8CD'
+        } else {
+          return '#FFFFFF'
+        }
+      case 2:
+        if(id == 1) {
+          return '#FFFFFF'
+        } else {
+          return '#FFFFFF'
+        }
+      case 3:
+        if(id == 1) {
+          return '#FFFFFF'
+        } else {
+          return '#B3B8CD'
+        }
+    }
   }
 
 }

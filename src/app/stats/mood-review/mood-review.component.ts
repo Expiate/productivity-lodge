@@ -21,6 +21,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   
   public moodData: cache
   public userColors: any[]
+  
   // Month
   public monthData = [0, 0, 0, 0, 0]
 
