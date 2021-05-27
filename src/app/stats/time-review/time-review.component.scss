@@ -62,6 +62,10 @@ body {
         position: absolute;
         top: -32px;
     }
+    
+    &.short {
+        margin-bottom: 35px;
+    }
 }
 
 .pagTitle {
