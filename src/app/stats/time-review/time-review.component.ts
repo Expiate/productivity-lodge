@@ -188,6 +188,7 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.isMonthDataAvailable == true) {
       this.createTotalMonthGraph()
       this.createMonthProductivityGraph()
+      this.createMonthSleepQualityGraphs()
     }
   }
 
@@ -389,6 +390,106 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.monthProductivityGraph.chartLegend = true
     this.monthProductivityGraph.chartPlugins = []
     this.monthProductivityGraph.chartType = 'doughnut'
+  }
+
+  createMonthSleepQualityGraphs() {
+    let positive = (100 * this.monthData[6]) / (this.loggedMonth * 10)
+    positive = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(positive))
+    let negative = 100 - positive
+    negative = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(negative))
+    
+    this.monthSleepQualityGraph.chartData = [
+      {
+        data: [positive, negative]
+      }
+    ]
+
+    this.monthSleepQualityGraph.chartLabels = ['Good Quality %', 'Bad Quality %']
+    this.monthSleepQualityGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.monthSleepQualityGraph.chartColors = [
+      {
+        backgroundColor: ['rgb(5, 150, 105)', 'rgba(220, 38, 38)']
+      },
+    ]
+    this.monthSleepQualityGraph.chartLegend = true
+    this.monthSleepQualityGraph.chartPlugins = []
+    this.monthSleepQualityGraph.chartType = 'doughnut'
+  }
+
+  createYearProductivityGraph() {
+    let positive = (100 * this.yearData[5]) / (this.loggedMonth * 10)
+    positive = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(positive))
+    let negative = 100 - positive
+    negative = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(negative))
+    
+    this.yearProductivityGraph.chartData = [
+      {
+        data: [positive, negative]
+      }
+    ]
+
+    this.yearProductivityGraph.chartLabels = ['Productive %', 'Non Productive %']
+    this.yearProductivityGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.yearProductivityGraph.chartColors = [
+      {
+        backgroundColor: ['rgb(5, 150, 105)', 'rgba(220, 38, 38)']
+      },
+    ]
+    this.yearProductivityGraph.chartLegend = true
+    this.yearProductivityGraph.chartPlugins = []
+    this.yearProductivityGraph.chartType = 'doughnut'
+  }
+
+  createYearSleepQualityGraphs() {
+
   }
 
   scrollTop() {

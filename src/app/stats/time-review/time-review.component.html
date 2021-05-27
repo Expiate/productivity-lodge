@@ -141,20 +141,30 @@
                 <p class="graphTitle">Month Productivity</p>
                 <div class="w-full h-5/6 absolute bottom-1 flex items-center justify-center">
                     <canvas id="monthPie" baseChart height="180" width="180"
-                    [datasets]="this.monthProductivityGraph.chartData"
-                    [labels]="this.monthProductivityGraph.chartLabels"
-                    [options]="this.monthProductivityGraph.chartOptions"
-                    [colors]="this.monthProductivityGraph.chartColors"
-                    [legend]="this.monthProductivityGraph.chartLegend"
-                    [chartType]="this.monthProductivityGraph.chartType"
-                    [plugins]="this.monthProductivityGraph.chartPlugins">
-                </canvas>
+                        [datasets]="this.monthProductivityGraph.chartData"
+                        [labels]="this.monthProductivityGraph.chartLabels"
+                        [options]="this.monthProductivityGraph.chartOptions"
+                        [colors]="this.monthProductivityGraph.chartColors"
+                        [legend]="this.monthProductivityGraph.chartLegend"
+                        [chartType]="this.monthProductivityGraph.chartType"
+                        [plugins]="this.monthProductivityGraph.chartPlugins">
+                    </canvas>
                 </div>
-                
             </div>
 
             <div class="monthGraph quarter">
                 <p class="graphTitle">Month Sleep Quality</p>
+                <div class="w-full h-5/6 absolute bottom-1 flex items-center justify-center">
+                    <canvas id="monthPie" baseChart height="180" width="180"
+                        [datasets]="this.monthSleepQualityGraph.chartData"
+                        [labels]="this.monthSleepQualityGraph.chartLabels"
+                        [options]="this.monthSleepQualityGraph.chartOptions"
+                        [colors]="this.monthSleepQualityGraph.chartColors"
+                        [legend]="this.monthSleepQualityGraph.chartLegend"
+                        [chartType]="this.monthSleepQualityGraph.chartType"
+                        [plugins]="this.monthSleepQualityGraph.chartPlugins">
+                    </canvas>
+                </div>
             </div>
 
             <div class="monthGraph quarter">
