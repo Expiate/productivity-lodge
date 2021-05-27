@@ -17,7 +17,7 @@
         <div class="monthStats">
             <p class="text-center text-xl">Average Mood</p>
             <div class="w-full flex flex-row gap-2 justify-center content-around">
-                <p class="opacity-0 text-lg font-bold text-green-600">{{this.averageComp[0]}}%</p>
+                <p *ngIf="this.comparationsAvailable == true" class="opacity-0 text-lg font-bold text-green-600">{{this.averageComp[0]}}%</p>
                 <p class="text-center text-2xl font-bold">{{this.monthAverage}}/5</p>
                 <div *ngIf="this.comparationsAvailable == true"
                     class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">

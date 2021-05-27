@@ -130,12 +130,12 @@ export class TimeReviewComponent implements OnInit {
 
   calculateStats() {
     if(this.isYearDataAvailable) {
-      this.yearAverages = this.calcMoodAverage(Object.assign([], this.yearData), this.loggedYear)
+      this.yearAverages = this.calcAverage(Object.assign([], this.yearData), this.loggedYear)
       console.log('Average Year :' + this.yearAverages)
     }
 
     if (this.isMonthDataAvailable) {
-      this.monthAverages = this.calcMoodAverage(Object.assign([], this.monthData), this.loggedMonth)
+      this.monthAverages = this.calcAverage(Object.assign([], this.monthData), this.loggedMonth)
       console.log('Average Month :' + this.monthAverages)
 
       if(this.isYearDataAvailable) {
@@ -147,7 +147,7 @@ export class TimeReviewComponent implements OnInit {
     }
   }
 
-  calcMoodAverage(array: any[], length: number): any[] {
+  calcAverage(array: any[], length: number): any[] {
     for (let i = 0; i < array.length; i++) {
       array[i] /= length
       array[i] = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(array[i]))
@@ -167,17 +167,15 @@ export class TimeReviewComponent implements OnInit {
   createGraphs() {
     if (this.isYearDataAvailable == true) {
       this.createTotalYearGraph()
-      this.createAverageYearGraph()
     }
 
     if (this.isMonthDataAvailable == true) {
       this.createTotalMonthGraph()
-      this.createAverageMonthGraph()
+
     }
   }
 
   createTotalMonthGraph() {
-
     this.totalMonthGraph.chartData = [
       { data: [0], label: 'Sleep' },
       { data: [0], label: 'Work' },
@@ -245,16 +243,72 @@ export class TimeReviewComponent implements OnInit {
     this.totalMonthGraph.chartType = 'bar'
   }
 
-  createAverageMonthGraph() {
-
-  }
-
   createTotalYearGraph() {
+    this.totalYearGraph.chartData = [
+      { data: [0], label: 'Sleep' },
+      { data: [0], label: 'Work' },
+      { data: [0], label: 'Leisure' },
+      { data: [0], label: 'PD' },
+      { data: [0], label: 'Others' }
+    ]
 
-  }
+    this.totalYearGraph.chartData = null
 
-  createAverageYearGraph() {
+    this.totalYearGraph.chartData = [
+      { data: [this.yearData[0]], label: 'Sleep' },
+      { data: [this.yearData[1]], label: 'Work' },
+      { data: [this.yearData[2]], label: 'Leisure' },
+      { data: [this.yearData[3]], label: 'PD' },
+      { data: [this.yearData[4]], label: 'Others' }
+    ]
 
+    this.totalYearGraph.chartLabels = []
+    this.totalYearGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'top',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.totalYearGraph.chartColors = [
+      {
+        borderColor: 'black',
+        backgroundColor: '#206a5d',
+      },
+      {
+        backgroundColor: '#81b214'
+      },
+      {
+        backgroundColor: '#ffcc29'
+      },
+      {
+        backgroundColor: '#f58634'
+      },
+      {
+        backgroundColor: '#c8c2bc'
+      }
+    ]
+    this.totalYearGraph.chartLegend = true
+    this.totalYearGraph.chartPlugins = []
+    this.totalYearGraph.chartType = 'bar'
   }
 
   scrollTop() {

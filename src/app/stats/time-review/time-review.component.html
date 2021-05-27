@@ -20,7 +20,57 @@
             </div>
     
             <div class="monthStats1">
-                <p class="w-full text-center text-lg pl-2">You have slept for an average of {{this.monthAverages[0]}} hours a day</p>
+                <div class="w-full flex flex-row gap-2 justify-center content-center">
+                    <p *ngIf="this.comparationsAvailable == true" class=" opacity-0 w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[0]}}%</p>
+                    <p class="w-auto text-center text-lg pl-2">You have slept for an average of {{this.monthAverages[0]}} hours a day</p>
+                    <div *ngIf="this.comparationsAvailable == true" class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">
+                        <div *ngIf="this.averageComp[0] < 0;else plusAC1">
+                            <p class="w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[0]}}%</p>
+                        </div>
+                    </div>
+                    <ng-template #plusAC1>
+                        <p class="w-auto h-auto text-center text-lg font-bold text-green-600">+{{this.averageComp[0]}}%</p>
+                    </ng-template>
+                </div>
+
+                <div class="w-full flex flex-row gap-2 justify-center content-center">
+                    <p *ngIf="this.comparationsAvailable == true" class=" opacity-0 w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[1]}}%</p>
+                    <p class="w-auto text-center text-lg pl-2">You have been working for {{this.monthAverages[1]}} hours a day</p>
+                    <div *ngIf="this.comparationsAvailable == true" class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">
+                        <div *ngIf="this.averageComp[1] < 0;else plusAC2">
+                            <p class="w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[1]}}%</p>
+                        </div>
+                    </div>
+                    <ng-template #plusAC2>
+                        <p class="w-auto h-auto text-center text-lg font-bold text-green-600">+{{this.averageComp[1]}}%</p>
+                    </ng-template>
+                </div>
+
+                <div class="w-full flex flex-row gap-2 justify-center content-center">
+                    <p *ngIf="this.comparationsAvailable == true" class=" opacity-0 w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[2]}}%</p>
+                    <p class="w-auto text-center text-lg pl-2">You have enjoyed some leisure time for {{this.monthAverages[2]}} hours a day</p>
+                    <div *ngIf="this.comparationsAvailable == true" class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">
+                        <div *ngIf="this.averageComp[2] < 0;else plusAC3">
+                            <p class="w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[2]}}%</p>
+                        </div>
+                    </div>
+                    <ng-template #plusAC3>
+                        <p class="w-auto h-auto text-center text-lg font-bold text-green-600">+{{this.averageComp[2]}}%</p>
+                    </ng-template>
+                </div>
+
+                <div class="w-full flex flex-row gap-2 justify-center content-center">
+                    <p *ngIf="this.comparationsAvailable == true" class=" opacity-0 w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[3]}}%</p>
+                    <p class="w-auto text-center text-lg pl-2">You have developed yourself for {{this.monthAverages[3]}} hours a day</p>
+                    <div *ngIf="this.comparationsAvailable == true" class="w-auto h-auto flex flex-row mb-1 gap-1 justify-items-center content-center">
+                        <div *ngIf="this.averageComp[3] < 0;else plusAC4">
+                            <p class="w-auto h-auto text-center text-lg font-bold text-red-600">{{this.averageComp[3]}}%</p>
+                        </div>
+                    </div>
+                    <ng-template #plusAC4>
+                        <p class="w-auto h-auto text-center text-lg font-bold text-green-600">+{{this.averageComp[3]}}%</p>
+                    </ng-template>
+                </div>
             </div>
         </div>
 
@@ -31,6 +81,23 @@
                     <p class="text-center text-xl font-bold">Year Schedule</p>
                 </div>
                 <p class="text-center text-lg">Days: {{this.loggedYear}}</p>
+            </div>
+
+            <div class="monthGraph">
+                <p class="graphTitle"></p>
+                <canvas baseChart height="300" width="450" 
+                    [datasets]="this.totalYearGraph.chartData" [options]="this.totalYearGraph.chartOptions"
+                    [labels]="this.totalYearGraph.chartLabels"
+                    [colors]="this.totalYearGraph.chartColors" [legend]="this.totalYearGraph.chartLegend"
+                    [chartType]="this.totalYearGraph.chartType" [plugins]="this.totalYearGraph.chartPlugins">
+                </canvas>
+            </div>
+
+            <div class="monthStats1">
+                <p class="w-full text-center text-lg pl-2">You have slept for an average of {{this.yearAverages[0]}} hours a day</p>
+                <p class="w-full text-center text-lg pl-2">You have been working for {{this.yearAverages[1]}} hours a day</p>
+                <p class="w-full text-center text-lg pl-2">You have enjoyed some leisure time for {{this.yearAverages[2]}} hours a day</p>
+                <p class="w-full text-center text-lg pl-2">You have developed yourself for {{this.yearAverages[3]}} hours a day</p>
             </div>
         </div>
 

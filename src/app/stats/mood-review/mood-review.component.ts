@@ -136,11 +136,11 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
 
   calculateStats() {
     if(this.isYearDataAvailable) {
-      this.yearAverage = this.calcMoodAverage(this.moodData.year)
+      this.yearAverage = this.calcAverage(this.moodData.year)
     }
 
     if (this.isMonthDataAvailable) {
-      this.monthAverage = this.calcMoodAverage(this.moodData.month)
+      this.monthAverage = this.calcAverage(this.moodData.month)
       console.log(this.monthAverage)
 
       if(this.isYearDataAvailable) {
@@ -169,7 +169,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
-  calcMoodAverage(array: any[]): number {
+  calcAverage(array: any[]): number {
     let sum: number = 0
     for (let i = 0; i < array.length; i++) {
       sum = sum + (array[i].mood + 1)
