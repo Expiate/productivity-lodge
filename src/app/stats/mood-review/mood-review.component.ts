@@ -49,6 +49,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2
   ) { }
   ngAfterViewInit(): void {
+    this.monthView.nativeElement.scrollIntoView()
   }
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
-import { ElementRef } from '@angular/core';
+import { AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ViewChild } from '@angular/core';
+import { HostListener } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import * as Chart from 'chart.js';
 import { StorageService } from 'src/app/common/services/storage.service';
@@ -12,7 +13,7 @@ import { chart } from '../common/models/chart.model';
   templateUrl: './time-review.component.html',
   styleUrls: ['./time-review.component.scss']
 })
-export class TimeReviewComponent implements OnInit {
+export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('body', { read: ElementRef }) public bodyView: ElementRef<any>;
   @ViewChild('month', { read: ElementRef }) public monthView: ElementRef<any>;
   @ViewChild('year', { read: ElementRef }) public yearView: ElementRef<any>;
@@ -54,7 +55,17 @@ export class TimeReviewComponent implements OnInit {
     private renderer: Renderer2
   ) { }
 
+  ngAfterViewInit(): void {
+    this.monthView.nativeElement.scrollIntoView()
+  }
+
+  @HostListener('unloaded')
+  ngOnDestroy() {
+    console.log('time review destroy')
+  }
+
   ngOnInit(): void {
+    this.state = 1
     Chart.defaults.global.defaultFontColor = '#FFFFFF'
     Chart.defaults.global.defaultFontFamily = 'Montserrat'
     Chart.defaults.global.animation.duration = 1500
