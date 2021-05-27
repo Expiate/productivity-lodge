@@ -229,6 +229,14 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
         labels: {
           boxWidth: 30
         }
+      },
+      tooltips: {
+        enabled: true,
+        callbacks: {
+          title: function () {
+            return 'Hours'
+          }
+        }
       }
     }
     this.totalMonthGraph.chartColors = [
@@ -296,6 +304,14 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
         },
         labels: {
           boxWidth: 30
+        }
+      },
+      tooltips: {
+        enabled: true,
+        callbacks: {
+          title: function () {
+            return 'Hours'
+          }
         }
       }
     }

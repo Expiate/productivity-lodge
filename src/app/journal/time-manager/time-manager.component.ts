@@ -48,6 +48,14 @@ export class TimeManagerComponent implements OnInit {
         }
       }],
     },
+    tooltips: {
+      enabled: true,
+      callbacks: {
+        title: function () {
+          return 'Hours'
+        }
+      }
+    }
   };
 
   public lineChartColors: Color[] = [
