@@ -78,6 +78,10 @@ body {
 
     border-radius: 20px;
     background-color: $primary;
+
+    &.noData {
+        width: 70%;
+    }
 }
 
 .monthStats1 {

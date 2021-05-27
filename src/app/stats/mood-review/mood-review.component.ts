@@ -21,7 +21,7 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
   
   public moodData: cache
   public userColors: any[]
-  
+
   // Month
   public monthData = [0, 0, 0, 0, 0]
 
@@ -60,18 +60,29 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     console.log(this.userColors)
     console.log(this.moodData)
 
-    if(this.moodData.year == undefined) {
-      console.log('No Data')
-    } else {
-      this.isYearDataAvailable = true
-      this.loadYearData()
-    }
-
     if(this.moodData.month == undefined) {
       console.log('No Month Mood Data')
     } else {
       this.isMonthDataAvailable = true
       this.loadMonthData()
+    }
+
+    if(this.moodData.year == undefined) {
+      console.log('No Data')
+    } else {
+      if(this.isMonthDataAvailable) {
+        if(this.moodData.year.length == this.moodData.month.length) {
+          this.isYearDataAvailable = false
+        } else {
+          this.isYearDataAvailable = true
+          this.loadYearData()
+          console.log(this.yearData)
+        }
+      } else {
+        this.isYearDataAvailable = true
+        this.loadYearData()
+        console.log(this.yearData)
+      }
     }
 
     this.calculateStats()
@@ -132,9 +143,11 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
       this.monthAverage = this.calcMoodAverage(this.moodData.month)
       console.log(this.monthAverage)
 
-      // Comparations
-      this.comparationsAvailable = true
-      this.averageComp = this.calcAverageComp()
+      if(this.isYearDataAvailable) {
+        // Comparations
+        this.comparationsAvailable = true
+        this.averageComp = this.calcAverageComp()
+      }
     }
 
     // Corrections and Formating

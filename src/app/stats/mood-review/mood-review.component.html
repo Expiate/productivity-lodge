@@ -1,7 +1,7 @@
 <html>
 
 <body #body>
-    <div #month *ngIf="this.isMonthDataAvailable == true" class="moodContainer">
+    <div #month *ngIf="this.isMonthDataAvailable == true; else noMonth" class="moodContainer">
         <div class="pagTitle">
             <p class="text-center text-xl font-bold">This Month</p>
         </div>
@@ -33,7 +33,17 @@
         </div>
     </div>
 
-    <div #year class="moodContainer">
+    <ng-template #noMonth>
+        <div #month class="moodContainer">
+            <div class="w-full h-auto flex flex-row relative justify-center items-center gap-8">
+                <div class="pagTitle noData">
+                    <p class="text-center text-xl font-bold">NOT ENOUGH DATA TO DISPLAY MONTH STATS</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div *ngIf="this.isYearDataAvailable == true;else noYear" #year class="moodContainer">
         <div class="pagTitle">
             <p class="text-center text-xl font-bold">This Year</p>
         </div>
@@ -50,6 +60,16 @@
             <p class="text-center text-2xl font-bold">{{this.yearAverage}}/5</p>
         </div>
     </div>
+
+    <ng-template #noYear>
+        <div #year class="moodContainer">
+            <div class="w-full h-auto flex flex-row relative justify-center items-center gap-8">
+                <div class="pagTitle noData">
+                    <p class="text-center text-xl font-bold">NOT ENOUGH DATA TO DISPLAY YEAR STATS</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 
     <div #buttons [@stickyScroll]="state ? 'up' : 'down'" class="stickyButtons">
         <button class="button" (click)="scrollTop()">

@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div #year class="partContainer">
+        <div #year *ngIf="this.isYearDataAvailable == true; else noYear" class="partContainer">
             <div class="w-full h-auto flex flex-row absolute top-5 justify-center items-center gap-8">
                 <p class="opacity-0 text-center text-lg">Days: {{this.loggedYear}}</p>
                 <div class="pagTitle">
@@ -33,6 +33,16 @@
                 <p class="text-center text-lg">Days: {{this.loggedYear}}</p>
             </div>
         </div>
+
+        <ng-template #noYear>
+            <div #year class="partContainer">
+                <div class="w-full h-auto flex flex-row relative justify-center items-center gap-8">
+                    <div class="pagTitle noData">
+                        <p class="text-center text-xl font-bold">NOT ENOUGH DATA TO DISPLAY YEAR STATS</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
         
         <div #stats class="partContainer">
             

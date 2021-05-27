@@ -64,9 +64,13 @@ export class TimeReviewComponent implements OnInit {
     if(this.journalData.year == undefined) {
       console.log('No Data')
     } else {
-      this.isYearDataAvailable = true
-      this.loadYearData()
-      console.log(this.yearData)
+      if(this.journalData.year.length == this.journalData.month.length) {
+        this.isYearDataAvailable = false
+      } else {
+        this.isYearDataAvailable = true
+        this.loadYearData()
+        console.log(this.yearData)
+      }
     }
 
     if(this.journalData.month == undefined) {
@@ -134,10 +138,12 @@ export class TimeReviewComponent implements OnInit {
       this.monthAverages = this.calcMoodAverage(Object.assign([], this.monthData), this.loggedMonth)
       console.log('Average Month :' + this.monthAverages)
 
-      // Comparations
-      this.comparationsAvailable = true
-      this.averageComp = this.calcAverageComp(Object.assign([], this.monthAverages), Object.assign([], this.yearAverages))
-      console.log('Average Comparison :' + this.averageComp)
+      if(this.isYearDataAvailable) {
+        // Comparations
+        this.comparationsAvailable = true
+        this.averageComp = this.calcAverageComp(Object.assign([], this.monthAverages), Object.assign([], this.yearAverages))
+        console.log('Average Comparison :' + this.averageComp)
+      }
     }
   }
 
