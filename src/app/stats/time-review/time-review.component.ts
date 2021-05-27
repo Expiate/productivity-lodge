@@ -50,6 +50,11 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
   public totalYearGraph: chart = new chart()
   public averageYearGraph: chart = new chart()
 
+  public monthProductivityGraph: chart = new chart()
+  public monthSleepQualityGraph: chart = new chart()
+  public yearProductivityGraph: chart = new chart()
+  public yearSleepQualityGraph: chart = new chart()
+
   constructor(
     private localStorage: StorageService,
     private renderer: Renderer2
@@ -182,7 +187,7 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (this.isMonthDataAvailable == true) {
       this.createTotalMonthGraph()
-
+      this.createMonthProductivityGraph()
     }
   }
 
@@ -336,6 +341,54 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.totalYearGraph.chartLegend = true
     this.totalYearGraph.chartPlugins = []
     this.totalYearGraph.chartType = 'bar'
+  }
+
+  createMonthProductivityGraph() {
+    let positive = (100 * this.monthData[5]) / (this.loggedMonth * 10)
+    positive = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(positive))
+    let negative = 100 - positive
+    negative = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(negative))
+    
+    this.monthProductivityGraph.chartData = [
+      {
+        data: [positive, negative]
+      }
+    ]
+
+    this.monthProductivityGraph.chartLabels = ['Productive %', 'Non Productive %']
+    this.monthProductivityGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.monthProductivityGraph.chartColors = [
+      {
+        backgroundColor: ['rgb(5, 150, 105)', 'rgba(220, 38, 38)']
+      },
+    ]
+    this.monthProductivityGraph.chartLegend = true
+    this.monthProductivityGraph.chartPlugins = []
+    this.monthProductivityGraph.chartType = 'doughnut'
   }
 
   scrollTop() {
