@@ -9,6 +9,7 @@ import { TimeReviewComponent } from './time-review/time-review.component';
 import { MonthReviewComponent } from './month-review/month-review.component';
 import { ChartsModule } from 'ng2-charts';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { ModalModule } from '../_modal';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HowToUseComponent } from './how-to-use/how-to-use.component';
   imports: [
     CommonModule,
     StatsRoutingModule,
-    ChartsModule
+    ChartsModule,
+    ModalModule
   ]
 })
 export class StatsModule { }

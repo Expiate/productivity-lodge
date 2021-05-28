@@ -89,4 +89,30 @@
     </body>
 </ng-template>
 
+<jw-modal id="infoScore">
+    <div class="modal active">
+        <div class="content">
+            <p class="font-bold text-center text-textPrimary text-2xl mb-5">Month Score</p>
+            <ul class="flex flex-col content-center justify-items-center pt-4 text-base">
+                <li>
+                    <p class="text-textPrimary pb-2">You need to log at least 25 days of the past month to get access.
+                    </p>
+                </li>
+                <li>
+                    <p class="text-textPrimary pb-2">The Score will always be of the past month.
+                    </p>
+                </li>
+                <li>
+                    <p class="text-textPrimary pb-2">If you cannot access now, you'll have to wait until next month.
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+        <div class="buttons">
+            <span class="cursor-pointer" (click)="closeModal('infoScore')">Understood</span>
+        </div>
+    </div>
+</jw-modal>
+
 </html>

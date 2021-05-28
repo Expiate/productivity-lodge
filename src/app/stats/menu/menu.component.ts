@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/common/services/storage.service';
+import { ModalService } from 'src/app/_modal';
 import { cache } from '../common/models/cache.model';
 import { ApiStatsService } from '../common/services/api-stats.service';
 
@@ -35,7 +36,8 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private statsService: ApiStatsService,
     private toastr: ToastrService,
-    private localStorage: StorageService
+    private localStorage: StorageService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +75,7 @@ export class MenuComponent implements OnInit {
   }
 
   public isReviewAvailable(): boolean {
-    let month = this.today.getMonth() + 1
+    let month = this.today.getMonth()
     let formatMonth = month.toString()
     if (formatMonth.length == 1) {
       formatMonth = '0' + formatMonth
@@ -104,7 +106,7 @@ export class MenuComponent implements OnInit {
       response = false
     })
     // TODO Delete this in prod
-    response = true
+    response = false
     return response
   }
 
@@ -185,6 +187,7 @@ export class MenuComponent implements OnInit {
 
   public showNotEnoughDataError() {
     this.errorToast('', 'Not enough data')
+    this.openModal('infoScore')
   }
 
   public async lock() {
@@ -233,6 +236,14 @@ export class MenuComponent implements OnInit {
       progressAnimation: 'decreasing',
       timeOut: 3000
     });
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 
 }
