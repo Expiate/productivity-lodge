@@ -183,6 +183,8 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
   createGraphs() {
     if (this.isYearDataAvailable == true) {
       this.createTotalYearGraph()
+      this.createYearProductivityGraph()
+      this.createYearSleepQualityGraphs()
     }
 
     if (this.isMonthDataAvailable == true) {
@@ -441,7 +443,7 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   createYearProductivityGraph() {
-    let positive = (100 * this.yearData[5]) / (this.loggedMonth * 10)
+    let positive = (100 * this.yearData[5]) / (this.loggedYear * 10)
     positive = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(positive))
     let negative = 100 - positive
     negative = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(negative))
@@ -489,7 +491,51 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   createYearSleepQualityGraphs() {
+    let positive = (100 * this.yearData[6]) / (this.loggedYear * 10)
+    positive = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(positive))
+    let negative = 100 - positive
+    negative = Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(negative))
+    
+    this.yearSleepQualityGraph.chartData = [
+      {
+        data: [positive, negative]
+      }
+    ]
 
+    this.yearSleepQualityGraph.chartLabels = ['Good Quality %', 'Bad Quality %']
+    this.yearSleepQualityGraph.chartOptions = {
+      responsive: false,
+      responsiveAnimationDuration: 1500,
+      animation: {
+        duration: 1500
+      },
+      layout : {
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+        },
+        align: 'start'
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        padding : {
+          right: 0,
+        },
+        labels: {
+          boxWidth: 30
+        }
+      }
+    }
+    this.yearSleepQualityGraph.chartColors = [
+      {
+        backgroundColor: ['rgb(5, 150, 105)', 'rgba(220, 38, 38)']
+      },
+    ]
+    this.yearSleepQualityGraph.chartLegend = true
+    this.yearSleepQualityGraph.chartPlugins = []
+    this.yearSleepQualityGraph.chartType = 'doughnut'
   }
 
   scrollTop() {
