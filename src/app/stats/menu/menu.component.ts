@@ -42,6 +42,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // TODO delete custom dev entry
     this.today = new Date('2021-06-02')
     this.reviewState = this.isReviewAvailable()
     this.fetchData()
