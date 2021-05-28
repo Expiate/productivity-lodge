@@ -7,6 +7,7 @@ const DAY_KEY = 'day-data';
 const TEMP_KEY = 'temp-data';
 const CACHE_DAY_KEY = 'cache-day-data';
 const CACHE_JOURNAL_KEY = 'cache-journal-data';
+const CACHE_REVIEW_KEY = 'cache-review-data';
 
 @Injectable({
   providedIn: 'root'
@@ -133,9 +134,21 @@ export class StorageService {
     return JSON.parse(cacheJournal)
   }
 
+  saveCacheReviewData(reviewData) {
+    const jsonString = JSON.stringify(reviewData)
+    localStorage.setItem(CACHE_REVIEW_KEY, jsonString)
+    console.log('Review Data Saved')
+  }
+
+  getCacheReviewData() {
+    let reviewData = localStorage.getItem(CACHE_REVIEW_KEY)
+    return JSON.parse(reviewData)
+  }
+
   deleteCache() {
     localStorage.removeItem(CACHE_DAY_KEY)
     localStorage.removeItem(CACHE_JOURNAL_KEY)
+    localStorage.removeItem(CACHE_REVIEW_KEY)
     console.log('Cache Removed')
   }
 }
