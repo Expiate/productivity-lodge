@@ -1,0 +1,75 @@
+//colors
+$primary: #1D1D1D;
+$secondary: #292929;
+$accent: #ea4c89;
+$white: #fff;
+$gray: #9b9b9b;
+$green:#00c06d;
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    justify-content: space-around;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.score {
+    width: 20%;
+    height: 15%;
+    font-weight: 600;
+    font-size: 36px;
+    text-align: center;
+    background-color: $primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    position: relative;
+
+    .title {
+        top: -35px;
+        position: absolute;
+        font-weight: 800;
+        text-align: center;
+        font-size: 24px;
+    }
+}
+
+.monthStats1 {
+    width: 80%;
+    height: auto;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20px;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+    background-color: $primary;
+
+    .title {
+        top: -35px;
+        position: absolute;
+        font-weight: 800;
+        text-align: center;
+        font-size: 24px;
+    }
+}

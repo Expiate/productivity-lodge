@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
   // Data
   public dayCache: cache = new cache()
   public journalCache: cache = new cache()
+  public reviewData: any = []
 
   // This signals when the data has been fetched
   public dataDelivered: Promise<boolean>
@@ -41,7 +42,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.today = new Date()
+    this.today = new Date('2021-06-02')
     this.reviewState = this.isReviewAvailable()
     this.fetchData()
     this.router.navigate(['stats/menu/howToUse'])
@@ -91,6 +92,7 @@ export class MenuComponent implements OnInit {
       console.log('Days Retrieved: ' + resp['body'].length)
       let days = resp['body']
 
+      this.reviewData = days
       this.lock()
       
       if (days.length >= 25) {
@@ -106,7 +108,7 @@ export class MenuComponent implements OnInit {
       response = false
     })
     // TODO Delete this in prod
-    response = false
+    response = true
     return response
   }
 
@@ -197,6 +199,7 @@ export class MenuComponent implements OnInit {
       this.dataDelivered = Promise.resolve(true)
       this.localStorage.saveCacheDay(this.dayCache)
       this.localStorage.saveCacheJournal(this.journalCache)
+      this.localStorage.saveCacheReviewData(this.reviewData)
       console.log('Errors: ' + this.errors) 
     }
   }
