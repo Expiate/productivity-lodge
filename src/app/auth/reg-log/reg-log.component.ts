@@ -143,6 +143,8 @@ export class RegLogComponent implements OnInit {
         console.log(err)
       }
 
+    } else {
+      this.showLoginInvalid()
     }
   }
 
