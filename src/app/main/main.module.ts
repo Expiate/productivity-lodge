@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ModalModule } from '../_modal';
 import { NgxColorsModule } from 'ngx-colors';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalModule,
     NgxColorsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ]
 })
 export class MainModule { }

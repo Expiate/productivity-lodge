@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClipboardService } from 'ngx-clipboard';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dev-info',
@@ -8,8 +10,12 @@ import { Router } from '@angular/router';
 })
 export class DevInfoComponent implements OnInit {
 
+  private gmail: string = "jmsanchezbonilla@gmail.com"
+
   constructor(
     private router: Router,
+    private clipboard: ClipboardService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -24,5 +30,19 @@ export class DevInfoComponent implements OnInit {
   }
 
   copyGmailToClipboard() {
+    this.clipboard.copyFromContent(this.gmail)
+    this.successToast('', 'Gmail copied to Clipboard')
+  }
+
+  successToast(title: string, content: string) {
+    if (title == null) {
+      title = ""
+    }
+    this.toastr.success(content, title, {
+      positionClass: 'toast-bottom-right',
+      progressBar: false,
+      progressAnimation: 'decreasing',
+      timeOut: 3000
+    });
   }
 }
