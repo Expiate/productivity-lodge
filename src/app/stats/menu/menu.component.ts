@@ -107,14 +107,13 @@ export class MenuComponent implements OnInit {
       this.lock()
       response = false
     })
-    // TODO Delete this in prod
     return response
   }
 
   public fetchData() {
     this.fetchManager(0).subscribe(resp => {
       // On Success
-      console.log('Success: ' + resp['status'])
+      console.log('Success Mood Month: ' + resp['status'])
       this.dayCache.month = resp['body']
       this.lock()
 
@@ -127,7 +126,7 @@ export class MenuComponent implements OnInit {
 
     this.fetchManager(1).subscribe(resp => {
       // On Success
-      console.log('Success: ' + resp['status'])
+      console.log('Success Mood Year: ' + resp['status'])
       this.dayCache.year = resp['body']
       this.lock()
 
@@ -141,7 +140,7 @@ export class MenuComponent implements OnInit {
 
     this.fetchManager(2).subscribe(resp => {
       // On Success
-      console.log('Success: ' + resp['status'])
+      console.log('Success Journal Month: ' + resp['status'])
       this.journalCache.month = resp['body']
       this.lock()
 
@@ -155,7 +154,7 @@ export class MenuComponent implements OnInit {
 
     this.fetchManager(3).subscribe(resp => {
       // On Success
-      console.log('Success: ' + resp['status'])
+      console.log('Success Journal Year: ' + resp['status'])
       this.journalCache.year = resp['body']
       this.lock()
 
@@ -196,6 +195,7 @@ export class MenuComponent implements OnInit {
     console.log('Lock: ' + this.lockCounter)
     if(this.lockCounter == 5) {
       this.dataDelivered = Promise.resolve(true)
+      this.localStorage.deleteCache()
       this.localStorage.saveCacheDay(this.dayCache)
       this.localStorage.saveCacheJournal(this.journalCache)
       this.localStorage.saveCacheReviewData(this.reviewData)
