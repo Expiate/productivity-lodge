@@ -1,7 +1,7 @@
 {
   "name": "productivity-lodge",
   "description": "An App to boost your productivity",
-  "version": "0.1.1a",
+  "version": "1.0",
   "author": "Expiate",
   "main": "main.js",
   "scripts": {
