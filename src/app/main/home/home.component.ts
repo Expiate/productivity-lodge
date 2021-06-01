@@ -70,6 +70,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['auth/'])
   }
 
+  /**
+   * Takes the new colors HEX values and sends them in a Http Request to change the
+   * old ones from the DB to this new ones
+   * @param colors JSON Object
+   */
   changeColorPalette(colors : { color0: string, color1: string, color2: string, color3: string, color4: string}) {
     let JSON = {
       'colors': [

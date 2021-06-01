@@ -52,6 +52,11 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['main'])
   }
 
+  /**
+   * Switches the RouterOutlet between the available routes
+   * @param id Menu ID (Number)
+   * @returns void
+   */
   selectMenu(id: number) {
     if (this.selectedMenu == id) {
       this.selectedMenu = 0
@@ -75,6 +80,11 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  /**
+   * Checks in the DB is there is enough data to flag the Review Month functionality as
+   * available or not available due a lack of data
+   * @returns boolean
+   */
   public isReviewAvailable(): boolean {
     let month = this.today.getMonth()
     let formatMonth = month.toString()
@@ -110,6 +120,9 @@ export class MenuComponent implements OnInit {
     return response
   }
 
+  /**
+   * Trys to fetch all required data from the DB using today's date
+   */
   public fetchData() {
     this.fetchManager(0).subscribe(resp => {
       // On Success
@@ -166,6 +179,11 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  /**
+   * Contains all availables API Routes to get the desired data
+   * @param i API Route ID (Number)
+   * @returns Observable
+   */
   public fetchManager(i: number):  Observable<HttpResponse<any>> {
     let year = this.today.getFullYear().toString()
     let month = (this.today.getMonth() + 1).toString()
@@ -190,6 +208,11 @@ export class MenuComponent implements OnInit {
     this.openModal('infoScore')
   }
 
+  /**
+   * This function acts as a lock, every time it gets called increments a
+   * counter. When the counter gets to the full value it executes it code.
+   * This is usefull to check when all the HttpResponses has been fetched
+   */
   public async lock() {
     this.lockCounter = this.lockCounter + 1
     console.log('Lock: ' + this.lockCounter)

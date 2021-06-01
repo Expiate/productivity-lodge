@@ -17,7 +17,7 @@ export class StorageService {
 
   constructor() { }
 
-  saveToken(token) {
+  saveToken(token: any) {
     localStorage.setItem(TOKEN_KEY, token)
     console.log('Token Saved')
   }
@@ -31,7 +31,7 @@ export class StorageService {
     console.log('Token Removed')
   }
 
-  saveUser(user) {
+  saveUser(user: any) {
     const jsonString = JSON.stringify(user)
     localStorage.setItem(USER_KEY, jsonString)
     console.log('User Saved')
@@ -66,7 +66,7 @@ export class StorageService {
     console.log('Storage Cleared')
   }
 
-  saveTemp(temp) {
+  saveTemp(temp: any) {
     const jsonString = JSON.stringify(temp)
     localStorage.setItem(TEMP_KEY, jsonString)
     console.log('Temp Data Saved')
@@ -112,7 +112,7 @@ export class StorageService {
     return true
   }
 
-  saveCacheDay(cacheDay) {
+  saveCacheDay(cacheDay: any) {
     const jsonString = JSON.stringify(cacheDay)
     localStorage.setItem(CACHE_DAY_KEY, jsonString)
     console.log('Cache Day Saved')
@@ -123,7 +123,7 @@ export class StorageService {
     return JSON.parse(cacheDay)
   }
 
-  saveCacheJournal(cacheJournal) {
+  saveCacheJournal(cacheJournal: any) {
     const jsonString = JSON.stringify(cacheJournal)
     localStorage.setItem(CACHE_JOURNAL_KEY, jsonString)
     console.log('Cache Journal Saved')
@@ -134,7 +134,7 @@ export class StorageService {
     return JSON.parse(cacheJournal)
   }
 
-  saveCacheReviewData(reviewData) {
+  saveCacheReviewData(reviewData: any) {
     const jsonString = JSON.stringify(reviewData)
     localStorage.setItem(CACHE_REVIEW_KEY, jsonString)
     console.log('Review Data Saved')

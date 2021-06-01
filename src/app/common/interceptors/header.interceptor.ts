@@ -14,6 +14,13 @@ export class HeaderInterceptor implements HttpInterceptor {
     private localStorage: StorageService
   ) {}
 
+  /**
+   * Intercepts all http request and attaches them an Authorization Header that
+   * contains the JWT
+   * @param request HttpRequest
+   * @param next HttpHandler
+   * @returns HttpRequest
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let jwt = this.localStorage.getToken()
 

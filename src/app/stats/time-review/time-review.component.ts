@@ -101,6 +101,9 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.createGraphs()
   }
 
+  /**
+   * Get the sums of all the values that contains the journals in a month
+   */
   loadMonthData() {
     this.loggedMonth = this.journalData.month.length
     for(let i = 0; i < this.loggedMonth; i++) {
@@ -120,6 +123,9 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     
   }
 
+    /**
+   * Get the sums of all the values that contains the journals in a year
+   */
   loadYearData() {
     this.loggedYear = this.journalData.year.length
     for(let i = 0; i < this.loggedYear; i++) {
@@ -138,12 +144,20 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  /**
+   * Calculates the hours in the day that are not being used in the schedule
+   * @param schedule JSON Object
+   * @returns Number
+   */
   calcOthers(schedule: any): number {
     let others: number
     others = 24 - schedule.sleep - schedule.work - schedule.leisure - schedule.personalDevelopment
     return others
   }
 
+  /**
+   * Calculate all requires stats using current data
+   */
   calculateStats() {
     if(this.isYearDataAvailable) {
       this.yearAverages = this.calcAverage(Object.assign([], this.yearData), this.loggedYear)
@@ -163,6 +177,12 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  /**
+   * Calculates the Average Values resulting Array of the values of an Array
+   * @param array 
+   * @param length 
+   * @returns Array
+   */
   calcAverage(array: any[], length: number): any[] {
     for (let i = 0; i < array.length; i++) {
       array[i] /= length
@@ -171,6 +191,12 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     return array
   }
 
+  /**
+   * Calculates the difference values of 2 arrays and returns a new array
+   * @param mAverage 
+   * @param yAverage 
+   * @returns Array
+   */
   calcAverageComp(mAverage: any[], yAverage: any[]): any[] {
     let diff: any[] = []
     for (let i = 0; i < mAverage.length; i++) {
@@ -180,6 +206,9 @@ export class TimeReviewComponent implements OnInit, OnDestroy, AfterViewInit {
     return diff
   }
 
+  /**
+   * Creates all required graphs using current data
+   */
   createGraphs() {
     if (this.isYearDataAvailable == true) {
       this.createTotalYearGraph()

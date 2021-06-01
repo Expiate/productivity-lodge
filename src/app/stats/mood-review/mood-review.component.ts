@@ -91,6 +91,9 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     console.log(this.monthData)
   }
 
+  /**
+   * Calculates the number of times that an specific mood value is repeated in a month
+   */
   loadMonthData() {
     for (let i = 0; i < this.moodData.month.length; i++) {
       switch(this.moodData.month[i].mood) {
@@ -113,6 +116,9 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Calculates the number of times that an specific mood value is repeated in a year
+   */
   loadYearData() {
     for (let i = 0; i < this.moodData.year.length; i++) {
       switch(this.moodData.year[i].mood) {
@@ -135,6 +141,9 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Calculates all the statistic that can be done using actual data
+   */
   calculateStats() {
     if(this.isYearDataAvailable) {
       this.yearAverage = this.calcAverage(this.moodData.year)
@@ -160,6 +169,10 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Attemps to create all the required graphs that can be created using
+   * actual data
+   */
   createGraphs() {
     if (this.isYearDataAvailable) {
       this.createYearPieGraph()
@@ -170,6 +183,11 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Calculates the Average of Mood Values given in the Array
+   * @param array Day Object Array
+   * @returns Number
+   */
   calcAverage(array: any[]): number {
     let sum: number = 0
     for (let i = 0; i < array.length; i++) {
@@ -179,6 +197,10 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     return sum
   }
 
+  /**
+   * Calculates the difference between the average values of the current year and month
+   * @returns Array[2]
+   */
   calcAverageComp(): any[2] {
     let diff = this.monthAverage - this.yearAverage
     diff = diff / this.yearAverage * 100
@@ -223,6 +245,9 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Loads all the Month Data into a Pie Graph
+   */
   createMonthPieGraph() {
 
     this.monthPie.chartData = [
@@ -275,6 +300,9 @@ export class MoodReviewComponent implements OnInit, AfterViewInit {
     this.monthPie.chartType = 'pie'
   }
 
+  /**
+   * Loads all the Year Data into a Pie Graph
+   */
   createYearPieGraph() {
 
     this.yearPie.chartData = [

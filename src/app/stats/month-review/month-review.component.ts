@@ -27,6 +27,9 @@ export class MonthReviewComponent implements OnInit {
     console.log(this.score)
   }
 
+  /**
+   * Calculates all the required data
+   */
   calcData() {
     this.getTotalHours()
     this.totalWorkHours = this.getTotalHours()
@@ -34,15 +37,23 @@ export class MonthReviewComponent implements OnInit {
     this.score = this.calcScore()
   }
 
+  /**
+   * Gets the Total Work hours of the month
+   * @returns Number
+   */
   getTotalHours() {
     this.totalDays = this.reviewCache.length
     let hours: number
     for (let i = 0; i < this.totalDays; i++) {
       hours += this.reviewCache[i].schedule.work
     }
-    return hours = hours
+    return hours
   }
 
+  /**
+   * Calculate how many of those total hours have been productive hours
+   * @returns Number
+   */
   calcProductiveHours() {
     let counter = 0
     for (let i = 0; i < this.totalDays; i++) {
@@ -51,6 +62,10 @@ export class MonthReviewComponent implements OnInit {
     return counter / this.totalDays
   }
 
+  /**
+   * Calculates the final score using the productivity formula
+   * @returns Number
+   */
   calcScore() {
     let totalScore: number = 0
     for (let i = 0; i < this.totalDays; i++) {

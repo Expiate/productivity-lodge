@@ -49,8 +49,11 @@ export class DaySelectorComponent implements OnInit {
       return color
     }
   }
-
-
+  /**
+   * Used to set a css class in the HTML using Angular ClassName Directive
+   * @param mood Mood Icon Identifier
+   * @returns string
+   */
   getMoodIcon(mood: number) {
     switch (mood) {
       case 0:
