@@ -27,10 +27,10 @@ body {
 }
 
 .score {
-    width: 20%;
-    height: 15%;
+    width: 25%;
+    height: 20%;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 44px;
     text-align: center;
     background-color: $primary;
     display: flex;
@@ -41,11 +41,11 @@ body {
     position: relative;
 
     .title {
-        top: -35px;
+        top: -50px;
         position: absolute;
         font-weight: 800;
         text-align: center;
-        font-size: 24px;
+        font-size: 36px;
     }
 }
 
@@ -72,4 +72,16 @@ body {
         text-align: center;
         font-size: 24px;
     }
+}
+
+.scoreContainer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: calc(100% - 220px);
+
+    justify-content: center;
+    align-items: center;
 }

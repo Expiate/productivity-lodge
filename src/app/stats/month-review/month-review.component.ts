@@ -57,17 +57,18 @@ export class MonthReviewComponent implements OnInit {
       console.log('----')
       let semiScore: number = 0
       let day: any = this.reviewCache[i]
+
       semiScore = (day.schedule.work * (day.productivityLevel / 10))
       console.log('Base: ' + semiScore)
-      while (day.schedule.personalDevelopment > 0) {
-        if (day.schedule.personalDevelopment >= 1) {
-          semiScore += day.schedule.personalDevelopment
-          day.schedule.personalDevelopment = 0
-        } else {
-          day.schedule.personalDevelopment = 0
-        }
+
+      if (day.schedule.personalDevelopment >= 1) {
+        semiScore += day.schedule.personalDevelopment
+        day.schedule.personalDevelopment = 0
+      } else {
+        day.schedule.personalDevelopment = 0
       }
-      console.log('Base + PD: ' +  semiScore)
+
+      console.log('Base + PD: ' + semiScore)
       if (day.schedule.sleep >= 8) {
         day.schedule.sleep -= 8
         if (day.schedule.sleep != 0) {
@@ -79,12 +80,14 @@ export class MonthReviewComponent implements OnInit {
       } else {
         semiScore -= 8 - day.schedule.sleep
       }
+
       console.log('Semi Final: ' + semiScore)
       if (semiScore > 10) {
         semiScore = 10
       }
+      
       console.log(semiScore)
-      totalScore += semiScore 
+      totalScore += semiScore
     }
     totalScore = (totalScore * 10) / this.totalDays
     return Number(new Intl.NumberFormat('en-us', { maximumFractionDigits: 2 }).format(totalScore))

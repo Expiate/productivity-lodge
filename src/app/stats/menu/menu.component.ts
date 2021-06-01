@@ -42,8 +42,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // TODO delete custom dev entry
-    this.today = new Date('2021-06-02')
+    this.today = new Date()
     this.reviewState = this.isReviewAvailable()
     this.fetchData()
     this.router.navigate(['stats/menu/howToUse'])
@@ -109,7 +108,6 @@ export class MenuComponent implements OnInit {
       response = false
     })
     // TODO Delete this in prod
-    response = true
     return response
   }
 
