@@ -19,7 +19,7 @@
         </div>
 
         <ng-template #reviewDisabled>
-            <div class="card disabled" (click)="showNotEnoughDataError()">
+            <div class="card disabled" (click)="showNotEnoughDataError(1)">
 
                 <div class="icon"><i class="material-icons md-36">insights</i></div>
                 <p class="title">Monthly Review</p>
@@ -38,7 +38,7 @@
         </div>
 
         <ng-template #timeDisabled>
-            <div class="card disabled" (click)="showNotEnoughDataError()">
+            <div class="card disabled" (click)="showNotEnoughDataError(2)">
 
                 <div class="icon"><i class="material-icons md-36">schedule</i></div>
                 <p class="title">Time</p>
@@ -57,7 +57,7 @@
         </div>
 
         <ng-template #moodDisabled>
-            <div class="card disabled" (click)="showNotEnoughDataError()">
+            <div class="card disabled" (click)="showNotEnoughDataError(3)">
 
                 <div class="icon"><i class="material-icons md-36">mood</i></div>
                 <p class="title">Mood</p>

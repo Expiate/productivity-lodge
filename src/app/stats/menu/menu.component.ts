@@ -203,9 +203,11 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  public showNotEnoughDataError() {
+  public showNotEnoughDataError(id: number) {
     this.errorToast('', 'Not enough data')
-    this.openModal('infoScore')
+    if (id == 1) {
+      this.openModal('infoScore')
+    }
   }
 
   /**
