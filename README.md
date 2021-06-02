@@ -1,30 +1,79 @@
+
 # Productivity Lodge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+A Desktop App made with Electron and Angular 11. The App serves as a Mood Tracker,
+and recovers usefull every day data to check your personal and laboral overall productivity.
 
-But this project uses a lot more dependencies like Electron, which is used to run the entire app.
-You must run `npm install` before running anything else.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Client:** Angular, Electron, TailwindCSS
 
-## Build
+**Server:** Node, Express
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  
+## License
 
-## Running unit tests
+[MIT](https://choosealicense.com/licenses/mit/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  
+## Run Locally
 
-## Running end-to-end tests
+Clone the project
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+  git clone https://link-to-project
+```
 
-## Further help
+Go to the project directory
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start (dev) // npm run electron-build (prod)
+```
+
+  
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run dist
+```
+
+  
+## Features
+
+- Mood Tracker (with customizable colors)
+- Cloud Storage
+- Mail Authentication
+- Time Journaling
+- Statistics about your time, effort and mood
+
+
+
+  
+## Lessons Learned
+
+This is my DAM graduation project.
+
+I learned a lot about web development, I didn't know anything about the web and its technologies and now
+I'm only getting more and more interested about it.
+
+I learned how to create and use a Restfull API. How to structure and style HTML code using SCSS. How to use JavaScript and TypeScript.
+Took my firsts steps into cryptography. How to integrate Async Code. I also learned a lot about unit and integration testing. How to use Control Version in a real project. And so many things I could not write them all.
+
+  
