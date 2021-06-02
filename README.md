@@ -11,7 +11,7 @@ and recovers usefull every day data to check your personal and laboral overall p
 
 **Client:** Angular, Electron, TailwindCSS
 
-**Server:** Node, Express
+**Server:** Node, Express, MongoDB
 
   
 ## License
@@ -42,7 +42,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start (dev) // npm run electron-build (prod)
+  npm run start
 ```
 
   
