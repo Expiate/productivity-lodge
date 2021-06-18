@@ -246,9 +246,11 @@ export class MenuComponent implements OnInit {
       title = ""
     }
     this.toastr.success(content, title, {
+      // PopUp Screen Position
       positionClass: 'toast-bottom-right',
       progressBar: false,
       progressAnimation: 'decreasing',
+      // How long it last
       timeOut: 3000
     });
   }
